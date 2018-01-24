@@ -22,6 +22,7 @@ public class MybatisTest {
 
     public void setUserInfoMapper(UserInfoMapper userInfoMapper) {
         this.userInfoMapper = userInfoMapper;
+
     }
 
     @Test
