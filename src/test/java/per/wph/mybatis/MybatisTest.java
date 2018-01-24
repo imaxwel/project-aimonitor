@@ -35,7 +35,7 @@ public class MybatisTest {
 
     @Test
     public void UserInfoServiceTest1(){
-        UserInfo userInfo = userInfoService.getUserInfoById(Long.valueOf(1));
+        UserInfo userInfo = userInfoService.getById(Long.valueOf(1));
         System.out.println(userInfo.getName());
     }
 

@@ -15,8 +15,7 @@ public class UserInfoServiceImpl extends BaseServiceImpl implements UserInfoServ
     private UserInfoMapper userInfoMapper;
 
     @Override
-    public UserInfo getUserInfoById(Long id) {
+    public UserInfo getById(Long id) {
         return userInfoMapper.selectByPrimaryKey(id);
     }
-
 }
