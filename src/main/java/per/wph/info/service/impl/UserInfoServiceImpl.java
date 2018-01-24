@@ -25,6 +25,11 @@ public class UserInfoServiceImpl extends BaseServiceImpl implements UserInfoServ
     }
 
     @Override
+    public UserInfo getByUsername(String username) {
+        return userInfoMapper.selectByUsername(username);
+    }
+
+    @Override
     public List<UserInfo> getAll(){
         return userInfoMapper.selectAll();
     }

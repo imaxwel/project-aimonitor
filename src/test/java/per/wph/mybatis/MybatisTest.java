@@ -41,11 +41,17 @@ public class MybatisTest {
     }
 
     @Test
-    @Transactional
     public void TransactionTest1(){
         UserInfo userInfo = new UserInfo();
         userInfo.setName("事务测试");
         userInfoMapper.insert(userInfo);
+    }
+
+    @Test
+    public void UserInfoServiceTest2(){
+        UserInfo userInfo = userInfoService.getByUsername("1122");
+        System.out.println("success");
+        System.out.println(userInfo.getName());
     }
 
 }

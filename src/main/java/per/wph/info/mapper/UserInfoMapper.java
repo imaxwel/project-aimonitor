@@ -18,6 +18,8 @@ public interface UserInfoMapper {
 
     UserInfo selectByPrimaryKey(Long uid);
 
+    UserInfo selectByUsername(String username);
+
     List<UserInfo> selectAll();
 
     int updateByPrimaryKeySelective(UserInfo record);
