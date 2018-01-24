@@ -12,7 +12,10 @@ spring:
       max-wait: -1
       max-idle: 8
     timeout: 0
-
+  #thymeleaf
+  thymeleaf:
+    mode: LEGACYHTML5
+    cache: false
 #database
   datasource:
     url: jdbc:mysql://localhost:3306/monitor
