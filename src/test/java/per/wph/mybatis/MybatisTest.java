@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 import per.wph.info.mapper.UserInfoMapper;
 import per.wph.info.model.UserInfo;
 import per.wph.info.service.UserInfoService;
@@ -37,6 +38,14 @@ public class MybatisTest {
     public void UserInfoServiceTest1(){
         UserInfo userInfo = userInfoService.getById(Long.valueOf(1));
         System.out.println(userInfo.getName());
+    }
+
+    @Test
+    @Transactional
+    public void TransactionTest1(){
+        UserInfo userInfo = new UserInfo();
+        userInfo.setName("事务测试");
+        userInfoMapper.insert(userInfo);
     }
 
 }
