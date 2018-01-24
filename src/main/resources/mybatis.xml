@@ -9,6 +9,7 @@
     <mappers>
         <mapper resource="xml/UserInfoMapper.xml"/>
         <mapper resource="xml/SysRoleMapper.xml"/>
+        <mapper resource="xml/SysPermissionMapper.xml"/>
     </mappers>
 
 </configuration>
