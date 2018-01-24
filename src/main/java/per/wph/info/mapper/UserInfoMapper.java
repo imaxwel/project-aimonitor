@@ -1,9 +1,11 @@
-package per.wph.info.mybatis.mapper;
+package per.wph.info.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
-import per.wph.info.mybatis.model.UserInfo;
+import org.springframework.stereotype.Repository;
+import per.wph.info.model.UserInfo;
 
 @Mapper
+@Repository
 public interface UserInfoMapper {
     int deleteByPrimaryKey(Long uid);
 

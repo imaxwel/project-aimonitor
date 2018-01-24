@@ -1,4 +1,4 @@
-package per.wph.info.mybatis.model;
+package per.wph.info.model;
 
 import java.util.Date;
 
