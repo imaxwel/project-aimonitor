@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 import per.wph.info.model.UserInfo;
 import per.wph.info.service.UserInfoService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/user")
 public class UserInfoController extends BaseController{
@@ -17,5 +19,10 @@ public class UserInfoController extends BaseController{
     @RequestMapping(value = "/get",method = {RequestMethod.GET})
     public UserInfo getUserInfo(Long id){
         return userInfoService.getById(id);
+    }
+
+    @RequestMapping(value = "/getAll")
+    public List<UserInfo> getAll(){
+        return userInfoService.getAll();
     }
 }

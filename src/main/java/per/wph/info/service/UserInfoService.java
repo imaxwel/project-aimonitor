@@ -1,8 +1,14 @@
 package per.wph.info.service;
 
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import per.wph.info.model.UserInfo;
+
+import java.util.List;
 
 public interface UserInfoService extends BaseService{
     //根据用户ID获取用户
-    public UserInfo getById(Long id);
+    UserInfo getById(Long id);
+    //获取所有用户
+    List<UserInfo> getAll();
 }
