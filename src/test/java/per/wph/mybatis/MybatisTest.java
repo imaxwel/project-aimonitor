@@ -12,6 +12,7 @@ import per.wph.info.model.UserInfo;
 import per.wph.info.service.UserInfoService;
 
 import javax.annotation.Resource;
+import java.util.Set;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -36,7 +37,7 @@ public class MybatisTest {
 
     @Test
     public void UserInfoServiceTest1(){
-        UserInfo userInfo = userInfoService.getById(Long.valueOf(1));
+        UserInfo userInfo = userInfoService.getUserInfoById(Long.valueOf(1));
         System.out.println(userInfo.getName());
     }
 
@@ -49,9 +50,15 @@ public class MybatisTest {
 
     @Test
     public void UserInfoServiceTest2(){
-        UserInfo userInfo = userInfoService.getByUsername("1122");
+        UserInfo userInfo = userInfoService.getUserInfoByUsername("1122");
         System.out.println("success");
         System.out.println(userInfo.getName());
+    }
+
+    @Test
+    public void UserGetRolesTest(){
+        Set<Long> ids = userInfoMapper.selectRoleIdsByUsername("1122");
+        System.out.println(ids.toArray()[0]);
     }
 
 }

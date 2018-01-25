@@ -26,6 +26,10 @@
     from user_info
     where username = #{username,jdbcType=VARCHAR}
   </select>
+  <select id="selectRoleIdsByUsername" resultType="java.lang.Long" parameterType="java.util.Set" >
+    select role_id from sys_user_role where uid in (
+      select uid from user_info where username = #{username,jdbcType=VARCHAR})
+  </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />

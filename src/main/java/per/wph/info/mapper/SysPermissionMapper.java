@@ -4,6 +4,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 import per.wph.info.model.SysPermission;
 
+import java.util.Set;
+
 @Mapper
 @Repository
 public interface SysPermissionMapper {
@@ -14,6 +16,9 @@ public interface SysPermissionMapper {
     int insertSelective(SysPermission record);
 
     SysPermission selectByPrimaryKey(Long id);
+
+    //根据角色的id集获得所拥有的权限
+    Set<SysPermission> selectByRoleIds(Set<Long> ids);
 
     int updateByPrimaryKeySelective(SysPermission record);
 

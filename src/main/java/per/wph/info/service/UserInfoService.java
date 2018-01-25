@@ -8,10 +8,10 @@ import java.util.List;
 
 public interface UserInfoService extends BaseService{
     //根据用户ID获取用户
-    UserInfo getById(Long id);
+    UserInfo getUserInfoById(Long id);
 
     //根据用户名查找
-    UserInfo getByUsername(String username);
+    UserInfo getUserInfoByUsername(String username);
 
     //获取所有用户
     List<UserInfo> getAll();

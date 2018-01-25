@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import per.wph.info.model.UserInfo;
 
 import java.util.List;
+import java.util.Set;
 
 @Mapper
 @Repository
@@ -19,6 +20,8 @@ public interface UserInfoMapper {
     UserInfo selectByPrimaryKey(Long uid);
 
     UserInfo selectByUsername(String username);
+
+    Set<Long> selectRoleIdsByUsername(String username);
 
     List<UserInfo> selectAll();
 

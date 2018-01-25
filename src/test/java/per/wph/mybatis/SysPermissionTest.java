@@ -8,6 +8,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import per.wph.info.mapper.SysPermissionMapper;
 import per.wph.info.model.SysPermission;
+import per.wph.info.service.SysPermissionService;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -17,10 +21,24 @@ public class SysPermissionTest {
     @Autowired
     private SysPermissionMapper sysPermissionMapper;
 
+    @Autowired
+    private SysPermissionService sysPermissionService;
     @Test
     public void SysPermissionMapperTest1(){
         SysPermission sysPermission = new SysPermission();
         sysPermission.setName("修改权限");
         sysPermissionMapper.insert(sysPermission);
+    }
+
+    @Test
+    public void SysPermissionMapperTest2(){
+        Set<Long> ids = new LinkedHashSet<>();
+        ids.add(Long.valueOf(1));
+        Set<SysPermission> sysPermissions = sysPermissionMapper.selectByRoleIds(ids);
+    }
+
+    @Test
+    public void SysPermissionMapperTest3(){
+        Set<String> names = sysPermissionService.getSysPermissionNamesByUsername("1122");
     }
 }

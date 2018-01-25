@@ -15,17 +15,14 @@ import java.util.List;
 @CacheConfig(cacheNames = "user")
 public class UserInfoServiceImpl extends BaseServiceImpl implements UserInfoService {
 
-    @Autowired
-    private UserInfoMapper userInfoMapper;
-
     @Override
     @Cacheable(key = "'userinfo_id' + #p0")
-    public UserInfo getById(Long id) {
+    public UserInfo getUserInfoById(Long id) {
         return userInfoMapper.selectByPrimaryKey(id);
     }
 
     @Override
-    public UserInfo getByUsername(String username) {
+    public UserInfo getUserInfoByUsername(String username) {
         return userInfoMapper.selectByUsername(username);
     }
 

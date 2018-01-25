@@ -2,6 +2,7 @@ package per.wph.common.controller;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,6 +40,7 @@ public class BasePageController {
 
 
     @RequestMapping("/open/{page}")
+    @RequiresRoles("管理员")
     public String open(@PathVariable("page")String page){
         return page;
     }

@@ -18,7 +18,7 @@ public class UserInfoController extends BaseController{
 
     @RequestMapping(value = "/get",method = {RequestMethod.GET})
     public UserInfo getUserInfo(Long id){
-        return userInfoService.getById(id);
+        return userInfoService.getUserInfoById(id);
     }
 
     @RequestMapping(value = "/getAll")

@@ -8,6 +8,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import per.wph.info.mapper.SysRoleMapper;
 import per.wph.info.model.SysRole;
+import per.wph.info.service.SysRoleService;
+
+import java.lang.ref.PhantomReference;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
@@ -21,5 +26,28 @@ public class SysRoleTest {
         SysRole sysRole = new SysRole();
         sysRole.setRole("管理员");
         sysRoleMapper.insert(sysRole);
+    }
+
+    @Test
+    public void SysRoleMapperTest2(){
+        Set<Long> ids = new LinkedHashSet<>();
+        ids.add(Long.valueOf(1));
+        ids.add(Long.valueOf(2));
+        sysRoleMapper.selectByPrimaryKeys(ids);
+    }
+
+    @Autowired
+    private SysRoleService sysRoleService;
+
+    @Test
+    public void SysRoleServiceTest1(){
+        Set<SysRole> sysRoles = sysRoleService.getSysRolesByUsername("1122");
+        System.out.println(sysRoles);
+    }
+
+    @Test
+    public void SysRoleServiceTest2(){
+        Set<String> roleNames = sysRoleService.getSysRoleNamesByUsername("1122");
+        System.out.println(roleNames.toArray()[0]);
     }
 }
