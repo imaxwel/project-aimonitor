@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class BasePageController {
-    @RequestMapping("/")
+    @RequestMapping({"/","/index"})
     public String index(){
         return "index";
     }
