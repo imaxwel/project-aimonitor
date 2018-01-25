@@ -6,26 +6,23 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
-import per.wph.info.model.SysRole;
 import per.wph.info.model.UserInfo;
-import per.wph.info.service.BaseService;
-import per.wph.info.service.SysPermissionService;
-import per.wph.info.service.SysRoleService;
-import per.wph.info.service.UserInfoService;
+import per.wph.info.service.PermissionService;
+import per.wph.info.service.RoleService;
+import per.wph.info.service.UserService;
 
-import java.util.List;
 import java.util.Set;
 
 public class DefaultShiroRealm extends AuthorizingRealm {
 
     @Autowired
-    private UserInfoService userInfoService;
+    private UserService userService;
 
     @Autowired
-    private SysRoleService sysRoleService;
+    private RoleService roleService;
 
     @Autowired
-    private SysPermissionService sysPermissionService;
+    private PermissionService permissionService;
 
     /**
      * 权限配置
@@ -36,8 +33,8 @@ public class DefaultShiroRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principal) {
         String u = (String) principal.getPrimaryPrincipal();
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        Set<String> sysRoles = sysRoleService.getSysRoleNamesByUsername(u);
-        Set<String> sysPermissions = sysPermissionService.getSysPermissionNamesByUsername(u);
+        Set<String> sysRoles = roleService.getSysRoleNamesByUsername(u);
+        Set<String> sysPermissions = permissionService.getSysPermissionNamesByUsername(u);
         info.setRoles(sysRoles);
         info.setStringPermissions(sysPermissions);
         return info;
@@ -52,7 +49,7 @@ public class DefaultShiroRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         String username = (String) token.getPrincipal();
-        UserInfo userInfo = userInfoService.getUserInfoByUsername(username);
+        UserInfo userInfo = userService.getUserInfoByUsername(username);
         if(userInfo==null){
             throw new AccountException("帐号或密码不正确！");
         }

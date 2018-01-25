@@ -5,7 +5,7 @@ import per.wph.info.model.SysRole;
 import java.util.List;
 import java.util.Set;
 
-public interface SysRoleService extends BaseService {
+public interface RoleService extends BaseService {
 
     //根据用户名获得用户所拥有的角色
     Set<SysRole> getSysRolesByUsername(String username);

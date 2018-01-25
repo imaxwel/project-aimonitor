@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class BasePageController {
     @RequestMapping("/")
@@ -29,7 +32,7 @@ public class BasePageController {
             UsernamePasswordToken token = new UsernamePasswordToken();
             token.setUsername(username);
             token.setPassword(password.toCharArray());
-            token.setRememberMe(Boolean.TRUE);
+            token.setRememberMe(Boolean.FALSE);
             subject.login(token);
         }catch (Exception e){
             System.out.println(e.getMessage());

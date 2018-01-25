@@ -8,9 +8,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import per.wph.info.mapper.SysRoleMapper;
 import per.wph.info.model.SysRole;
-import per.wph.info.service.SysRoleService;
+import per.wph.info.service.RoleService;
 
-import java.lang.ref.PhantomReference;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -37,17 +36,17 @@ public class SysRoleTest {
     }
 
     @Autowired
-    private SysRoleService sysRoleService;
+    private RoleService roleService;
 
     @Test
     public void SysRoleServiceTest1(){
-        Set<SysRole> sysRoles = sysRoleService.getSysRolesByUsername("1122");
+        Set<SysRole> sysRoles = roleService.getSysRolesByUsername("1122");
         System.out.println(sysRoles);
     }
 
     @Test
     public void SysRoleServiceTest2(){
-        Set<String> roleNames = sysRoleService.getSysRoleNamesByUsername("1122");
+        Set<String> roleNames = roleService.getSysRoleNamesByUsername("1122");
         System.out.println(roleNames.toArray()[0]);
     }
 }

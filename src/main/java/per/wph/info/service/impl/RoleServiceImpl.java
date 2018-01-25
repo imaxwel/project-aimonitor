@@ -2,15 +2,14 @@ package per.wph.info.service.impl;
 
 import org.springframework.stereotype.Service;
 import per.wph.info.model.SysRole;
-import per.wph.info.service.SysRoleService;
+import per.wph.info.service.RoleService;
 
 import java.util.Iterator;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
 @Service
-public class SysRoleServiceImpl extends BaseServiceImpl implements SysRoleService{
+public class RoleServiceImpl extends BaseServiceImpl implements RoleService {
     @Override
     public Set<SysRole> getSysRolesByUsername(String username) {
         Set<Long> ids = userInfoMapper.selectRoleIdsByUsername(username);

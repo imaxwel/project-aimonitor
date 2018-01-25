@@ -6,7 +6,7 @@ import per.wph.info.model.UserInfo;
 
 import java.util.List;
 
-public interface UserInfoService extends BaseService{
+public interface UserService extends BaseService{
     //根据用户ID获取用户
     UserInfo getUserInfoById(Long id);
 

@@ -8,9 +8,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import per.wph.info.mapper.SysPermissionMapper;
 import per.wph.info.model.SysPermission;
-import per.wph.info.service.SysPermissionService;
+import per.wph.info.service.PermissionService;
 
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -22,7 +23,7 @@ public class SysPermissionTest {
     private SysPermissionMapper sysPermissionMapper;
 
     @Autowired
-    private SysPermissionService sysPermissionService;
+    private PermissionService permissionService;
     @Test
     public void SysPermissionMapperTest1(){
         SysPermission sysPermission = new SysPermission();
@@ -39,6 +40,11 @@ public class SysPermissionTest {
 
     @Test
     public void SysPermissionMapperTest3(){
-        Set<String> names = sysPermissionService.getSysPermissionNamesByUsername("1122");
+        Set<String> names = permissionService.getSysPermissionNamesByUsername("1122");
+    }
+
+    @Test
+    public void SysPermissionMapperTest4(){
+        List<String> urls = permissionService.getPermissionUrlsByUsername("1122");
     }
 }

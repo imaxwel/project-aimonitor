@@ -1,16 +1,15 @@
 package per.wph.info.service.impl;
 
 import org.springframework.stereotype.Service;
+import per.wph.info.mapper.SysRoleMapper;
 import per.wph.info.model.SysPermission;
 import per.wph.info.model.SysRole;
-import per.wph.info.service.SysPermissionService;
+import per.wph.info.service.PermissionService;
 
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 @Service
-public class SysPermissionServiceImpl extends BaseServiceImpl implements SysPermissionService{
+public class PermissionServiceImpl extends BaseServiceImpl implements PermissionService {
     @Override
     public Set<SysPermission> getSysPermissionsByUsername(String username) {
         Set<Long> ids = userInfoMapper.selectRoleIdsByUsername(username);
@@ -41,4 +40,17 @@ public class SysPermissionServiceImpl extends BaseServiceImpl implements SysPerm
         }
         return names;
     }
+
+    @Override
+    public List<String> getPermissionUrlsByUsername(String username) {
+        Set<Long> roleIds = userInfoMapper.selectRoleIdsByUsername(username);
+        Set<SysPermission> permissions = sysPermissionMapper.selectByRoleIds(roleIds);
+        Iterator<SysPermission> iterator = permissions.iterator();
+        List<String> urls = new ArrayList<>();
+        while(iterator.hasNext()){
+            urls.add(iterator.next().getUrl());
+        }
+        return urls;
+    }
+
 }
