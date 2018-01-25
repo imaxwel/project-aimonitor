@@ -11,10 +11,9 @@ import java.util.Map;
 
 public class ShiroFilterFactory {
 
-    private static final String LOGIN = "/login";
-    private static final String SUCCESS = "/index";
-    private static final String Unauthorized = "/043";
-    private static Map<String,String> permissions;
+    public static final String LOGIN = "/login";
+    public static final String SUCCESS = "/index";
+    public static final String Unauthorized = "/index";
 
     public static ShiroFilterFactoryBean create(SecurityManager securityManager){
         ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
