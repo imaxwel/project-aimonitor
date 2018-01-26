@@ -1,5 +1,6 @@
-package per.wph.info.service.aop;
+package per.wph.common.aop;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -10,28 +11,32 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
+import per.wph.common.DefaultMsg;
+import per.wph.common.MsgTemplate;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
 
 @Component
 @Aspect
-public class ServiceAspect {
-    @Pointcut("execution(* per.wph.info.service.impl.*.save*(..))")
+public class ControllerAspect {
+    @Pointcut("execution(* per.wph.common.controller.BasePageController.regist*(..))")
     public void executeService(){
     }
 
-    //对save方法做统一的异常处理
+    //对registe方法做异常处理
     @Around("executeService()")
     public Object processSave(ProceedingJoinPoint jp) throws java.lang.Throwable {
-        System.out.println("ServiceAspect.processSave()");
-        Boolean result = null;
+        System.out.println("ControllerAspect.processSave()");
+        DefaultMsg result = null;
         try {
-            result = (Boolean) jp.proceed();
+            result = (DefaultMsg) jp.proceed();
         }catch (Exception e){
-            System.out.println(e.getMessage());
-            return Boolean.FALSE;
+            result = new DefaultMsg();
+            result.setStatus(DefaultMsg.tag.FALSE.status());
+            result.setMessage("FALSE:" + e.getClass().getName());
+        }finally {
+            return result;
         }
-        return result;
     }
 }

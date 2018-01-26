@@ -51,16 +51,8 @@ public class BasePageController {
     @RequestMapping("/regist")
     @ResponseBody
     public DefaultMsg regist(UserInfo userInfo){
-        DefaultMsg defaultMsg = new DefaultMsg();
         passwordUtil.encryptPassword(userInfo);
-        Boolean result = userService.saveUserInfo(userInfo);
-        if(result==Boolean.TRUE){
-            defaultMsg.setMessage(DefaultMsg.tag.SUCCESS.message());
-            defaultMsg.setStatus(DefaultMsg.tag.SUCCESS.status());
-        }else{
-            defaultMsg.setMessage(DefaultMsg.tag.FALSE.message());
-            defaultMsg.setStatus(DefaultMsg.tag.FALSE.status());
-        }
-        return defaultMsg;
+        userService.saveUserInfo(userInfo);
+        return new DefaultMsg(Boolean.TRUE);
     }
 }

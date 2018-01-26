@@ -9,6 +9,16 @@ public class DefaultMsg implements MsgTemplate{
     public DefaultMsg() {
     }
 
+    public DefaultMsg(Boolean result) {
+        if(result==Boolean.TRUE){
+            this.message = (DefaultMsg.tag.SUCCESS.message());
+            this.status = (DefaultMsg.tag.SUCCESS.status());
+        }else{
+            this.message = (DefaultMsg.tag.FALSE.message());
+            this.status = (DefaultMsg.tag.FALSE.status());
+        }
+    }
+
     public DefaultMsg(String message, String status) {
         this.message = message;
         this.status = status;

@@ -17,5 +17,5 @@ public interface UserService extends BaseService{
     List<UserInfo> getAll();
 
     //保存用户
-    Boolean saveUserInfo(UserInfo userInfo);
+    void saveUserInfo(UserInfo userInfo);
 }

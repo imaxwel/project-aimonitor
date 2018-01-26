@@ -28,9 +28,8 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
     }
 
     @Override
-    public Boolean saveUserInfo(UserInfo userInfo) {
+    public void saveUserInfo(UserInfo userInfo) {
         userInfoMapper.insert(userInfo);
-        return Boolean.TRUE;
     }
 
 }
