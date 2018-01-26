@@ -20,17 +20,16 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
+
 public class PermissionFilter extends AuthorizationFilter {
 
+    @Autowired
     private PermissionService permissionService;
 
     private PatternMatcher patternMatcher = new AntPathMatcher();
 
     @Override
     protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse, Object o) throws Exception {
-        if(permissionService==null){
-            permissionService = SpringContentUtil.getApplicationContext().getBean(PermissionService.class);
-        }
         HttpServletRequest httpRequest = ((HttpServletRequest)servletRequest);
         String uri = httpRequest.getRequestURI();//获取URI
         Subject subject = getSubject(servletRequest,servletResponse);//获得subject对象

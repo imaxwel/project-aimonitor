@@ -82,4 +82,9 @@ public class UserInfo {
     public void setState(Byte state) {
         this.state = state;
     }
+
+    //获得资格证书盐
+    public String getCredentialsSalt(){
+        return this.name + this.salt;
+    }
 }

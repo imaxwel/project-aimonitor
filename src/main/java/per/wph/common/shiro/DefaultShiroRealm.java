@@ -5,7 +5,9 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import per.wph.common.shiro.util.PasswordUtil;
 import per.wph.info.model.UserInfo;
 import per.wph.info.service.PermissionService;
 import per.wph.info.service.RoleService;
@@ -17,10 +19,8 @@ public class DefaultShiroRealm extends AuthorizingRealm {
 
     @Autowired
     private UserService userService;
-
     @Autowired
     private RoleService roleService;
-
     @Autowired
     private PermissionService permissionService;
 
@@ -56,6 +56,7 @@ public class DefaultShiroRealm extends AuthorizingRealm {
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                 userInfo.getUsername(), //用户名
                 userInfo.getPassword(), //密码
+                ByteSource.Util.bytes(userInfo.getCredentialsSalt()),
                 getName()  //realm name
         );
         return authenticationInfo;

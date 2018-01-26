@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import per.wph.common.shiro.LoginMessage;
 import per.wph.common.shiro.util.LoginUtil;
+import per.wph.common.shiro.util.PasswordUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,7 +21,8 @@ import javax.servlet.http.HttpSession;
 public class BasePageController {
     @Autowired
     private LoginUtil loginUtil;
-
+    @Autowired
+    private PasswordUtil passwordUtil;
 
     @RequestMapping({"/","/index"})
     public String index(){
@@ -42,7 +44,6 @@ public class BasePageController {
     public LoginMessage checkuser(String username, String password){
         return loginUtil.login(username,password);
     }
-
 
     @RequestMapping("/open/{page}")
     public String open(@PathVariable("page")String page){

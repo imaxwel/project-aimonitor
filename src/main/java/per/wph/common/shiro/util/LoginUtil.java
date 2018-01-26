@@ -6,7 +6,6 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Component;
 import per.wph.common.shiro.LoginMessage;
 
-@Component
 public class LoginUtil {
     public LoginMessage login(String username,String password){
         LoginMessage msg = new LoginMessage();
