@@ -13,7 +13,7 @@ public class ShiroFilterFactory {
 
     public static final String LOGIN = "/login";
     public static final String SUCCESS = "/index";
-    public static final String Unauthorized = "/index";
+    public static final String Unauthorized = "/unauthorized";
 
     public static ShiroFilterFactoryBean create(SecurityManager securityManager){
         ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
@@ -50,6 +50,7 @@ public class ShiroFilterFactory {
         filter.put("/checklogin","anon");
         filter.put("/test","anon");
         filter.put("/druid/**","anon");
+        //static资源
         filter.put("/js/**","anon");
         filter.put("/css/**","anon");
         filter.put("/image/**","anon");

@@ -51,7 +51,7 @@ public class DefaultShiroRealm extends AuthorizingRealm {
         String username = (String) token.getPrincipal();
         UserInfo userInfo = userService.getUserInfoByUsername(username);
         if(userInfo==null){
-            throw new AccountException("帐号或密码不正确！");
+            throw new AccountException();
         }
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                 userInfo.getUsername(), //用户名
