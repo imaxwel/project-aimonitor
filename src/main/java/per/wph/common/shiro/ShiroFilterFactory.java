@@ -37,7 +37,6 @@ public class ShiroFilterFactory {
         Map<String,String> filter = new LinkedHashMap<>();
         setDefaultFilterChain(filter);
         setCustomFilterChain(filter);
-        filter.put("/permit/**","permission");
         filter.put("/**","authc");
         bean.setFilterChainDefinitionMap(filter);
     }
@@ -52,7 +51,7 @@ public class ShiroFilterFactory {
         filter.put("/logout","logout");
         filter.put("/favicon.ico","anon");//spring的页面图标
         filter.put("/checklogin","anon");
-        filter.put("/test","anon");
+        filter.put("/regist","anon");
         filter.put("/druid/**","anon");
         //static资源
         filter.put("/js/**","anon");
@@ -61,6 +60,6 @@ public class ShiroFilterFactory {
     }
 
     private void setCustomFilterChain(Map<String,String> filter){
-
+        filter.put("/permit/**","permission");
     }
 }

@@ -44,3 +44,11 @@ pagehelper:
   params: count=countSql
 mybatis:
   config-location: classpath:mybatis.xml
+
+logging:
+  level:
+    root: WARN
+    org:
+      springframework:
+        web: DEBUG
+  path: /log
