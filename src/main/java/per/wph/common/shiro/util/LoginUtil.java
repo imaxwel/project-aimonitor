@@ -3,12 +3,11 @@ package per.wph.common.shiro.util;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
-import org.springframework.stereotype.Component;
-import per.wph.common.shiro.LoginMessage;
+import per.wph.common.DefaultMsg;
 
 public class LoginUtil {
-    public LoginMessage login(String username,String password){
-        LoginMessage msg = new LoginMessage();
+    public DefaultMsg login(String username, String password){
+        DefaultMsg msg = new DefaultMsg();
         try {
             Subject subject = SecurityUtils.getSubject();
             UsernamePasswordToken token = new UsernamePasswordToken();
@@ -18,11 +17,12 @@ public class LoginUtil {
             subject.login(token);
         }catch (Exception e){
             System.out.println(e.getMessage());
-            msg.setStatus(LoginMessage.FALSE);
+            msg.setStatus(DefaultMsg.tag.FALSE.status());
             msg.setMessage(e.getMessage());
             return msg;
         }
-        msg.setStatus(LoginMessage.SUCCESS);
+        msg.setMessage(DefaultMsg.tag.SUCCESS.message());
+        msg.setStatus(DefaultMsg.tag.SUCCESS.status());
         return msg;
     }
 }

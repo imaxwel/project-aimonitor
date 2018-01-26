@@ -19,7 +19,7 @@ public class UserInfoController extends BaseController{
     public UserInfo getUserInfo(Long id){
         return userService.getUserInfoById(id);
     }
-
+    
     @RequestMapping(value = "/getAll")
     public List<UserInfo> getAll(){
         return userService.getAll();
