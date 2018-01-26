@@ -9,6 +9,7 @@ import org.apache.shiro.web.filter.authz.AuthorizationFilter;
 import org.apache.shiro.web.util.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import per.wph.common.util.SpringContentUtil;
 import per.wph.info.service.PermissionService;
 
@@ -30,6 +31,9 @@ public class PermissionFilter extends AuthorizationFilter {
 
     @Override
     protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse, Object o) throws Exception {
+        if(permissionService==null){
+            this.permissionService = SpringContentUtil.getApplicationContext().getBean(PermissionService.class);
+        }
         HttpServletRequest httpRequest = ((HttpServletRequest)servletRequest);
         String uri = httpRequest.getRequestURI();//获取URI
         Subject subject = getSubject(servletRequest,servletResponse);//获得subject对象
