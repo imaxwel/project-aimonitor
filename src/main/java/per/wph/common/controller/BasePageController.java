@@ -7,11 +7,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import per.wph.common.DefaultMsg;
+import per.wph.common.MsgTemplate;
 import per.wph.common.shiro.util.LoginUtil;
 import per.wph.common.shiro.util.PasswordUtil;
+import per.wph.info.model.UserInfo;
+import per.wph.info.service.UserService;
 
 @Controller
 public class BasePageController {
+    @Autowired
+    private UserService userService;
     @Autowired
     private LoginUtil loginUtil;
     @Autowired
@@ -44,7 +49,17 @@ public class BasePageController {
     }
 
     @RequestMapping("/regist")
-    public String regist(){
-        return "regist";
+    @ResponseBody
+    public DefaultMsg regist(UserInfo userInfo){
+        DefaultMsg defaultMsg = new DefaultMsg();
+        Boolean result = userService.saveUserInfo(userInfo);
+        if(result==Boolean.TRUE){
+            defaultMsg.setMessage(DefaultMsg.tag.SUCCESS.message());
+            defaultMsg.setStatus(DefaultMsg.tag.SUCCESS.status());
+        }else{
+            defaultMsg.setMessage(DefaultMsg.tag.SUCCESS.message());
+            defaultMsg.setStatus(DefaultMsg.tag.SUCCESS.status());
+        }
+        return defaultMsg;
     }
 }

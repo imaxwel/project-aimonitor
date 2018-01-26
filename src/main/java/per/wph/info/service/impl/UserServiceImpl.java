@@ -13,7 +13,6 @@ import java.util.List;
 public class UserServiceImpl extends BaseServiceImpl implements UserService {
 
     @Override
-    @Cacheable(key = "'userinfo_id' + #p0")
     public UserInfo getUserInfoById(Long id) {
         return userInfoMapper.selectByPrimaryKey(id);
     }
@@ -26,6 +25,16 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
     @Override
     public List<UserInfo> getAll(){
         return userInfoMapper.selectAll();
+    }
+
+    @Override
+    public Boolean saveUserInfo(UserInfo userInfo) {
+        try {
+            userInfoMapper.insert(userInfo);
+        }catch (Exception e){
+            return Boolean.FALSE;
+        }
+        return Boolean.TRUE;
     }
 
 }
