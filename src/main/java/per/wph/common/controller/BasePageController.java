@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import per.wph.common.DefaultMsg;
-import per.wph.common.MsgTemplate;
 import per.wph.common.handler.ApiResult;
 import per.wph.common.handler.ApiResultGenerator;
 import per.wph.common.shiro.util.LoginUtil;

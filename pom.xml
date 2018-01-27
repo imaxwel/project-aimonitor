@@ -26,6 +26,13 @@
 
 	<dependencies>
 
+		<!-- WebSocker-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
+			<version>1.5.8.RELEASE</version>
+		</dependency>
+
 		<!-- redis缓存环境-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

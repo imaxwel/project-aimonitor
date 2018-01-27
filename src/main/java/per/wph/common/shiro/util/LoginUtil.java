@@ -3,7 +3,6 @@ package per.wph.common.shiro.util;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
-import per.wph.common.DefaultMsg;
 
 public class LoginUtil {
     public void login(String username, String password){

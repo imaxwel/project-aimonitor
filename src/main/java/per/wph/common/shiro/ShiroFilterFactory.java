@@ -37,7 +37,7 @@ public class ShiroFilterFactory {
         Map<String,String> filter = new LinkedHashMap<>();
         setDefaultFilterChain(filter);
         setCustomFilterChain(filter);
-        filter.put("/**","authc");
+        filter.put("/**","anon");
         bean.setFilterChainDefinitionMap(filter);
     }
 
