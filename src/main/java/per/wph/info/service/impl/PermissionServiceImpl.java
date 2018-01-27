@@ -1,5 +1,6 @@
 package per.wph.info.service.impl;
 
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import per.wph.info.mapper.SysRoleMapper;
@@ -9,7 +10,8 @@ import per.wph.info.service.PermissionService;
 
 import java.util.*;
 
-@Service
+@Service("permissionService")
+@CacheConfig(cacheNames = "perm")
 public class PermissionServiceImpl extends BaseServiceImpl implements PermissionService {
     @Override
     public Set<SysPermission> getSysPermissionsByUsername(String username) {
@@ -43,7 +45,7 @@ public class PermissionServiceImpl extends BaseServiceImpl implements Permission
     }
 
     @Override
-    @Cacheable(key="'getPermissionUrlsByUsername_' + #p0",value = "perm")
+    @Cacheable(key="'getPermissionUrlsByUsername_' + #p0")
     public List<String> getPermissionUrlsByUsername(String username) {
         Set<Long> roleIds = userInfoMapper.selectRoleIdsByUsername(username);
         Set<SysPermission> permissions = sysPermissionMapper.selectByRoleIds(roleIds);

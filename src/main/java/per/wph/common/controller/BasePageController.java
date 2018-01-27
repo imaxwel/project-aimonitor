@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import per.wph.common.DefaultMsg;
 import per.wph.common.MsgTemplate;
+import per.wph.common.handler.ApiResult;
+import per.wph.common.handler.ApiResultGenerator;
 import per.wph.common.shiro.util.LoginUtil;
 import per.wph.common.shiro.util.PasswordUtil;
 import per.wph.info.model.UserInfo;
@@ -39,8 +41,9 @@ public class BasePageController {
 
     @RequestMapping(value = "/checklogin",method = {RequestMethod.GET})
     @ResponseBody
-    public DefaultMsg checkuser(String username, String password){
-        return loginUtil.login(username,password);
+    public ApiResult checkuser(String username, String password){
+        loginUtil.login(username,password);
+        return ApiResultGenerator.succssResult("登录成功");
     }
 
     @RequestMapping("/open/{page}")
@@ -50,9 +53,9 @@ public class BasePageController {
 
     @RequestMapping("/regist")
     @ResponseBody
-    public DefaultMsg regist(UserInfo userInfo){
+    public ApiResult regist(UserInfo userInfo){
         passwordUtil.encryptPassword(userInfo);
         userService.saveUserInfo(userInfo);
-        return new DefaultMsg(Boolean.TRUE);
+        return ApiResultGenerator.succssResult("注册成功");
     }
 }

@@ -33,12 +33,11 @@ public class RedisConfig {
     @Bean
     public CacheManager cacheManager(RedisTemplate redisTemplate){
         RedisCacheManager redisCacheManager = new RedisCacheManager(redisTemplate);
+        redisCacheManager.setDefaultExpiration(3600*1L);
         Map<String, Long> expires = new HashMap<>();
-        expires.put("12h",3600 * 12L);
-        expires.put("1h",3600 * 1L);
-        expires.put("10m",60 * 10L);
-        expires.put("10s",10L);
+        expires.put("perm", 60L);
         redisCacheManager.setExpires(expires);
+
         return redisCacheManager;
     }
 

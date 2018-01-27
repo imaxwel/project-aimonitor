@@ -11,6 +11,7 @@ import per.wph.info.mapper.UserInfoMapper;
 import per.wph.info.model.SysPermission;
 import per.wph.info.service.PermissionService;
 
+import javax.annotation.Resource;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -20,8 +21,12 @@ import java.util.Set;
 @SpringBootTest
 public class SysPermissionTest {
 
-    @Autowired
+    @Resource
     private SysPermissionMapper sysPermissionMapper;
+
+    public void setPermissionService(PermissionService permissionService) {
+        this.permissionService = permissionService;
+    }
 
     @Autowired
     private UserInfoMapper userInfoMapper;
@@ -58,4 +63,11 @@ public class SysPermissionTest {
         Set<SysPermission> permissions = sysPermissionMapper.selectByRoleIds(roleIds);
         System.out.println();
     }
+
+    @Test
+    public void SysPermissionServiceTest6(){
+        List<String> names = permissionService.getPermissionUrlsByUsername("491739727");
+        System.out.println(names);
+    }
+
 }

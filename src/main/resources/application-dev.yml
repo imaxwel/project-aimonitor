@@ -45,10 +45,10 @@ pagehelper:
 mybatis:
   config-location: classpath:mybatis.xml
 
-logging:
-  level:
-    root: WARN
-    org:
-      springframework:
-        web: DEBUG
-  path: /log
+#logging:
+#  level:
+#    root: WARN
+#    org:
+#      springframework:
+#        web: DEBUG
+#  path: /log
