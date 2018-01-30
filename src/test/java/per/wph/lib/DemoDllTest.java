@@ -18,12 +18,6 @@ public class DemoDllTest {
 
     @Test
     public void test1(){
-        int ret = DemoDll.INSTANCE.init();
-        System.out.println(ret);
-        ret = DemoDll.INSTANCE.load("C:\\Users\\wu\\Desktop\\timg.jpg");
-        System.out.println(ret);
-        ret = DemoDll.INSTANCE.uninit();
-        System.out.println(ret);
     }
 
     @Test
