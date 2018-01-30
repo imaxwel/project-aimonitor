@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="per.wph.info.mapper.BuildingInfoMapper" >
+  <resultMap id="BaseResultMap" type="per.wph.info.model.BuildingInfo" >
+    <id column="bid" property="bid" jdbcType="BIGINT" />
+    <result column="location" property="location" jdbcType="VARCHAR" />
+    <result column="resident_num" property="residentNum" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from building_info
+    where bid = #{bid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="per.wph.info.model.BuildingInfo" >
+    insert into building_info (bid, location, resident_num, 
+      type, description)
+    values (#{bid,jdbcType=BIGINT}, #{location,jdbcType=VARCHAR}, #{residentNum,jdbcType=INTEGER}, 
+      #{type,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="per.wph.info.model.BuildingInfo" >
+    update building_info
+    set location = #{location,jdbcType=VARCHAR},
+      resident_num = #{residentNum,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR}
+    where bid = #{bid,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select bid, location, resident_num, type, description
+    from building_info
+    where bid = #{bid,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select bid, location, resident_num, type, description
+    from building_info
+  </select>
+</mapper>

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="per.wph.info.mapper.OwnerInfoMapper" >
   <resultMap id="BaseResultMap" type="per.wph.info.model.OwnerInfo" >
-    <result column="uid" property="uid" jdbcType="BIGINT" />
+    <id column="uid" property="uid" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="gender" property="gender" jdbcType="BIT" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
@@ -12,6 +12,10 @@
     <result column="isadmin" property="isadmin" jdbcType="BIT" />
     <result column="description" property="description" jdbcType="VARCHAR" />
   </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from owner_info
+    where uid = #{uid,jdbcType=BIGINT}
+  </delete>
   <insert id="insert" parameterType="per.wph.info.model.OwnerInfo" >
     insert into owner_info (uid, name, gender, 
       phone, email, idnumber, 
@@ -22,65 +26,25 @@
       #{birthday,jdbcType=TIMESTAMP}, #{isadmin,jdbcType=BIT}, #{description,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="per.wph.info.model.OwnerInfo" >
-    insert into owner_info
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="uid != null" >
-        uid,
-      </if>
-      <if test="name != null" >
-        name,
-      </if>
-      <if test="gender != null" >
-        gender,
-      </if>
-      <if test="phone != null" >
-        phone,
-      </if>
-      <if test="email != null" >
-        email,
-      </if>
-      <if test="idnumber != null" >
-        idnumber,
-      </if>
-      <if test="birthday != null" >
-        birthday,
-      </if>
-      <if test="isadmin != null" >
-        isadmin,
-      </if>
-      <if test="description != null" >
-        description,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="uid != null" >
-        #{uid,jdbcType=BIGINT},
-      </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="gender != null" >
-        #{gender,jdbcType=BIT},
-      </if>
-      <if test="phone != null" >
-        #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null" >
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="idnumber != null" >
-        #{idnumber,jdbcType=INTEGER},
-      </if>
-      <if test="birthday != null" >
-        #{birthday,jdbcType=TIMESTAMP},
-      </if>
-      <if test="isadmin != null" >
-        #{isadmin,jdbcType=BIT},
-      </if>
-      <if test="description != null" >
-        #{description,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
+  <update id="updateByPrimaryKey" parameterType="per.wph.info.model.OwnerInfo" >
+    update owner_info
+    set name = #{name,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=BIT},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      idnumber = #{idnumber,jdbcType=INTEGER},
+      birthday = #{birthday,jdbcType=TIMESTAMP},
+      isadmin = #{isadmin,jdbcType=BIT},
+      description = #{description,jdbcType=VARCHAR}
+    where uid = #{uid,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select uid, name, gender, phone, email, idnumber, birthday, isadmin, description
+    from owner_info
+    where uid = #{uid,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select uid, name, gender, phone, email, idnumber, birthday, isadmin, description
+    from owner_info
+  </select>
 </mapper>

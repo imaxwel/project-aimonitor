@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="per.wph.info.mapper.FaceFeatureMapper" >
+  <resultMap id="BaseResultMap" type="per.wph.info.model.FaceFeature" >
+    <id column="fid" property="fid" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="image_url" property="imageUrl" jdbcType="VARCHAR" />
+    <result column="feature" property="feature" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from face_feature
+    where fid = #{fid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="per.wph.info.model.FaceFeature" >
+    insert into face_feature (fid, create_time, image_url, 
+      feature)
+    values (#{fid,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{imageUrl,jdbcType=VARCHAR}, 
+      #{feature,jdbcType=LONGVARBINARY})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="per.wph.info.model.FaceFeature" >
+    update face_feature
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      image_url = #{imageUrl,jdbcType=VARCHAR},
+      feature = #{feature,jdbcType=LONGVARBINARY}
+    where fid = #{fid,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select fid, create_time, image_url, feature
+    from face_feature
+    where fid = #{fid,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select fid, create_time, image_url, feature
+    from face_feature
+  </select>
+</mapper>
