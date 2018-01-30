@@ -1,7 +1,7 @@
 package per.wph.info.mapper;
 
 import java.util.List;
-import main.java.per.wph.info.model.FaceFeature;
+import per.wph.info.model.FaceFeature;
 
 public interface FaceFeatureMapper {
     int deleteByPrimaryKey(Long fid);
