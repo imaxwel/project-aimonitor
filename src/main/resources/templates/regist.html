@@ -1,11 +1,49 @@
 <!DOCTYPE html>
 <!-- saved from url=(0069)http://www.17sucai.com/preview/757225/2017-05-26/jdjiemian/index.html -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		
+<html><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">	
 		<title></title>
 		<script src="/js/jquery-1.10.2.js" type="text/javascript" charset="utf-8"></script>
 		<link rel="stylesheet" type="text/css" href="/css/regist.css">
 		 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" /> 
+		<script type="text/javascript" src="/js/ajaxfileupload.js"></script>
+		<script type="text/javascript" src="/js/upphoto.js"></script>
+
+		<style type="text/css">
+			#photo{
+				background: #0e90d2;
+				display: inline-block;
+			}
+			#camera{
+				background: #0e90d2;
+				display: inline-block;
+			}
+			.addphoto{
+				position: relative;
+				margin: 20px 0;
+			}
+			#previewImg{
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 1;
+				opacity: 0;
+				cursor: pointer;
+				width: 100%;
+				height: 100%;
+			}
+			#video,#canvas,#capture{
+				display: none;
+			}
+			#capture{
+				margin: auto 10px;
+				padding: 10px 20px;
+				background-color: #999;
+				font-size: 1.2em;
+				color: white; 
+			}
+		</style>
+		
 	</head>
 	<body>
 		<header>
@@ -15,65 +53,135 @@
 		</div>
 		</header>
 		<section>
-			<form action="#">
+			<form action="" method="get" id="registForm">
 				<div class="register-box">
-					<label class="username_label">用 户 名
-					<input maxlength="20" type="text" placeholder="请填写真实姓名">
+					<label for="username" class="username_label">用 户 名
+					<input maxlength="20" type="text" placeholder="请填写真实姓名" name="username"><!-- <span class="errormsg"></span> -->
 					</label>
-					
+					<div></div>
+				</div>
+
+				<div class="register-box">
+					<label for="username" class="other_label">身 份 证 号
+					<input maxlength="18" type="text" placeholder="请填写有效的身份证号" name="id">
+					</label>
+					<div></div>
 				</div>
 				<div class="register-box">
-					<label class="other_label">身 份 证 号
-					<input maxlength="18" type="text" placeholder="请填写有效的身份证号">
+					<label for="username" class="other_label">设 置 密 码
+					<input id="pwd" maxlength="20" type="password" placeholder="建议至少使用两种字符组合" name="pwd">
 					</label>
-					
+					<div></div>
 				</div>
 				<div class="register-box">
-					<label class="other_label">设 置 密 码
-					<input maxlength="20" type="password" placeholder="建议至少使用两种字符组合">
+					<label for="username" class="other_label">确 认 密 码
+					<input maxlength="20" type="password" placeholder="请再次输入密码" name="repwd">
 					</label>
-					
+					<div></div>
 				</div>
 				<div class="register-box">
-					<label class="other_label">确 认 密 码
-					<input maxlength="20" type="password" placeholder="请再次输入密码">
-					</label>
-					
-				</div>
-				<div class="register-box">
-					<label class="other_label">
+					<label for="username" class="other_label">
 					<span>中国 0086∨</span>
-					<input class="phone" maxlength="20" type="text" placeholder="建议使用常用手机">
+					<input class="phone" maxlength="20" type="text" placeholder="建议使用常用手机" name="number">
 					</label>
-					
+					<div></div>
 				</div>				
 				<div class="register-box">
-					<label class="other_label">
+					<label for="username" class="other_label">
 						<span>小区</span>
 							<select name="select" id="select"> 
 								<option value="0">紫金小区</option> 
 								<option value="1">多蓝水岸</option> 
 							</select> 
 					</label>
-					
+					<div></div>
 				</div>
 				<!-- 人脸识别 -->
-				<div class="picture">
-					<!-- <video id="video" width="320" height="320" autoplay="">
-						
-					</video> -->
-				</div>
-				<div class="photo">
-						<a href="" class="itemp">拍照识别人脸</a>
-						<a href="" class="itemp">本地上传照片</a>	
-					
-				</div>
+				<img src="" width="400" height="300" id="image" style="display: none;">
+
+				<video id="video" autoplay="" style="width: 300px;height: 300px"></video>
+				<button id="capture">拍照</button>				
+				<canvas id="canvas" width="400" height="300" ></canvas>
+				<div id="preview">
+                    <img id="imghead" style="width: 400px;height: 300px;margin-left: 0px;display: none;" border="0" src="/image/photo_icon.png" width="90" height="90">
+                </div> 
+                <div class="submit_btn addphoto">
+                	<button type="button" id="photo">本地上传照片</button>
+                	<input type="file" onchange="previewImage(this,)" id="previewImg">
+                </div>                           
+                <div class="submit_btn addphoto">
+                	<button type="button" id="camera">拍照识别人脸</button>
+                </div>
 				<div class="submit_btn">
 					<button type="submit" id="submit_btn">立 即 注 册</button>
 				</div>
 			</form>
 		</section>
 		<script src="/js/index.js" type="text/javascript" charset="utf-8"></script>
-	
+		<script type="text/javascript">
+			// 将数据传到服务器
+	        var username=$("input").eq(0).val();
+	        var id=$('input').eq(1).val();
+	        var pwd=$('input').eq(2).val();
+	        var repwd=$('input').eq(3).val();
+	        var number=$('input').eq(4).val();
+	        var select=$('select option:checked').text();
+	        // alert(select);
+	        //console.log(name,pwd);
+	        $.ajax({
+	            type: "POST",
+	            url: "#",//后台页面
+	            cache: false,
+	            data:{
+	                    username:username,
+	                    id:id,
+	                    pwd:pwd,
+	                    repwd:repwd,
+	                    number:number,
+	                    select:select
+	            },
+	            success:function(data){
+	                // alert("注册成功!");
+	            },
+	            error:function(){
+	                alert('注册失败！');
+	            }
+	        });
+
+			//调用摄像头进行拍照
+
+			$("#camera").click(function(){
+				var capture = document.getElementById("capture");
+				var video = document.getElementById("video");
+				var canvas = document.getElementById("canvas");
+				var context = canvas.getContext("2d");
+				navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+				window.URL = window.URL || window.webkitURL;
+				navigator.getUserMedia({video:true}, onSuccess, onError); //调用摄像头捕捉视频信息
+				capture.onclick = function(e){
+				  e.preventDefault();
+				  context.drawImage(video, 0, 0, 400, 300);  
+				  // var imgData=canvas.toDataURL(“image/png”);
+				  // alert("imgData");
+				}
+				function onSuccess(stream){
+				  video.src = window.URL.createObjectURL(stream); 
+				  // alert (video.src);
+				}
+				function onError(){
+				  mystatus.innerHTML = "获取视频出错"
+				}
+				$("#video").css("display","inline-block");
+				$("#capture").css("display","inline-block");
+				$("#imghead").css("display","none");
+			});
+			$("#capture").click(function(){
+				$("#video").css("display","none");
+				$("#capture").css("display","none");
+				$("#canvas").css("display","inline-block");
+			});
+			 
+			
+		</script>
 
 </body></html>

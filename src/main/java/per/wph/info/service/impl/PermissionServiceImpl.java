@@ -27,6 +27,7 @@ public class PermissionServiceImpl extends BaseServiceImpl implements Permission
     }
 
     @Override
+    @Cacheable(key="'getSysPermissionNamesByUsername_' + #p0")
     public Set<String> getSysPermissionNamesByUsername(String username) {
         Set<Long> ids = userInfoMapper.selectRoleIdsByUsername(username);
         Set<SysRole> roles = sysRoleMapper.selectByPrimaryKeys(ids);

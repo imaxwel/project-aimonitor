@@ -15,9 +15,27 @@ public class ShiroFilterFactory {
     @Autowired
     private PermissionFilter permissionFilter;
 
-    public static final String LOGIN = "/login";
-    public static final String SUCCESS = "/index";
-    public static final String Unauthorized = "/unauthorized";
+    private enum DefaultUrl{
+        LOGIN("/login"),SUCCESS("/success"),UNAUTHORIZED("/unauthorized");
+        private String value;
+        private DefaultUrl(String value){
+            this.value = value;
+        }
+        public String value(){
+            return this.value;
+        }
+    }
+
+    private enum Authority{
+        ANON("anon"),AUTHC("authc"),LOGOUT("logout");
+        private String value;
+        private Authority(String value){
+            this.value = value;
+        }
+        public String value(){
+            return this.value;
+        }
+    }
 
     public ShiroFilterFactoryBean create(SecurityManager securityManager){
         ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
@@ -28,37 +46,58 @@ public class ShiroFilterFactory {
         return bean;
     }
 
+    /**
+     * 设置过滤器
+     * @param bean
+     */
     private void setFilter(ShiroFilterFactoryBean bean){
         Map<String,Filter> filterMap = new HashMap<>();
         filterMap.put("permission",permissionFilter);
         bean.setFilters(filterMap);
     }
+
+    /**
+     * 设置ilter过滤链
+     * @param bean
+     */
     private void setFilterChain(ShiroFilterFactoryBean bean){
         Map<String,String> filter = new LinkedHashMap<>();
         setDefaultFilterChain(filter);
         setCustomFilterChain(filter);
-        filter.put("/**","anon");
+        filter.put("/**",Authority.AUTHC.value());
         bean.setFilterChainDefinitionMap(filter);
     }
 
+    /**
+     * 设置默认的跳转页面
+     * @param bean
+     */
     private void setDefaultPage(ShiroFilterFactoryBean bean){
-        bean.setLoginUrl(LOGIN);
-        bean.setSuccessUrl(SUCCESS);
-        bean.setUnauthorizedUrl(Unauthorized);
+        bean.setLoginUrl(DefaultUrl.LOGIN.value());
+        bean.setSuccessUrl(DefaultUrl.SUCCESS.value());
+        bean.setUnauthorizedUrl(DefaultUrl.UNAUTHORIZED.value());
     }
 
+    /**
+     * 设置默认的过滤链
+     * @param filter
+     */
     private void setDefaultFilterChain(Map<String,String> filter){
-        filter.put("/logout","logout");
-        filter.put("/favicon.ico","anon");//spring的页面图标
-        filter.put("/checklogin","anon");
-        filter.put("/regist","anon");
-        filter.put("/druid/**","anon");
+        filter.put("/logout",Authority.LOGOUT.value());
+        filter.put("/favicon.ico",Authority.ANON.value());//spring的页面图标
+        filter.put("/checklogin",Authority.ANON.value());
+        filter.put("/regist",Authority.ANON.value());
+        filter.put("/druid/**",Authority.ANON.value());
         //static资源
-        filter.put("/js/**","anon");
-        filter.put("/css/**","anon");
-        filter.put("/image/**","anon");
+        filter.put("/js/**",Authority.ANON.value());
+        filter.put("/css/**",Authority.ANON.value());
+        filter.put("/image/**",Authority.ANON.value());
     }
 
+    /**
+     * 设置用户自定义的过滤链
+     * @param filter
+     */
     private void setCustomFilterChain(Map<String,String> filter){
         filter.put("/permit/**","permission");
     }

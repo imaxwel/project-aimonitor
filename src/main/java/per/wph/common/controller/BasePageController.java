@@ -1,5 +1,6 @@
 package per.wph.common.controller;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,36 +25,51 @@ public class BasePageController {
 
     @RequestMapping({"/","/index"})
     public String index(){
-        return "index";
+        return "owner";
     }
 
     @RequestMapping(value = "/login")
     public String login(){
-        return "regist";
+        return "login";
+    }
+
+    @RequestMapping(value="/regist")
+    public String regist(){
+        return "login";
     }
 
     @RequestMapping(value="/unauthorized")
     public String unauthorized(){
+        return "login";
+    }
+
+    @RequestMapping(value="/success")
+    public String owner(){
         return "owner";
     }
 
-    @RequestMapping(value = "/checklogin",method = {RequestMethod.GET})
+    @RequestMapping(value = "/checklogin")
     @ResponseBody
-    public ApiResult checkuser(String username, String password){
-        loginUtil.login(username,password);
+    public ApiResult checkuser(String username, String password, boolean rememberMe){
+        loginUtil.login(username,password,rememberMe);
         return ApiResultGenerator.succssResult("登录成功");
     }
 
-    @RequestMapping("/open/{page}")
-    public String open(@PathVariable("page")String page){
-        return page;
-    }
-
-    @RequestMapping("/regist")
+    @RequestMapping("/checkregist")
     @ResponseBody
     public ApiResult regist(UserInfo userInfo){
         passwordUtil.encryptPassword(userInfo);
         userService.saveUserInfo(userInfo);
         return ApiResultGenerator.succssResult("注册成功");
+    }
+
+    /**
+     * 基本authc权限页面跳转页面
+     * @param page
+     * @return
+     */
+    @RequestMapping("/base/{page}")
+    public String open(@PathVariable("page")String page){
+        return page;
     }
 }

@@ -1,25 +1,32 @@
 package per.wph.common.shiro.config;
 
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
-import org.apache.shiro.authc.credential.Sha256CredentialsMatcher;
-import org.apache.shiro.authc.credential.SimpleCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
-import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import per.wph.common.shiro.DefaultShiroRealm;
 import per.wph.common.shiro.ShiroFilterFactory;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 @Configuration
 public class ShiroConfig {
 
+    /**
+     *配置thymeleaf模板标签
+     * @return
+     */
+    @Bean
+    public ShiroDialect shiroDialect(){
+        return new ShiroDialect();
+    }
+
+    /**
+     * 配置密码匹配器
+     * @return
+     */
     @Bean
     public HashedCredentialsMatcher matcher(){
         HashedCredentialsMatcher matcher = new HashedCredentialsMatcher();
@@ -28,6 +35,11 @@ public class ShiroConfig {
         return matcher;
     }
 
+    /**
+     * 配置realm
+     * @param matcher
+     * @return
+     */
     @Bean
     public DefaultShiroRealm realm(HashedCredentialsMatcher matcher){
         DefaultShiroRealm realm = new DefaultShiroRealm();
@@ -35,6 +47,11 @@ public class ShiroConfig {
         return realm;
     }
 
+    /**
+     * 被指安全管理器
+     * @param realm
+     * @return
+     */
     @Bean
     public SecurityManager securityManager(DefaultShiroRealm realm){
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
@@ -43,6 +60,10 @@ public class ShiroConfig {
     }
 
 
+    /**
+     * 配置过滤工厂
+     * @return
+     */
     @Bean
     public ShiroFilterFactory shiroFilterFactory(){
         return new ShiroFilterFactory();
@@ -51,6 +72,11 @@ public class ShiroConfig {
     @Autowired
     private ShiroFilterFactory shiroFilterFactory;
 
+    /**
+     * 配置过滤类
+     * @param securityManager
+     * @return
+     */
     @Bean
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager){
         ShiroFilterFactoryBean bean = shiroFilterFactory.create(securityManager);

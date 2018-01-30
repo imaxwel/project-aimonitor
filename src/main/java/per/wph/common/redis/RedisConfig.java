@@ -36,6 +36,7 @@ public class RedisConfig {
         redisCacheManager.setDefaultExpiration(3600*1L);
         Map<String, Long> expires = new HashMap<>();
         expires.put("perm", 60L);
+        expires.put("role", 60L);
         redisCacheManager.setExpires(expires);
 
         return redisCacheManager;

@@ -13,4 +13,13 @@ public class LoginUtil {
         token.setRememberMe(Boolean.FALSE);
         subject.login(token);
     }
+
+    public void login(String username, String password,boolean rememberMe){
+        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken();
+        token.setUsername(username);
+        token.setPassword(password.toCharArray());
+        token.setRememberMe(rememberMe);
+        subject.login(token);
+    }
 }

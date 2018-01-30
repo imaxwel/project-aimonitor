@@ -1,5 +1,7 @@
 package per.wph.info.service.impl;
 
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import per.wph.info.model.SysRole;
 import per.wph.info.service.RoleService;
@@ -9,6 +11,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Service
+@CacheConfig(cacheNames = "role")
 public class RoleServiceImpl extends BaseServiceImpl implements RoleService {
     @Override
     public Set<SysRole> getSysRolesByUsername(String username) {
@@ -18,6 +21,7 @@ public class RoleServiceImpl extends BaseServiceImpl implements RoleService {
     }
 
     @Override
+    @Cacheable(key="'getSysRoleNamesByUsername_' + #p0")
     public Set<String> getSysRoleNamesByUsername(String username) {
         Set<Long> ids = userInfoMapper.selectRoleIdsByUsername(username);
         Set<SysRole> roles = sysRoleMapper.selectByPrimaryKeys(ids);
