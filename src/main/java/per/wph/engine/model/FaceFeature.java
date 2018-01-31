@@ -1,4 +1,4 @@
-package per.wph.info.model;
+package per.wph.engine.model;
 
 import java.util.Date;
 

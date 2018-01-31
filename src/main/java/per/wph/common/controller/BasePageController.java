@@ -1,6 +1,7 @@
 package per.wph.common.controller;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,9 @@ import per.wph.common.shiro.util.LoginUtil;
 import per.wph.common.shiro.util.PasswordUtil;
 import per.wph.info.model.UserInfo;
 import per.wph.info.service.UserService;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 @Controller
 public class BasePageController {
@@ -35,7 +39,7 @@ public class BasePageController {
 
     @RequestMapping(value="/regist")
     public String regist(){
-        return "login";
+        return "regist";
     }
 
     @RequestMapping(value="/unauthorized")
@@ -51,15 +55,22 @@ public class BasePageController {
     @RequestMapping(value = "/checklogin")
     @ResponseBody
     public ApiResult checkuser(String username, String password, boolean rememberMe){
-        loginUtil.login(username,password,rememberMe);
-        return ApiResultGenerator.succssResult("登录成功");
+        if(loginUtil.login(username,password,rememberMe)){
+            //如果login方法没有抛出异常，则会继续执行下面更新登录信息的方法
+            UserInfo userInfo = userService.getUserInfoByUsername(username);
+            userInfo.setLastLoginTime(new Date());
+            return ApiResultGenerator.succssResult("登录成功");
+        }
+        return ApiResultGenerator.errorResult("登录失败,请检查账号或者密码",null);
     }
 
     @RequestMapping("/checkregist")
     @ResponseBody
-    public ApiResult regist(UserInfo userInfo){
+    public ApiResult regist(HttpServletRequest request,UserInfo userInfo){
+
         passwordUtil.encryptPassword(userInfo);
         userService.saveUserInfo(userInfo);
+
         return ApiResultGenerator.succssResult("注册成功");
     }
 

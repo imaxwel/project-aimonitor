@@ -9,11 +9,11 @@ import per.wph.info.model.OwnerInfo;
 @Mapper
 @Repository
 public interface OwnerInfoMapper {
-    int deleteByPrimaryKey(Long uid);
+    int deleteByPrimaryKey(Long oid);
 
     int insert(OwnerInfo record);
 
-    OwnerInfo selectByPrimaryKey(Long uid);
+    OwnerInfo selectByPrimaryKey(Long oid);
 
     List<OwnerInfo> selectAll();
 

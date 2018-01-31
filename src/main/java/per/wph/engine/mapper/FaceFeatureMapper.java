@@ -1,8 +1,13 @@
-package per.wph.info.mapper;
+package per.wph.engine.mapper;
 
 import java.util.List;
-import per.wph.info.model.FaceFeature;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
+import per.wph.engine.model.FaceFeature;
+
+@Mapper
+@Repository
 public interface FaceFeatureMapper {
     int deleteByPrimaryKey(Long fid);
 

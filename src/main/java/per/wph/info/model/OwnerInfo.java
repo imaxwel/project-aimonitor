@@ -3,7 +3,7 @@ package per.wph.info.model;
 import java.util.Date;
 
 public class OwnerInfo {
-    private Long uid;
+    private Long oid;
 
     private String name;
 
@@ -21,12 +21,14 @@ public class OwnerInfo {
 
     private String description;
 
-    public Long getUid() {
-        return uid;
+    private Byte status;
+
+    public Long getOid() {
+        return oid;
     }
 
-    public void setUid(Long uid) {
-        this.uid = uid;
+    public void setOid(Long oid) {
+        this.oid = oid;
     }
 
     public String getName() {
@@ -91,5 +93,13 @@ public class OwnerInfo {
 
     public void setDescription(String description) {
         this.description = description == null ? null : description.trim();
+    }
+
+    public Byte getStatus() {
+        return status;
+    }
+
+    public void setStatus(Byte status) {
+        this.status = status;
     }
 }

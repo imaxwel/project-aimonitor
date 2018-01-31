@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="per.wph.info.mapper.OwnerInfoMapper" >
   <resultMap id="BaseResultMap" type="per.wph.info.model.OwnerInfo" >
-    <id column="uid" property="uid" jdbcType="BIGINT" />
+    <id column="oid" property="oid" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="gender" property="gender" jdbcType="BIT" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
@@ -11,20 +11,21 @@
     <result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
     <result column="isadmin" property="isadmin" jdbcType="BIT" />
     <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from owner_info
-    where uid = #{uid,jdbcType=BIGINT}
+    where oid = #{oid,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="per.wph.info.model.OwnerInfo" >
-    insert into owner_info (uid, name, gender, 
+    insert into owner_info (oid, name, gender, 
       phone, email, idnumber, 
-      birthday, isadmin, description
-      )
-    values (#{uid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=BIT}, 
+      birthday, isadmin, description, 
+      status)
+    values (#{oid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=BIT}, 
       #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{idnumber,jdbcType=INTEGER}, 
-      #{birthday,jdbcType=TIMESTAMP}, #{isadmin,jdbcType=BIT}, #{description,jdbcType=VARCHAR}
-      )
+      #{birthday,jdbcType=TIMESTAMP}, #{isadmin,jdbcType=BIT}, #{description,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT})
   </insert>
   <update id="updateByPrimaryKey" parameterType="per.wph.info.model.OwnerInfo" >
     update owner_info
@@ -35,16 +36,19 @@
       idnumber = #{idnumber,jdbcType=INTEGER},
       birthday = #{birthday,jdbcType=TIMESTAMP},
       isadmin = #{isadmin,jdbcType=BIT},
-      description = #{description,jdbcType=VARCHAR}
-    where uid = #{uid,jdbcType=BIGINT}
+      description = #{description,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT}
+    where oid = #{oid,jdbcType=BIGINT}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select uid, name, gender, phone, email, idnumber, birthday, isadmin, description
+    select oid, name, gender, phone, email, idnumber, birthday, isadmin, description, 
+    status
     from owner_info
-    where uid = #{uid,jdbcType=BIGINT}
+    where oid = #{oid,jdbcType=BIGINT}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
-    select uid, name, gender, phone, email, idnumber, birthday, isadmin, description
+    select oid, name, gender, phone, email, idnumber, birthday, isadmin, description, 
+    status
     from owner_info
   </select>
 </mapper>

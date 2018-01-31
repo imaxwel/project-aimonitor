@@ -3,6 +3,7 @@ package per.wph.info.service.impl;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import per.wph.info.model.UserInfo;
 import per.wph.info.service.UserService;
 
@@ -28,8 +29,14 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
     }
 
     @Override
-    public void saveUserInfo(UserInfo userInfo) {
-        userInfoMapper.insert(userInfo);
+    @Transactional
+    public boolean saveUserInfo(UserInfo userInfo) {
+        try {
+            userInfoMapper.insert(userInfo);
+        }catch(Exception e){
+            return false;
+        }
+        return true;
     }
 
 }

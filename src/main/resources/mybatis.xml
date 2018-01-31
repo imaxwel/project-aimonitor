@@ -11,6 +11,10 @@
         <mapper resource="xml/SysRoleMapper.xml"/>
         <mapper resource="xml/SysPermissionMapper.xml"/>
         <mapper resource="xml/OwnerInfoMapper.xml"/>
+        <mapper resource="xml/CommunityInfoMapper.xml"/>
+        <mapper resource="xml/BuildingInfoMapper.xml"/>
+        <mapper resource="xml/FaceFeatureMapper.xml"/>
+        <mapper resource="xml/EquipmentInfoMapper.xml"/>
     </mappers>
 
 </configuration>

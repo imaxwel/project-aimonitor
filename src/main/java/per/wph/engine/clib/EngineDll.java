@@ -4,6 +4,7 @@ import com.sun.jna.Library;
 import com.sun.jna.Native;
 import per.wph.common.util.ResourceLoaderUtil;
 
+
 public interface EngineDll extends Library{
     EngineDll INSTANCE = (EngineDll)
             Native.loadLibrary(ResourceLoaderUtil.getResourceFilePathWithPackage("dll","samplecode.dll"),
@@ -19,4 +20,8 @@ public interface EngineDll extends Library{
     String Feature(int id);
     int FRclean(int id);
     int FRuinit();
+
+    int engineInit();
+    int engineUinit();
+    String getFeatureByImage(String filepath);
 }
