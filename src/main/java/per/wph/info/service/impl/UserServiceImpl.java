@@ -30,9 +30,8 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public boolean saveUserInfo(UserInfo userInfo) {
-        userInfoMapper.insert(userInfo);
-        return true;
+    public int saveUserInfo(UserInfo userInfo) {
+        return userInfoMapper.insert(userInfo);
     }
 
 }

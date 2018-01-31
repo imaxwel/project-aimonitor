@@ -24,4 +24,7 @@ public interface EngineDll extends Library{
     int engineInit();
     int engineUinit();
     String getFeatureByImage(String filepath);
+    float compareImage(FaceModel.ByValue f1,FaceModel.ByValue f2);
+    int testStruct(FaceModel.ByValue faceModels);
+    int testStruct2(FaceModel.ByValue faceModels);
 }

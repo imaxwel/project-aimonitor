@@ -47,7 +47,7 @@
                     case "#pptusermsg": pathn = "/base/pptusermsg"; i = 13; break;
                     case "#pptfault": pathn = "/base/pptfault"; i = 14; break;
                     case "#pptsystem": pathn = "/base/pptsystem"; i = 15; break;
-                    default: pathn = "/owncenter"; i = 0; break;
+                    default: pathn = "/base/owncenter"; i = 0; break;
                 }
                 $("#content").load(pathn); //加载相对应的内容
                 $(".sidebar-nav li").eq(i).addClass("current").siblings().removeClass("current"); //当前列表高亮

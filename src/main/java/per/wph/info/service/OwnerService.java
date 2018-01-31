@@ -5,5 +5,5 @@ import per.wph.info.model.OwnerInfo;
 import per.wph.info.model.UserInfo;
 
 public interface OwnerService extends BaseService {
-    boolean saveOwner(OwnerInfo ownerInfo);
+    int saveOwnerInfo(OwnerInfo ownerInfo);
 }

@@ -19,29 +19,30 @@ import java.util.Enumeration;
 @Aspect
 public class ControllerLoggerAspect {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
-    @Pointcut("execution(public * per.wph.common.controller..*.*(..))")
+    @Pointcut("execution(public * per.wph.common.controller..*.*(..)) " +
+            "|| execution(public * per.wph.info.controller..*.*(..))")
     public void webLog(){};
 
     @Before("webLog()")
     public void doBefore(JoinPoint joinPoint) {
-        logger.info("WebLogAspect.doBefore()");
+        logger.info("-------------------------------------------------------------------------------------");
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
 
-        logger.info("URL:" + request.getRequestURI());
-        logger.info("HTTP_METHOD:" + request.getMethod());
-        logger.info("IP:" + request.getRemoteAddr());
-        logger.info("CLASS_METHOD:" + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
-        logger.info("ARGS:" + Arrays.toString(joinPoint.getArgs()));
+        logger.info("-->URL:" + request.getRequestURI());
+        logger.info("-->HTTP_METHOD:" + request.getMethod());
+        logger.info("-->IP:" + request.getRemoteAddr());
+        logger.info("-->CLASS_METHOD:" + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
+        logger.info("-->ARGS:" + Arrays.toString(joinPoint.getArgs()));
         Enumeration<String> enu = request.getParameterNames();
         while (enu.hasMoreElements()) {
             String paramName = (String) enu.nextElement();
-            logger.info(paramName + ":" + request.getParameter(paramName));
+            logger.info("--->" + paramName + ":" + request.getParameter(paramName));
         }
     }
     @AfterReturning("webLog()")
     public void doAfterReturing(JoinPoint joinPoint){
-        logger.info("ControllerLoggerAspect.doAfterReturing()");
+        logger.info("-------------------------------------------------------------------------------------");
     }
 
 }

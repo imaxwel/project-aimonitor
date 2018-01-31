@@ -1,6 +1,7 @@
 package per.wph.engine;
 
 import per.wph.engine.clib.EngineDll;
+import per.wph.engine.clib.FaceModel;
 
 /**
  * =============================================
@@ -12,29 +13,34 @@ import per.wph.engine.clib.EngineDll;
 public class DllTest {
     public static void main(String[] args) {
         EngineDll cLibrary = EngineDll.INSTANCE;
-//        cLibrary.FDinit();
-//        cLibrary.FRinit();
-//        cLibrary.loadimage(123,"C:\\Users\\wu\\Desktop\\1436597244_849347.jpg");
-//        cLibrary.FD(123);
-//        cLibrary.FR(123);
-//        String result = cLibrary.Feature(123);
-//        System.out.println(result);
-//
-//        cLibrary.loadimage(456,"C:\\Users\\wu\\Desktop\\timg.jpg");
-//        cLibrary.FD(456);
-//        cLibrary.FR(456);
-//        String result2 = cLibrary.Feature(456);
-//        System.out.println(result2);
-//
-//        cLibrary.loadimage(789,"C:\\Users\\wu\\Desktop\\timg.jpg");
-//        cLibrary.FD(789);
-//        cLibrary.FR(789);
-//        String result3 = cLibrary.Feature(789);
-//        System.out.println(result3);
+
+        FaceModel.ByValue faceModel =new FaceModel.ByValue();
+        faceModel.lFeatureSize = 500;
+        faceModel.pbFeature = "abc\0";
+        cLibrary.testStruct(faceModel);
+        cLibrary.testStruct2(faceModel);
+
         cLibrary.engineInit();
-        String result = cLibrary.getFeatureByImage("C:\\Users\\wu\\Desktop\\timg.jpg");
-        result.getBytes();
-        System.out.println(result);
+        String result1 = cLibrary.getFeatureByImage("C:\\Users\\wu\\Desktop\\1436597244_849347.jpg");
+        String result2 = cLibrary.getFeatureByImage("C:\\Users\\wu\\Desktop\\1436597244_849347.jpg");
+        FaceModel.ByValue faceModel1 = new FaceModel.ByValue();
+        FaceModel.ByValue faceModel2 = new FaceModel.ByValue();
+        faceModel1.pbFeature = result1;
+        faceModel1.lFeatureSize = 22020;
+        faceModel2.pbFeature = result2;
+        faceModel2.lFeatureSize = 22020;
+        float ret = cLibrary.compareImage(faceModel1,faceModel2);
+        System.out.println("比较结果为:" + ret);
+        cLibrary.engineUinit();
+    }
+
+    private static String StrToBinstr(String str) {
+        char[] strChar = str.toCharArray();
+        String result = "";
+        for (int i = 0; i < strChar.length; i++) {
+            result += Integer.toBinaryString(strChar[i]) + " ";
+        }
+        return result;
     }
 
 }

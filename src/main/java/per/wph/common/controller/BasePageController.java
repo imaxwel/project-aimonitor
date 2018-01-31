@@ -1,15 +1,12 @@
 package per.wph.common.controller;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import per.wph.common.handler.ApiResult;
-import per.wph.common.handler.ApiResultGenerator;
+import per.wph.common.ApiResult;
+import per.wph.common.generator.ApiResultGenerator;
 import per.wph.common.shiro.util.LoginUtil;
 import per.wph.common.shiro.util.PasswordUtil;
 import per.wph.info.model.UserInfo;

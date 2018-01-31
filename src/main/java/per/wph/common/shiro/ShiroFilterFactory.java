@@ -63,8 +63,8 @@ public class ShiroFilterFactory {
     private void setFilterChain(ShiroFilterFactoryBean bean){
         Map<String,String> filter = new LinkedHashMap<>();
         setDefaultFilterChain(filter);
-        setCustomFilterChain(filter);
         filter.put("/**",Authority.AUTHC.value());
+        setCustomFilterChain(filter);
         bean.setFilterChainDefinitionMap(filter);
     }
 
@@ -83,10 +83,14 @@ public class ShiroFilterFactory {
      * @param filter
      */
     private void setDefaultFilterChain(Map<String,String> filter){
+        //基本页面显示
         filter.put("/logout",Authority.LOGOUT.value());
-        filter.put("/favicon.ico",Authority.ANON.value());//spring的页面图标
+        filter.put("/favicon.ico",Authority.ANON.value());
         filter.put("/checklogin",Authority.ANON.value());
         filter.put("/regist",Authority.ANON.value());
+        //注册页面
+        filter.put("/user/regist",Authority.ANON.value());
+        filter.put("/user/sendIdenCode",Authority.ANON.value());
         filter.put("/druid/**",Authority.ANON.value());
         //static资源
         filter.put("/js/**",Authority.ANON.value());
@@ -99,6 +103,6 @@ public class ShiroFilterFactory {
      * @param filter
      */
     private void setCustomFilterChain(Map<String,String> filter){
-        filter.put("/permit/**","permission");
+        filter.put("/*/permit/**","permission");
     }
 }

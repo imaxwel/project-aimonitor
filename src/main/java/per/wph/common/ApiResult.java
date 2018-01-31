@@ -1,4 +1,4 @@
-package per.wph.common.handler;
+package per.wph.common;
 
 public class ApiResult {
     public static ApiResult newInstance(){

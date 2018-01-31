@@ -18,9 +18,7 @@ public class OwnerServiceImpl extends BaseServiceImpl implements OwnerService {
 
     @Override
     @Transactional
-    public boolean saveOwner(OwnerInfo ownerInfo) {
-        ownerInfoMapper.insert(ownerInfo);
-        return true;
+    public int saveOwnerInfo(OwnerInfo ownerInfo) {
+        return ownerInfoMapper.insert(ownerInfo);
     }
-
 }

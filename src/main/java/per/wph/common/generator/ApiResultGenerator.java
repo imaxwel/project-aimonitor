@@ -1,9 +1,11 @@
-package per.wph.common.handler;
+package per.wph.common.generator;
+
+import per.wph.common.ApiResult;
 
 import java.util.List;
 
 public class ApiResultGenerator {
-    public static ApiResult result(Boolean flag,String msg,Object result,String jumpUrl,int rows,Throwable throwable){
+    public static ApiResult result(Boolean flag, String msg, Object result, String jumpUrl, int rows, Throwable throwable){
         ApiResult apiResult = ApiResult.newInstance();
         apiResult.setFlag(flag);
         apiResult.setMsg(msg==""?"执行成功":msg);
