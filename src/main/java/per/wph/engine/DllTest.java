@@ -20,9 +20,11 @@ public class DllTest {
         cLibrary.engineInit();
         FaceModel.ByValue faceModel1;
         FaceModel.ByValue faceModel2;
-        faceModel1 = cLibrary.getFeatureByImage("C:\\Users\\wu\\Desktop\\1436597244_849347.jpg");
-        faceModel2 = cLibrary.getFeatureByImage("C:\\Users\\wu\\Desktop\\1436597244_849347.jpg");
+        faceModel1 = cLibrary.getFeatureByImage("C:\\Users\\wu\\Desktop\\20180131212814.jpg");
+        faceModel2 = cLibrary.getFeatureByImage("C:\\Users\\wu\\Desktop\\20180131215650.jpg");
         float ret = cLibrary.compareImage(faceModel1,faceModel2);
+        System.out.println(ret);
+        cLibrary.engineUinit();
     }
 
 }

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -19,20 +18,24 @@
     <link rel="stylesheet" href="/css/amazeui.datatables.min.css" />
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/css/jquery.datetimepicker.css"/>
+
     <script src="/js/jquery-1.10.2.js"></script>
-    <script>
+    <script type="text/javascript">
+        var i;
         $(function(){
-            $(".sidebar-nav").on("click", "li", function(){
-                var sId = $(this).data("id");  //获取data-id的值
+            $("a").click(function(){
+                var sId = $(this).parent().data("id");  //获取data-id的值
                 window.location.hash = sId;  //设置锚点
                 loadInner(sId);
-            });
+                // alert(sId);
+            })
             function loadInner(sId){
                 var sId = window.location.hash;
-                var pathn, i;
+                var pathn, pathbf;
                 switch(sId){
                     case "#owncenter": pathn = "/base/owncenter"; i = 0; break;
-                    case "#ownregist": pathn = "/base/ownregist"; i = 1; break;
+        　　　　　　　case "#ownregist": pathn = "/base/ownregist"; i = 1; break;
                     case "#ownkmjl": pathn = "/base/ownkmjl"; i = 2; break;
                     case "#ownsqjl": pathn = "/base/ownsqjl"; i = 3; break;
                     case "#ownfault": pathn = "/base/ownfault"; i = 4; break;
@@ -47,15 +50,207 @@
                     case "#pptusermsg": pathn = "/base/pptusermsg"; i = 13; break;
                     case "#pptfault": pathn = "/base/pptfault"; i = 14; break;
                     case "#pptsystem": pathn = "/base/pptsystem"; i = 15; break;
-                    default: pathn = "/base/owncenter"; i = 0; break;
+                    case "#personal_msg": pathn = "/base/personal_msg"; i = 16; break;
+                    case "#ownauth": pathn = "base/ownauth"; i = 17;break;
+        　　　　　　  default: pathn = "/base/personal_msg"; i = 0; break;
                 }
                 $("#content").load(pathn); //加载相对应的内容
-                $(".sidebar-nav li").eq(i).addClass("current").siblings().removeClass("current"); //当前列表高亮
+                pathbf=pathn;
             }
             var sId = window.location.hash;
             loadInner(sId);
+            if (i==0) {
+                $(document).on('click','#edit',function(){
+                    $("#changepwd").toggle();
+                });
+                $(document).on('click','#changepwd button',function(){
+                    $("#changepwd").css("display","none");
+                    var newpwd=$("#changepwd input").val();
+                    alert("111");
+                    $("#newpwd").text(newpwd);
+                });
+                // owncenter登录后从后台获取用户信息
+                $.ajax({
+                      type:"get",
+                      url:"",//后台页面链接
+                      async:true,
+                      dataType:'json',
+                      success : function(data){
+                        console.log(data);
+                        $(".username").text(data['']);//用户名
+                        $("label").eq(1).text(data['']);//姓名
+                        $("label").eq(3).text(data['']);//身份证
+                        $("label").eq(5).text(data['']);//手机
+                        $("#newpwd").text(data['']);//密码
+                        $("label").eq(9).text(data['']);//小区
+                      }
+                });
+                $(document).on('click','.am-btn',function(){    //保存
+                    var message=$("#user-intro").val();
+                    var newpwd1=$("#changepwd input").val();
+                    // alert(newpwd1);
+                    $.ajax({
+                        type:"get",
+                        url:"",
+                        async:true,
+                        dataType:"json",
+                        data:{
+                            
+                        },
+                        success:function(data){
+
+                        }
+                    });
+ 
+                });
+           }
+           //ownregist访客注册
+            if (i==1) {
+                $(document).on('click','#settime',function(){
+                    $("#fenge").toggle();
+                    $('#some_class_1').toggle().datetimepicker();
+                    $('#some_class_2').toggle().datetimepicker();
+                });
+            }
+            //ownkmjl
+            if (i==2) {
+
+            }
+            //ownsqjl
+            if (i==3) {
+
+                //从后台获取表格数据显示
+                function GetMultiLineSelectTable(tableId, selectIds) {
+                    var table = $(tableId);
+                    var url = table.data('url');//后台对应的页面！！！！！！！！！！
+                    //获取数据项名称
+                    var fileds = new Array();//table表头放在fileds数组中
+                    table.children('thead').children('tr').children('th').each(function (index, el) {
+                        var type = 'Content';
+                        if ($(this).data('type')) type = $(this).data('type');
+                        if (type == 'Content') {
+                            var field = $(this).data('field');
+                            fileds[index] = field;
+                        }
+                    });
+                    $.ajax({
+                        url: url,
+                        type: 'post',
+                        dataType: 'json',
+                        success:function(json){
+                            var tbody = '';
+                            $.each(json, function (index, el) {
+                                var tr = "<tr class='even gradeC'>";
+                             
+                                $.each(fileds, function (i, el) {//生成内容
+                                    if (fileds[i]) {
+                                        tr += '<td>' + formatJsonData(json[index][fileds[i]]) + '</td>';
+                                    }
+                                });
+                                tr += " <td><div class='tpl-table-black-operation'><a class='tpl-table-black-operation-del'><i class='am-icon-trash'></i> 删除</a></div></td></tr>";
+                                tbody += tr;
+                            });
+                            table.children('tbody').empty();
+                            table.children('tbody').append(tbody);//显示数据
+                        },
+                        error:function(json){
+                            alert("Err");
+                        }
+                    });
+                    selectIds.click(function(){
+                        var select=[];
+                        select.push({"访客姓名":select.children().eq(0),"授权时间":select.children().eq(1),"有效期":select.children().eq(2),});
+                        $.ajax({
+                            url: url,//!!!!!!!!!!!!!!!!!!!!
+                            type: 'post',
+                            dataType: 'json',
+                            data:{
+                                select:JSON.stringify(select)
+                            },
+                            success:function(json){
+                                alert("删除成功");
+                                select.remove();
+                            },
+                            error:function(json){
+                                alert("删除失败");
+                            }
+                        });
+                    });
+                    
+                }
+
+                //格式化JSON数据，比如日期
+                function formatJsonData(jsondata){
+                    if(jsondata==null){
+                        return '';
+                    }
+                    else if(/\/Date\(\d+\)/.exec(jsondata)){
+                        var date = new Date(parseInt(jsondata.replace("/Date(", "").replace(")/", ""), 10));
+                        return date.toLocaleString();
+                    }
+                    return jsondata;
+                }
+
+            //     $(document).on('click','.tpl-table-black-operation-del',function(){
+            //         // $(this).parents("tr").remove();
+            //         GetMultiLineSelectTable("#example-r",$(this).parents("tr"));
+            //     });                
+            }
+            //ownfault
+            if (i==4) {
+
+            }
+            if (i==16) {
+                $(document).on('click','#camera',function(){
+                    $("img").css("display","none");
+                    //调用摄像头进行拍照
+                        var capture = document.getElementById("capture");
+                        var video = document.getElementById("video");
+                        var canvas = document.getElementById("canvas");
+                        var context = canvas.getContext("2d");
+                        navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+                        window.URL = window.URL || window.webkitURL;
+                        navigator.getUserMedia({video:true}, onSuccess, onError); //调用摄像头捕捉视频信息
+                        capture.onclick = function(e){
+                          e.preventDefault();
+                           canvas.width = video.videoWidth*0.5;
+                            canvas.height = video.videoHeight*0.5;
+                            // $("img").width = video.videoWidth;
+                            // $("img").height = video.videoHeight;
+                          context.drawImage(video, 0, 0, video.videoWidth*0.5, video.videoHeight*0.5);  
+                          // var imgData=canvas.toDataURL(“image/png”);
+                          // alert("imgData");
+                        }
+                        function onSuccess(stream){
+                          video.src = window.URL.createObjectURL(stream); 
+                          // alert (video.src);
+                        }
+                        function onError(){
+                          mystatus.innerHTML = "获取视频出错"
+                        }
+                        $("#video").css("display","inline-block");
+                        $("#capture").css("display","inline-block");
+                        $("#imghead").css("display","none");
+
+                    $("#capture").click(function(){
+                        // $("#video").css("display","none");
+                        // $("#capture"),$("img").css("display","none");
+                        $("#canvas").css("display","inline-block");
+                    });
+                     
+                    //本地
+                    $("#previewImg").click(function(){
+                        // $("img").remove();
+                        $("#canvas").css("display","none");
+                        $("#video").css("display","none");
+                        $("#capture").css("display","none");
+                        // alert("111");
+                        $("img").css("display","inline-block");
+                    });
+                });
+            }
         });
-    </script>
+   </script>
 </head>
 
 <body data-type="widgets">
@@ -87,7 +282,7 @@
                     <ul>
                         <!-- 欢迎语 -->
                         <li class="am-text-sm tpl-header-navbar-welcome">
-                            <a href="javascript:;">欢迎你, <span>Amaze UI</span> </a>
+                            <a href="javascript:;">欢迎你, <span class="username">Amaze UI</span> </a>
                         </li>
 
                         <!-- 新邮件 -->
@@ -229,7 +424,7 @@
                         <img src="/image/user04.png" alt="">
                     </div>
                     <span class="user-panel-logged-in-text">
-                        <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>manager
+                        <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon username"></i>manager
                     </span>
                 </div>
             </div>
@@ -237,6 +432,16 @@
             <!-- 菜单 -->
             <ul class="sidebar-nav">
                 <li class="sidebar-nav-heading">Page</li>
+                <li class="sidebar-nav-link current" data-id="personal_msg">
+                    <a>
+                        <i class="am-icon-pencil sidebar-nav-link-logo"></i> 完善个人信息
+                    </a>
+                </li>
+                <li class="sidebar-nav-link current" data-id="ownauth">
+                    <a>
+                        <i class="am-icon-pencil sidebar-nav-link-logo"></i> 我的权限
+                    </a>
+                </li>
                 <li class="sidebar-nav-link current" data-id="owncenter">
                     <a>
                         <i class="am-icon-home sidebar-nav-link-logo"></i> 个人中心
@@ -262,12 +467,12 @@
                         <i class="am-icon-tv sidebar-nav-link-logo"></i> 错误反馈
                     </a>
                 </li>
-                 <li class="sidebar-nav-link" data-id="mngcenter" shiro:hasRole="管理员">
+                 <li class="sidebar-nav-link" data-id="mngcenter">
                     <a>
                         <i class="am-icon-home sidebar-nav-link-logo"></i> 物业中心
                     </a>
                 </li>
-                <li class="sidebar-nav-link" shiro:hasRole="管理员">
+                <li class="sidebar-nav-link" >
                     <a class="sidebar-nav-sub-title">
                         <i class="am-icon-table sidebar-nav-link-logo"></i> 注册人员管理
                         <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
@@ -286,44 +491,44 @@
                         </li>
                     </ul>
                 </li>
-                <li class="sidebar-nav-link" data-id="mngnonregist" shiro:hasRole="管理员">
+                <li class="sidebar-nav-link" data-id="mngnonregist">
                     <a>
                         <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 非注册人员管理
                     </a>
                 </li>
-                <li class="sidebar-nav-link" data-id="mngfault" shiro:hasRole="管理员">
+                <li class="sidebar-nav-link" data-id="mngfault">
                     <a>
                         <i class="am-icon-tv sidebar-nav-link-logo"></i> 处理反馈
                     </a>
                 </li>
-                <li class="sidebar-nav-link" data-id="mngcontrol" shiro:hasRole="管理员">
+                <li class="sidebar-nav-link" data-id="mngcontrol">
                     <a>
                         <i class="am-icon-bell sidebar-nav-link-logo"></i> 控制门禁
                     </a>
                 </li>
-                <li class="sidebar-nav-link" data-id="pptcheck" shiro:hasRole="管理员">
+                <li class="sidebar-nav-link" data-id="pptcheck">
                     <a>
-                        <i class="am-icon-table sidebar-nav-link-logo"></i>入驻物业审核
+                        <i class="am-icon-columns sidebar-nav-link-logo"></i>入驻物业审核
                     </a>
                 </li>
-                <li class="sidebar-nav-link" data-id="ppthosmsg" shiro:hasRole="管理员">
+                <li class="sidebar-nav-link" data-id="ppthosmsg">
                     <a>
                         <i class="am-icon-wpforms sidebar-nav-link-logo"></i>小区信息管理
                     </a>
                 </li>
-                <li class="sidebar-nav-link" data-id="pptusermsg" shiro:hasRole="管理员">
+                <li class="sidebar-nav-link" data-id="pptusermsg">
                     <a>
-                        <i class="am-icon-clone sidebar-nav-link-logo"></i> 用户信息管理
+                        <i class="am-icon-user sidebar-nav-link-logo"></i> 用户信息管理
                     </a>
                 </li>
-                <li class="sidebar-nav-link" data-id="pptfault" shiro:hasRole="管理员">
+                <li class="sidebar-nav-link" data-id="pptfault">
                     <a>
-                        <i class="am-icon-clone sidebar-nav-link-logo"></i> 反馈信息管理
+                        <i class="am-icon-headphones sidebar-nav-link-logo"></i> 反馈信息管理
                     </a>
                 </li>
-                <li class="sidebar-nav-link" data-id="pptsystem" shiro:hasRole="管理员">
+                <li class="sidebar-nav-link" data-id="pptsystem">
                     <a>
-                        <i class="am-icon-clone sidebar-nav-link-logo"></i> 系统管理
+                        <i class="am-icon-gears sidebar-nav-link-logo"></i> 系统管理
                     </a>
                 </li>
             </ul>
@@ -331,13 +536,21 @@
 
 
         <div id="content"></div>
-    </div>
+        
     </div>
     <script src="http://cdn.bootcss.com/amazeui/2.7.2/js/amazeui.min.js"></script>
     <script src="/js/amazeui.datatables.min.js"></script>
     <script src="/js/dataTables.responsive.min.js"></script>
     <script src="/js/app.js"></script>
-
+    <script src="/js/jquery.js"></script>
+    <script src="/js/jquery.datetimepicker.full.js"></script>
+    <script type="text/javascript" src="/js/upphoto.js"></script>
+        <!-- 多图片上传插件 -->
+<!--     <link rel="stylesheet" href="/css/zyUpload.css" type="text/css">
+    <script src="/js/zyFile.js"></script>
+    <script src="/js/zyUpload.js"></script>
+    <script src="/js/jq22.js"></script>
+ -->
 </body>
 
 </html>

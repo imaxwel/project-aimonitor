@@ -34,4 +34,10 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
         return userInfoMapper.insert(userInfo);
     }
 
+    @Override
+    @Transactional
+    public int updateUserInfo(UserInfo userInfo) {
+        return userInfoMapper.updateByPrimaryKeySelective(userInfo);
+    }
+
 }

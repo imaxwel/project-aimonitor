@@ -1,5 +1,6 @@
 package per.wph.info.service;
 
+import org.apache.catalina.User;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import per.wph.info.model.UserInfo;
@@ -18,4 +19,7 @@ public interface UserService extends BaseService{
 
     //保存用户
     int saveUserInfo(UserInfo userInfo);
+
+    //更新用户
+    int updateUserInfo(UserInfo userInfo);
 }

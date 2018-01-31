@@ -21,10 +21,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/user")
 public class UserInfoController extends BaseController{
-    //设置默认的验证码超时时间为两分钟
-    private final static Long OVERTIME = 2*60000L;
-    private final static String IDCODE = "identityCode";
-    private final static String IDCODE_AVAILABLE_TIME = "identityCodeAvailableTime";
 
     @RequestMapping(value="/sendIdenCode")
     public @ResponseBody ApiResult sendIdenCode(HttpSession httpSession){
@@ -35,6 +31,13 @@ public class UserInfoController extends BaseController{
         return ApiResultGenerator.succssResult("验证码发送成功");
     }
 
+    /**
+     * 接收注册请求
+     * 提交的表单数据有:
+     * username:String
+     * password:String
+     * iden:String
+     */
     @RequestMapping(value="/regist")
     public @ResponseBody ApiResult regist(HttpSession httpSession, HttpServletRequest request){
         Long currentTime = System.currentTimeMillis();
@@ -47,6 +50,7 @@ public class UserInfoController extends BaseController{
         String password = request.getParameter("password");
         userInfo.setUsername(username);
         userInfo.setPassword(password);
+        userInfo.setCreateTime(new Date(System.currentTimeMillis()));
         Integer iden = Integer.valueOf(request.getParameter("iden"));
         Integer idencode = (Integer) httpSession.getAttribute(IDCODE);
         if(idencode.equals(iden)){
@@ -56,6 +60,21 @@ public class UserInfoController extends BaseController{
             return ApiResultGenerator.succssResult("注册成功");
         }
         return ApiResultGenerator.errorResult("注册失败",null);
+    }
+    @RequestMapping(value = "/checkLogin")
+    @ResponseBody
+    public ApiResult checkuser(HttpSession session,String username, String password, boolean rememberMe){
+        if(loginUtil.login(username,password,rememberMe)){
+            //如果login方法没有抛出异常，则会继续执行下面更新登录信息的方法
+            UserInfo userInfo = userService.getUserInfoByUsername(username);
+            Long loginTime = System.currentTimeMillis();
+            userInfo.setLastLoginTime(new Date(loginTime));
+            userService.updateUserInfo(userInfo);
+            session.setAttribute(USERNAME,username);
+            session.setAttribute(LOGINTIME,loginTime);
+            return ApiResultGenerator.succssResult("登录成功");
+        }
+        return ApiResultGenerator.errorResult("登录失败,请检查账号或者密码",null);
     }
 
     @RequestMapping(value = "/permit/get",method = {RequestMethod.GET})

@@ -90,12 +90,12 @@
 		<script type="text/javascript">
 
 			$(".checkcode").click(function(){
+				alert("验证码已发送，请在2分钟之内填写！");
 				$.ajax({
 					type:"get",
 					url:"/user/sendIdenCode",
-					// dataType:"json",
+					dataType:"json",
 					success:function(data){
-
 						alert("data");
 					}
 				})
@@ -105,8 +105,6 @@
                 var number=$('input').eq(0).val();
                 var pwd=$('input').eq(1).val();
                 var checkcode=$('input').eq(3).val();
-                alert("正在发送")
-
 				// 将数据传到服务器
 		        $.ajax({
 		            type: "post",
@@ -115,13 +113,13 @@
 		            dataType:"json",
 		            data:{
 		            	username:number,
-                        password:pwd,
-                        iden:checkcode
+		            	password:pwd,
+		            	iden:checkcode
 		            },
 		            success:function(data){
 		                alert("注册成功!");
 	                        $(function () {
-	                            window.location.href = "/success";
+	                            window.location.href = "/owner";
 	                        })
 		            },
 		            error:function(){

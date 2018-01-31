@@ -1,5 +1,6 @@
 package per.wph.common.handler;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import org.apache.shiro.ShiroException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,11 +22,11 @@ public class RestExceptionHandler {
         return ApiResultGenerator.errorResult("登录失败，请检查账号或密码",e);
     }
 
-    @ExceptionHandler(SQLException.class)
+    @ExceptionHandler(MySQLIntegrityConstraintViolationException.class)
     @ResponseStatus
     public ApiResult sqlExceptionHandle(Exception e){
         LOGGER.error(e.getMessage(),e);
-        return ApiResultGenerator.errorResult("数据异常",e);
+        return ApiResultGenerator.errorResult("账号已存在",e);
     }
 
     @ExceptionHandler(NullPointerException.class)

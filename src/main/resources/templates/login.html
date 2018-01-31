@@ -13,32 +13,37 @@
 <script type="text/javascript">
     $(document).ready(function(){
         
-        $("#login").click(function(){  
+        $("#login").click(function(){
             var account=$("#account").val();
             var password=$("#password").val();
-            var rememberMe=$("#rememberMe").val();
-        	var param="/checklogin";
+        	var param="/user/checkLogin";
+        	console.log(account);
+            console.log(password);
 		    $.ajax({
-		          type:"get",
+		          type:"post",
 		          url:param,//后台页面链接
 		          async:true,
 		          dataType:'json',
                   data:{
                     username:account,
-                    password:password,
-                    rememberMe:rememberMe
+                    password:password
                   },
 		          success : function(data){
 		            console.log(data);
 		            
 		            if (data['flag']) {
+                        alert("登录成功");
                         $(function () {
                             window.location.href = "/success";
                         })
+                        
                     } else {
                         alert(data['msg']+','+data['result']);
                     }
-		          }
+		          },
+		          error : function (data) {
+                      alert(data['msg']+','+data['result']);
+                  }
 			});
         });
 
@@ -63,14 +68,14 @@
 
 		 			<div class="login-bottom">
 		 			  <div class="login-check">
-			 			<label class="checkbox"><input type="checkbox" name="rememberMe" checked="checked" id="rememberMe"><i> <img src="/image/cc-yes-crude.png" style="display: none;"></i> Remember Me</label>
+			 			<label class="checkbox"><input type="checkbox" name="checkbox" checked="checked"><i> <img src="/image/cc-yes-crude.png" style="display: none;"></i> Remember Me</label>
 			 		  </div>
 			 		  <div class="login-para" style="color: #999;">
 			 			<p>Forgot Password </p>
 			 		 </div>
 			 			<div class="clear"> </div>
 		 			</div>
-		 			<input type="submit" value="Login" id="login">
+		 			<input type="button" value="Login" id="login">
 		 			<h4>Don't have an account? <a href="/regist"> Register now! </a></h4>
 		 		</div>
 		 	</div>

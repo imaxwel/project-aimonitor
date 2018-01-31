@@ -45,7 +45,7 @@ $(function(){
 	});
 //	提交按钮
 	$("#submit_btn").click(function(e){		
-		for(var j=0 ;j<4;j++){
+		for(var j=0 ;j<5;j++){
 			if($('input').eq(j).val().length==0){				
 				$('input').eq(j).focus();				
 				if(j==4){

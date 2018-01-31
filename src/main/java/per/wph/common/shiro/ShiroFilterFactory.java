@@ -86,9 +86,9 @@ public class ShiroFilterFactory {
         //基本页面显示
         filter.put("/logout",Authority.LOGOUT.value());
         filter.put("/favicon.ico",Authority.ANON.value());
-        filter.put("/checklogin",Authority.ANON.value());
         filter.put("/regist",Authority.ANON.value());
-        //注册页面
+        //注册和登录页面
+        filter.put("/user/checkLogin",Authority.ANON.value());
         filter.put("/user/regist",Authority.ANON.value());
         filter.put("/user/sendIdenCode",Authority.ANON.value());
         filter.put("/druid/**",Authority.ANON.value());

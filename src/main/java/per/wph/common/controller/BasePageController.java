@@ -49,27 +49,6 @@ public class BasePageController {
         return "owner";
     }
 
-    @RequestMapping(value = "/checklogin")
-    @ResponseBody
-    public ApiResult checkuser(String username, String password, boolean rememberMe){
-        if(loginUtil.login(username,password,rememberMe)){
-            //如果login方法没有抛出异常，则会继续执行下面更新登录信息的方法
-            UserInfo userInfo = userService.getUserInfoByUsername(username);
-            userInfo.setLastLoginTime(new Date());
-            return ApiResultGenerator.succssResult("登录成功");
-        }
-        return ApiResultGenerator.errorResult("登录失败,请检查账号或者密码",null);
-    }
-
-    @RequestMapping("/checkregist")
-    @ResponseBody
-    public ApiResult regist(HttpServletRequest request,UserInfo userInfo){
-
-        passwordUtil.encryptPassword(userInfo);
-        userService.saveUserInfo(userInfo);
-
-        return ApiResultGenerator.succssResult("注册成功");
-    }
 
     /**
      * 基本authc权限页面跳转页面
