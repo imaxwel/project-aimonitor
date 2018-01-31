@@ -1,5 +1,6 @@
 package per.wph.engine.clib;
 
+import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class FaceModel extends Structure{
     public static class ByValue extends FaceModel implements Structure.ByValue{
     }
 
-    public String pbFeature;
+    public Pointer pbFeature;
     public int lFeatureSize;
     @Override
     protected List getFieldOrder() {
