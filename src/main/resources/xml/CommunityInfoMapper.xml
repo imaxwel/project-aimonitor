@@ -14,7 +14,7 @@
     delete from community_info
     where cid = #{cid,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="per.wph.info.model.CommunityInfo" >
+  <insert id="insert" parameterType="per.wph.info.model.CommunityInfo" useGeneratedKeys="true" keyProperty="cid">
     insert into community_info (cid, location, resident_num, 
       property_company, developer, type, 
       description)

@@ -40,7 +40,7 @@
     delete from sys_permission
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="per.wph.info.model.SysPermission" >
+  <insert id="insert" parameterType="per.wph.info.model.SysPermission" useGeneratedKeys="true" keyProperty="id">
     insert into sys_permission (id, available, name, 
       parent_id, parent_ids, permission, 
       resource_type, url)
@@ -48,7 +48,7 @@
       #{parentId,jdbcType=BIGINT}, #{parentIds,jdbcType=VARCHAR}, #{permission,jdbcType=VARCHAR}, 
       #{resourceType,jdbcType=CHAR}, #{url,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="per.wph.info.model.SysPermission" >
+  <insert id="insertSelective" parameterType="per.wph.info.model.SysPermission" useGeneratedKeys="true" keyProperty="id">
     insert into sys_permission
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

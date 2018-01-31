@@ -18,9 +18,4 @@ public class RestExceptionHandler {
         return ApiResultGenerator.errorResult("登录失败，请检查账号或密码",e);
     }
 
-//    @ExceptionHandler(RuntimeException.class)
-//    @ResponseStatus
-//    public ApiResult runtimeExceptionHandler(Exception e){
-//        return ApiResultGenerator.errorResult(e.getMessage(),e);
-//    }
 }

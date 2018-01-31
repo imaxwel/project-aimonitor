@@ -13,7 +13,7 @@
     delete from equipment_info
     where eid = #{eid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="per.wph.info.model.EquipmentInfo" >
+  <insert id="insert" parameterType="per.wph.info.model.EquipmentInfo" useGeneratedKeys="true" keyProperty="id">
     insert into equipment_info (eid, registtime, type, 
       available, validity, uid
       )

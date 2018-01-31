@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="per.wph.info.mapper.relation.BuildingOwnerMapper" >
+  <resultMap id="BaseResultMap" type="per.wph.info.model.relation.BuildingOwner" >
+    <result column="bid" property="bid" jdbcType="BIGINT" />
+    <result column="oid" property="oid" jdbcType="BIGINT" />
+  </resultMap>
+  <insert id="insert" parameterType="per.wph.info.model.relation.BuildingOwner" >
+    insert into building_owner (bid, oid)
+    values (#{bid,jdbcType=BIGINT}, #{oid,jdbcType=BIGINT})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select bid, oid
+    from building_owner
+  </select>
+</mapper>

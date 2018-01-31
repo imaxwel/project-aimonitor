@@ -11,7 +11,7 @@
     delete from face_feature
     where fid = #{fid,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="per.wph.engine.model.FaceFeature" >
+  <insert id="insert" parameterType="per.wph.engine.model.FaceFeature" useGeneratedKeys="true" keyProperty="fid">
     insert into face_feature (fid, create_time, image_url, 
       feature)
     values (#{fid,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{imageUrl,jdbcType=VARCHAR}, 

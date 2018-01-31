@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="per.wph.info.mapper.relation.CommunityOwnerMapper" >
+  <resultMap id="BaseResultMap" type="per.wph.info.model.relation.CommunityOwner" >
+    <id column="cid" property="cid" jdbcType="BIGINT" />
+    <id column="oid" property="oid" jdbcType="BIGINT" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from community_owner
+    where cid = #{cid,jdbcType=BIGINT}
+      and oid = #{oid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="per.wph.info.model.relation.CommunityOwner" >
+    insert into community_owner (cid, oid)
+    values (#{cid,jdbcType=BIGINT}, #{oid,jdbcType=BIGINT})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select cid, oid
+    from community_owner
+  </select>
+</mapper>

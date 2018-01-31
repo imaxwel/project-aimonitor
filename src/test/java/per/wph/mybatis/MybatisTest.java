@@ -31,6 +31,7 @@ public class MybatisTest {
         UserInfo userInfo = new UserInfo();
         userInfo.setName("小黄");
         userInfoMapper.insert(userInfo);
+        System.out.println(userInfo.getUid());
     }
 
     @Test

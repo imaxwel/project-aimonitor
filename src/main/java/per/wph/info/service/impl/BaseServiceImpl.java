@@ -1,6 +1,7 @@
 package per.wph.info.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import per.wph.info.mapper.OwnerInfoMapper;
 import per.wph.info.mapper.SysPermissionMapper;
 import per.wph.info.mapper.SysRoleMapper;
 import per.wph.info.mapper.UserInfoMapper;
@@ -15,4 +16,6 @@ public class BaseServiceImpl implements BaseService {
     protected SysPermissionMapper sysPermissionMapper;
     @Autowired
     protected SysRoleMapper sysRoleMapper;
+    @Autowired
+    protected OwnerInfoMapper ownerInfoMapper;
 }

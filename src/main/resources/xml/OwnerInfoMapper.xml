@@ -17,7 +17,7 @@
     delete from owner_info
     where oid = #{oid,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="per.wph.info.model.OwnerInfo" >
+  <insert id="insert" parameterType="per.wph.info.model.OwnerInfo" useGeneratedKeys="true" keyProperty="oid">
     insert into owner_info (oid, name, gender, 
       phone, email, idnumber, 
       birthday, isadmin, description, 

@@ -12,7 +12,7 @@
     delete from building_info
     where bid = #{bid,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="per.wph.info.model.BuildingInfo" >
+  <insert id="insert" parameterType="per.wph.info.model.BuildingInfo" useGeneratedKeys="true" keyProperty="id">
     insert into building_info (bid, location, resident_num, 
       type, description)
     values (#{bid,jdbcType=BIGINT}, #{location,jdbcType=VARCHAR}, #{residentNum,jdbcType=INTEGER}, 

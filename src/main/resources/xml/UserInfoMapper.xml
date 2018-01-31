@@ -39,7 +39,7 @@
     delete from user_info
     where uid = #{uid,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="per.wph.info.model.UserInfo" >
+  <insert id="insert" parameterType="per.wph.info.model.UserInfo" useGeneratedKeys="true" keyProperty="uid">
     insert into user_info (uid, name, username, 
       password, salt, create_time, 
       last_login_time, state)
@@ -47,7 +47,7 @@
       #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{lastLoginTime,jdbcType=TIMESTAMP}, #{state,jdbcType=TINYINT})
   </insert>
-  <insert id="insertSelective" parameterType="per.wph.info.model.UserInfo" >
+  <insert id="insertSelective" parameterType="per.wph.info.model.UserInfo" useGeneratedKeys="true" keyProperty="uid">
     insert into user_info
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="uid != null" >
