@@ -3,6 +3,7 @@
 <mapper namespace="per.wph.info.mapper.CommunityInfoMapper" >
   <resultMap id="BaseResultMap" type="per.wph.info.model.CommunityInfo" >
     <id column="cid" property="cid" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR"/>
     <result column="location" property="location" jdbcType="VARCHAR" />
     <result column="resident_num" property="residentNum" jdbcType="INTEGER" />
     <result column="property_company" property="propertyCompany" jdbcType="VARCHAR" />
@@ -15,16 +16,17 @@
     where cid = #{cid,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="per.wph.info.model.CommunityInfo" useGeneratedKeys="true" keyProperty="cid">
-    insert into community_info (cid, location, resident_num, 
+    insert into community_info (cid, name, location, resident_num,
       property_company, developer, type, 
       description)
-    values (#{cid,jdbcType=BIGINT}, #{location,jdbcType=VARCHAR}, #{residentNum,jdbcType=INTEGER}, 
+    values (#{cid,jdbcType=BIGINT},#{name,jdbcType=VARCHAR} #{location,jdbcType=VARCHAR}, #{residentNum,jdbcType=INTEGER},
       #{propertyCompany,jdbcType=VARCHAR}, #{developer,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
       #{description,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="per.wph.info.model.CommunityInfo" >
     update community_info
-    set location = #{location,jdbcType=VARCHAR},
+    set name = #{name,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
       resident_num = #{residentNum,jdbcType=INTEGER},
       property_company = #{propertyCompany,jdbcType=VARCHAR},
       developer = #{developer,jdbcType=VARCHAR},
@@ -33,12 +35,16 @@
     where cid = #{cid,jdbcType=BIGINT}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select cid, location, resident_num, property_company, developer, type, description
+    select cid, name,location, resident_num, property_company, developer, type, description
     from community_info
     where cid = #{cid,jdbcType=BIGINT}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
-    select cid, location, resident_num, property_company, developer, type, description
+    select cid, name,location, resident_num, property_company, developer, type, description
+    from community_info
+  </select>
+  <select id="selectAllUnDetail" resultMap="BaseResultMap" >
+    select cid, name, description
     from community_info
   </select>
 </mapper>

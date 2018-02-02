@@ -15,4 +15,6 @@ public interface CommunityOwnerMapper {
     int insert(CommunityOwner record);
 
     List<CommunityOwner> selectAll();
+
+    List<CommunityOwner> selectByOid(Long oid);
 }

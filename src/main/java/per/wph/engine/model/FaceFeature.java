@@ -7,9 +7,9 @@ public class FaceFeature {
 
     private Date createTime;
 
-    private String imageUrl;
-
     private byte[] feature;
+
+    private byte[] image;
 
     public Long getFid() {
         return fid;
@@ -27,19 +27,19 @@ public class FaceFeature {
         this.createTime = createTime;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl == null ? null : imageUrl.trim();
-    }
-
     public byte[] getFeature() {
         return feature;
     }
 
     public void setFeature(byte[] feature) {
         this.feature = feature;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 }

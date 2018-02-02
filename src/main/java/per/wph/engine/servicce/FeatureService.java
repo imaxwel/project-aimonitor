@@ -1,12 +1,15 @@
 package per.wph.engine.servicce;
 
 import org.springframework.stereotype.Service;
+import per.wph.common.exception.DllUnavailableException;
 import per.wph.engine.model.FaceFeature;
 
-@Service
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public interface FeatureService {
 
-    boolean saveFeatureInfo(FaceFeature faceFeature);
+    Long saveFeatureInfo(FaceFeature faceFeature);
 
-    boolean saveFeatureInfoByImage(Long id,String filePath);
+    Long saveFeatureInfoByImage(String filePath) throws DllUnavailableException, IOException;
 }

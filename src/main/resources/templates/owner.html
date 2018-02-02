@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -10,247 +11,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="icon" type="image/png" href="http://www.17sucai.com/preview/2/2016-12-20/admin/assets/i/favicon.png"> 
-    <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+    <!--<link rel="icon" type="/image/png" href="http://www.17sucai.com/preview/2/2016-12-20/admin/assets/i/favicon.png">-->
+    <!--<link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">-->
     <meta name="apple-mobile-web-app-title" content="Amaze UI" />
     <script src="http://cdn.bootcss.com/echarts/3.3.2/echarts.min.js"></script>
-    <link rel="stylesheet" href="/css/amazeui.min.css" />
-    <link rel="stylesheet" href="/css/amazeui.datatables.min.css" />
-    <link rel="stylesheet" href="/css/app.css">
-    <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
-    <link rel="stylesheet" type="text/css" href="/css/jquery.datetimepicker.css"/>
+    <link rel="stylesheet" th:href="@{/css/amazeui.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/amazeui.datatables.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-treeview.min.css}">
+    <link th:href="@{css/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet">
 
-    <script src="/js/jquery-1.10.2.js"></script>
-    <script type="text/javascript">
-        var i;
-        $(function(){
-            $("a").click(function(){
-                var sId = $(this).parent().data("id");  //获取data-id的值
-                window.location.hash = sId;  //设置锚点
-                loadInner(sId);
-                // alert(sId);
-            })
-            function loadInner(sId){
-                var sId = window.location.hash;
-                var pathn, pathbf;
-                switch(sId){
-                    case "#owncenter": pathn = "/base/owncenter"; i = 0; break;
-        　　　　　　　case "#ownregist": pathn = "/base/ownregist"; i = 1; break;
-                    case "#ownkmjl": pathn = "/base/ownkmjl"; i = 2; break;
-                    case "#ownsqjl": pathn = "/base/ownsqjl"; i = 3; break;
-                    case "#ownfault": pathn = "/base/ownfault"; i = 4; break;
-                    case "#mngcenter": pathn = "/base/mngcenter"; i = 5; break;
-                    case "#mngregist": pathn = "/base/mngregist"; i = 6; break;
-                    case "#mngrequest": pathn = "/base/mngrequest"; i = 7; break;
-                    case "#mngnonregist": pathn = "/base/mngnonregist"; i = 8; break;
-                    case "#mngfault": pathn = "/base/mngfault"; i = 9; break;
-                    case "#mngcontrol": pathn = "/base/mngcontrol"; i = 10; break;
-                    case "#pptcheck": pathn = "/base/pptcheck"; i = 11; break;
-                    case "#ppthosmsg": pathn = "/base/ppthosmsg"; i = 12; break;
-                    case "#pptusermsg": pathn = "/base/pptusermsg"; i = 13; break;
-                    case "#pptfault": pathn = "/base/pptfault"; i = 14; break;
-                    case "#pptsystem": pathn = "/base/pptsystem"; i = 15; break;
-                    case "#personal_msg": pathn = "/base/personal_msg"; i = 16; break;
-                    case "#ownauth": pathn = "base/ownauth"; i = 17;break;
-        　　　　　　  default: pathn = "/base/personal_msg"; i = 0; break;
-                }
-                $("#content").load(pathn); //加载相对应的内容
-                pathbf=pathn;
-            }
-            var sId = window.location.hash;
-            loadInner(sId);
-            if (i==0) {
-                $(document).on('click','#edit',function(){
-                    $("#changepwd").toggle();
-                });
-                $(document).on('click','#changepwd button',function(){
-                    $("#changepwd").css("display","none");
-                    var newpwd=$("#changepwd input").val();
-                    alert("111");
-                    $("#newpwd").text(newpwd);
-                });
-                // owncenter登录后从后台获取用户信息
-                $.ajax({
-                      type:"get",
-                      url:"",//后台页面链接
-                      async:true,
-                      dataType:'json',
-                      success : function(data){
-                        console.log(data);
-                        $(".username").text(data['']);//用户名
-                        $("label").eq(1).text(data['']);//姓名
-                        $("label").eq(3).text(data['']);//身份证
-                        $("label").eq(5).text(data['']);//手机
-                        $("#newpwd").text(data['']);//密码
-                        $("label").eq(9).text(data['']);//小区
-                      }
-                });
-                $(document).on('click','.am-btn',function(){    //保存
-                    var message=$("#user-intro").val();
-                    var newpwd1=$("#changepwd input").val();
-                    // alert(newpwd1);
-                    $.ajax({
-                        type:"get",
-                        url:"",
-                        async:true,
-                        dataType:"json",
-                        data:{
-                            
-                        },
-                        success:function(data){
+    <link rel="stylesheet" type="text/css" href="../css/demos.css" th:href="@{/css/jsgrid/demos.css}"/>
+    <link rel="stylesheet" type="text/css" href="../css/jsgrid.css" th:href="@{/css/jsgrid/jsgrid.css}"/>
+    <link rel="stylesheet" type="text/css" href="../css/theme.css" th:href="@{/css/jsgrid/theme.css}"/>
+    <link rel="stylesheet" th:href="@{/css/jquery.datetimepicker.css}"/>
 
-                        }
-                    });
- 
-                });
-           }
-           //ownregist访客注册
-            if (i==1) {
-                $(document).on('click','#settime',function(){
-                    $("#fenge").toggle();
-                    $('#some_class_1').toggle().datetimepicker();
-                    $('#some_class_2').toggle().datetimepicker();
-                });
-            }
-            //ownkmjl
-            if (i==2) {
-
-            }
-            //ownsqjl
-            if (i==3) {
-
-                //从后台获取表格数据显示
-                function GetMultiLineSelectTable(tableId, selectIds) {
-                    var table = $(tableId);
-                    var url = table.data('url');//后台对应的页面！！！！！！！！！！
-                    //获取数据项名称
-                    var fileds = new Array();//table表头放在fileds数组中
-                    table.children('thead').children('tr').children('th').each(function (index, el) {
-                        var type = 'Content';
-                        if ($(this).data('type')) type = $(this).data('type');
-                        if (type == 'Content') {
-                            var field = $(this).data('field');
-                            fileds[index] = field;
-                        }
-                    });
-                    $.ajax({
-                        url: url,
-                        type: 'post',
-                        dataType: 'json',
-                        success:function(json){
-                            var tbody = '';
-                            $.each(json, function (index, el) {
-                                var tr = "<tr class='even gradeC'>";
-                             
-                                $.each(fileds, function (i, el) {//生成内容
-                                    if (fileds[i]) {
-                                        tr += '<td>' + formatJsonData(json[index][fileds[i]]) + '</td>';
-                                    }
-                                });
-                                tr += " <td><div class='tpl-table-black-operation'><a class='tpl-table-black-operation-del'><i class='am-icon-trash'></i> 删除</a></div></td></tr>";
-                                tbody += tr;
-                            });
-                            table.children('tbody').empty();
-                            table.children('tbody').append(tbody);//显示数据
-                        },
-                        error:function(json){
-                            alert("Err");
-                        }
-                    });
-                    selectIds.click(function(){
-                        var select=[];
-                        select.push({"访客姓名":select.children().eq(0),"授权时间":select.children().eq(1),"有效期":select.children().eq(2),});
-                        $.ajax({
-                            url: url,//!!!!!!!!!!!!!!!!!!!!
-                            type: 'post',
-                            dataType: 'json',
-                            data:{
-                                select:JSON.stringify(select)
-                            },
-                            success:function(json){
-                                alert("删除成功");
-                                select.remove();
-                            },
-                            error:function(json){
-                                alert("删除失败");
-                            }
-                        });
-                    });
-                    
-                }
-
-                //格式化JSON数据，比如日期
-                function formatJsonData(jsondata){
-                    if(jsondata==null){
-                        return '';
-                    }
-                    else if(/\/Date\(\d+\)/.exec(jsondata)){
-                        var date = new Date(parseInt(jsondata.replace("/Date(", "").replace(")/", ""), 10));
-                        return date.toLocaleString();
-                    }
-                    return jsondata;
-                }
-
-            //     $(document).on('click','.tpl-table-black-operation-del',function(){
-            //         // $(this).parents("tr").remove();
-            //         GetMultiLineSelectTable("#example-r",$(this).parents("tr"));
-            //     });                
-            }
-            //ownfault
-            if (i==4) {
-
-            }
-            if (i==16) {
-                $(document).on('click','#camera',function(){
-                    $("img").css("display","none");
-                    //调用摄像头进行拍照
-                        var capture = document.getElementById("capture");
-                        var video = document.getElementById("video");
-                        var canvas = document.getElementById("canvas");
-                        var context = canvas.getContext("2d");
-                        navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-                        window.URL = window.URL || window.webkitURL;
-                        navigator.getUserMedia({video:true}, onSuccess, onError); //调用摄像头捕捉视频信息
-                        capture.onclick = function(e){
-                          e.preventDefault();
-                           canvas.width = video.videoWidth*0.5;
-                            canvas.height = video.videoHeight*0.5;
-                            // $("img").width = video.videoWidth;
-                            // $("img").height = video.videoHeight;
-                          context.drawImage(video, 0, 0, video.videoWidth*0.5, video.videoHeight*0.5);  
-                          // var imgData=canvas.toDataURL(“image/png”);
-                          // alert("imgData");
-                        }
-                        function onSuccess(stream){
-                          video.src = window.URL.createObjectURL(stream); 
-                          // alert (video.src);
-                        }
-                        function onError(){
-                          mystatus.innerHTML = "获取视频出错"
-                        }
-                        $("#video").css("display","inline-block");
-                        $("#capture").css("display","inline-block");
-                        $("#imghead").css("display","none");
-
-                    $("#capture").click(function(){
-                        // $("#video").css("display","none");
-                        // $("#capture"),$("img").css("display","none");
-                        $("#canvas").css("display","inline-block");
-                    });
-                     
-                    //本地
-                    $("#previewImg").click(function(){
-                        // $("img").remove();
-                        $("#canvas").css("display","none");
-                        $("#video").css("display","none");
-                        $("#capture").css("display","none");
-                        // alert("111");
-                        $("img").css("display","inline-block");
-                    });
-                });
-            }
-        });
-   </script>
+    <script src="/js/db.js" th:src="@{/js/jquery-1.10.2.js}"></script>
+    <script src="../src/db.js" th:src="@{/js/jsgrid/db.js}"></script>
+    <script src="../src/jsgrid.core.js" th:src="@{/js/jsgrid/jsgrid.core.js}"></script>
+    <script src="../src/jsgrid.load-indicator.js" th:src="@{/js/jsgrid/jsgrid.load-indicator.js}"></script>
+    <script src="../src/jsgrid.load-strategies.js" th:src="@{/js/jsgrid/jsgrid.load-strategies.js}"></script>
+    <script src="../src/jsgrid.sort-strategies.js" th:src="@{/js/jsgrid/jsgrid.sort-strategies.js}"></script>
+    <script src="../src/jsgrid.field.js" th:src="@{/js/jsgrid/jsgrid.field.js}"></script>
+    <script src="../src/fields/jsgrid.field.text.js" th:src="@{/js/jsgrid/jsgrid.field.text.js}"></script>
+    <script src="../src/fields/jsgrid.field.number.js" th:src="@{/js/jsgrid/jsgrid.field.number.js}"></script>
+    <script src="../src/fields/jsgrid.field.control.js" th:src="@{/js/jsgrid/jsgrid.field.control.js}"></script>
+    <script th:src="@{/js/owner.js}"></script>
 </head>
 
 <body data-type="widgets">
@@ -542,8 +328,6 @@
     <script src="/js/amazeui.datatables.min.js"></script>
     <script src="/js/dataTables.responsive.min.js"></script>
     <script src="/js/app.js"></script>
-    <script src="/js/jquery.js"></script>
-    <script src="/js/jquery.datetimepicker.full.js"></script>
     <script type="text/javascript" src="/js/upphoto.js"></script>
         <!-- 多图片上传插件 -->
 <!--     <link rel="stylesheet" href="/css/zyUpload.css" type="text/css">

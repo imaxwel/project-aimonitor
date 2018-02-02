@@ -3,6 +3,8 @@ package per.wph.info.model;
 public class CommunityInfo {
     private Long cid;
 
+    private String name;
+
     private String location;
 
     private Integer residentNum;
@@ -21,6 +23,14 @@ public class CommunityInfo {
 
     public void setCid(Long cid) {
         this.cid = cid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getLocation() {

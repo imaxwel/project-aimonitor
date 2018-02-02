@@ -1,10 +1,10 @@
 package per.wph.info.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import per.wph.info.mapper.OwnerInfoMapper;
-import per.wph.info.mapper.SysPermissionMapper;
-import per.wph.info.mapper.SysRoleMapper;
-import per.wph.info.mapper.UserInfoMapper;
+import per.wph.info.mapper.*;
+import per.wph.info.mapper.relation.BuildingOwnerMapper;
+import per.wph.info.mapper.relation.CommunityBuildingMapper;
+import per.wph.info.mapper.relation.CommunityOwnerMapper;
 import per.wph.info.service.BaseService;
 
 import java.lang.reflect.ParameterizedType;
@@ -18,4 +18,15 @@ public class BaseServiceImpl implements BaseService {
     protected SysRoleMapper sysRoleMapper;
     @Autowired
     protected OwnerInfoMapper ownerInfoMapper;
+    @Autowired
+    protected BuildingInfoMapper buildingInfoMapper;
+    @Autowired
+    protected CommunityInfoMapper communityInfoMapper;
+
+    @Autowired
+    protected CommunityBuildingMapper communityBuildingMapper;
+    @Autowired
+    protected CommunityOwnerMapper communityOwnerMapper;
+    @Autowired
+    protected BuildingOwnerMapper buildingOwnerMapper;
 }

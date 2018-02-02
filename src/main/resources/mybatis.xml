@@ -16,6 +16,9 @@
         <mapper resource="xml/FaceFeatureMapper.xml"/>
         <mapper resource="xml/EquipmentInfoMapper.xml"/>
         <mapper resource="xml/OwnerFeatureMapper.xml"/>
+        <mapper resource="xml/BuildingOwnerMapper.xml"/>
+        <mapper resource="xml/CommunityOwnerMapper.xml"/>
+        <mapper resource="xml/CommunityBuildingMapper.xml"/>
     </mappers>
 
 </configuration>

@@ -1,6 +1,7 @@
 package per.wph.info.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import per.wph.info.model.SysPermission;
@@ -25,4 +26,11 @@ public class PermissionController extends BaseController {
         return permissionService.getSysPermissionsByUsername((String) session.getAttribute(USERNAME));
     }
 
+    @RequestMapping("ownauth")
+    public String getOwnAuth(HttpSession session,Model model){
+        Set<SysPermission> permissions = permissionService.getSysPermissionsByUsername((String)session.getAttribute(USERNAME));
+
+        model.addAttribute("permissions",permissions);
+        return "ownauth";
+    }
 }

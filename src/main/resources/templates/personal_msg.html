@@ -15,7 +15,7 @@
                     <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                         <div class="widget am-cf">
                             <div class="widget-body am-fr">
-                                <form class="am-form tpl-form-line-form">
+                                <form class="am-form tpl-form-line-form" style="padding-right: 200px;padding-left: 100px;">
                                     <div class="am-form-group">
                                         <label for="user-name" class="am-u-sm-3 am-form-label">姓名 <span class="tpl-form-line-small-title">name</span></label>
                                         <div class="am-u-sm-9">
@@ -32,11 +32,17 @@
                                         <label for="user-phone" class="am-u-sm-3 am-form-label">小区 <span class="tpl-form-line-small-title">housing</span></label>
                                         <div class="am-u-sm-9">
                                             <select name="select" id="select"> 
-                                                <option value="0">紫金小区</option> 
-                                                <option value="1">多蓝水岸</option> 
                                             </select> 
                                         </div>
                                     </div>  
+                                    <div class="am-form-group">
+                                        <label for="user-phone" class="am-u-sm-3 am-form-label">楼栋 <span class="tpl-form-line-small-title">building</span></label>
+                                        <div class="am-u-sm-9">
+                                            <select name="select" id="building"> 
+                                            </select> 
+                                        </div>
+                                    </div>  
+
                                     <!-- 人脸识别 -->
                                     <!-- 调用摄像头生成图片 -->
                                     <video id="video" autoplay="" style="display: none;width: 320px;height: 240px;margin-left: 100px;"></video>
@@ -56,7 +62,7 @@
 
                                     <div class="am-form-group">
                                         <div class="am-u-sm-9 am-u-sm-push-3">
-                                            <button type="button" class="am-btn tpl-btn-bg-color-success " style="background-color: #dd514c;margin: 50px -114px;width: 110px;">保存</button>
+                                            <button type="button" id="save" class="am-btn tpl-btn-bg-color-success " style="background-color: #dd514c;margin: 50px -114px;width: 110px;">保存</button>
                                         </div>
                                     </div>
                                 </form>

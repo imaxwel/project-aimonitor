@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 import per.wph.engine.model.FaceFeature;
-
 @Mapper
 @Repository
 public interface FaceFeatureMapper {
@@ -13,7 +12,6 @@ public interface FaceFeatureMapper {
 
     int insert(FaceFeature record);
 
-    FaceFeature selectByPrimaryKey(Long fid);
 
     List<FaceFeature> selectAll();
 

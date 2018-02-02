@@ -12,4 +12,8 @@ public interface BuildingOwnerMapper {
     int insert(BuildingOwner record);
 
     List<BuildingOwner> selectAll();
+
+    List<BuildingOwner> selectByOid(Long oid);
+
+    List<BuildingOwner> selectByBid(Long bid);
 }

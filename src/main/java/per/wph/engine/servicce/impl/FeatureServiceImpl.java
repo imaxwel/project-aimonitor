@@ -4,10 +4,16 @@ import org.apache.tomcat.util.modeler.FeatureInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import per.wph.common.exception.DllUnavailableException;
 import per.wph.engine.clib.EngineDll;
+import per.wph.engine.clib.EngineDllManager;
+import per.wph.engine.clib.FaceModel;
 import per.wph.engine.mapper.FaceFeatureMapper;
 import per.wph.engine.model.FaceFeature;
 import per.wph.engine.servicce.FeatureService;
+
+import java.io.*;
+import java.util.Date;
 
 /**
  * =============================================
@@ -18,25 +24,37 @@ import per.wph.engine.servicce.FeatureService;
  */
 @Service
 public class FeatureServiceImpl implements FeatureService {
+    private static final int MAX_IMAGE_SIZE = 50000;
     @Autowired
     private FaceFeatureMapper faceFeatureMapper;
 
     @Override
     @Transactional
-    public boolean saveFeatureInfo(FaceFeature faceFeature) {
-        try{
-            faceFeatureMapper.insert(faceFeature);
-        }catch (Exception e){
-            return false;
-        }
-        return true;
+    public Long saveFeatureInfo(FaceFeature faceFeature) {
+        faceFeatureMapper.insert(faceFeature);
+        return faceFeature.getFid();
     }
 
     @Override
     @Transactional
-    public boolean saveFeatureInfoByImage(Long id,String filePath) {
+    public Long saveFeatureInfoByImage(String filePath) throws DllUnavailableException, IOException {
+        FaceModel faceModel = EngineDllManager.getFeatureByImage(filePath);
+        byte[] bytes = new byte[faceModel.lFeatureSize];
+        faceModel.pbFeature.read(0,bytes,0,bytes.length);
         FaceFeature faceFeature = new FaceFeature();
-        EngineDll.INSTANCE.getFeatureByImage(filePath);
-        return false;
+        File file = new File(filePath);
+        if(file.exists()){
+            StringBuilder image = new StringBuilder();
+            byte[] buff = new byte[5000];
+            FileInputStream fis = new FileInputStream(file);
+            while (fis.read(buff)!=-1){
+                image.append(buff);
+            };
+            faceFeature.setImage(image.toString().getBytes());
+        }
+        faceFeature.setCreateTime(new Date());
+        faceFeature.setFeature(bytes);
+        faceFeatureMapper.insert(faceFeature);
+        return faceFeature.getFid();
     }
 }
