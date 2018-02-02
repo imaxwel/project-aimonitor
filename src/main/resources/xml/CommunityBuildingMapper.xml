@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="per.wph.info.mapper.relation.CommunityBuildingMapper" >
+  <resultMap id="BaseResultMap" type="per.wph.info.model.relation.CommunityBuilding" >
+    <id column="cid" property="cid" jdbcType="BIGINT" />
+    <id column="bid" property="bid" jdbcType="BIGINT" />
+  </resultMap>
+  <select id="selectByCid" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select cid,bid
+    from community_building
+    where cid = #{oid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from community_building
+    where cid = #{cid,jdbcType=BIGINT}
+      and bid = #{bid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="per.wph.info.model.relation.CommunityBuilding" >
+    insert into community_building (cid, bid)
+    values (#{cid,jdbcType=BIGINT}, #{bid,jdbcType=BIGINT})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select cid, bid
+    from community_building
+  </select>
+</mapper>
