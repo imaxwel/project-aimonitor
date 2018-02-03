@@ -3,6 +3,16 @@ package per.wph.info.model;
 import java.util.Date;
 
 public class OwnerInfo {
+    public enum STATUS{
+        EXAMINE(-100),FROZEN(-200),AVAILABLE(100);
+        private Integer status;
+        private STATUS(Integer status){
+            this.status = status;
+        }
+        public Integer status(){
+            return this.status;
+        }
+    }
     private Long oid;
 
     private String name;
@@ -13,7 +23,7 @@ public class OwnerInfo {
 
     private String email;
 
-    private Integer idnumber;
+    private String idnumber;
 
     private Date birthday;
 
@@ -21,7 +31,7 @@ public class OwnerInfo {
 
     private String description;
 
-    private Byte status;
+    private Integer status;
 
     public Long getOid() {
         return oid;
@@ -63,11 +73,11 @@ public class OwnerInfo {
         this.email = email == null ? null : email.trim();
     }
 
-    public Integer getIdnumber() {
+    public String getIdnumber() {
         return idnumber;
     }
 
-    public void setIdnumber(Integer idnumber) {
+    public void setIdnumber(String idnumber) {
         this.idnumber = idnumber;
     }
 
@@ -95,11 +105,11 @@ public class OwnerInfo {
         this.description = description == null ? null : description.trim();
     }
 
-    public Byte getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Byte status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 }

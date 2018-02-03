@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import per.wph.common.exception.DllUnavailableException;
+import per.wph.common.exception.ZeroFaceException;
 import per.wph.engine.mapper.FaceFeatureMapper;
 import per.wph.engine.model.FaceFeature;
 import per.wph.engine.servicce.FeatureService;
@@ -32,7 +33,7 @@ public class FaceFeatureTest {
     @Autowired
     private FeatureService featureService;
     @Test
-    public void testDAO() throws DllUnavailableException, IOException {
+    public void testDAO() throws DllUnavailableException, IOException, ZeroFaceException {
         featureService.saveFeatureInfoByImage("C:\\Users\\wu\\Desktop\\20180131212814.jpg");
     }
 }

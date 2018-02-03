@@ -1,6 +1,8 @@
 package per.wph.engine.clib;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import per.wph.common.exception.DllUnavailableException;
+import per.wph.common.exception.ZeroFaceException;
 
 import java.io.FileNotFoundException;
 
@@ -28,9 +30,13 @@ public class EngineDllManager {
         }
     }
 
-    public static FaceModel.ByValue getFeatureByImage(String filepath) throws DllUnavailableException, FileNotFoundException {
+    public static FaceModel.ByValue getFeatureByImage(String filepath) throws DllUnavailableException, FileNotFoundException, ZeroFaceException {
         if(available){
-            return engineDll.getFeatureByImage(filepath);
+            FaceModel.ByValue  ret = engineDll.getFeatureByImage(filepath);
+            if(ret==null || ret.lFeatureSize == 0){
+                throw new ZeroFaceException("No face found");
+            }
+            return ret;
         }else{
             throw new DllUnavailableException("Dll unavailable");
         }
@@ -51,4 +57,5 @@ public class EngineDllManager {
             throw new DllUnavailableException("Dll engine uinit fail");
         };
     };
+
 }

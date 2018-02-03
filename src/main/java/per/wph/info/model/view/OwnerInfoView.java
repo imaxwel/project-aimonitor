@@ -10,10 +10,9 @@ import per.wph.info.model.OwnerInfo;
  * @create 2018-02-01 11:08
  * =============================================
  */
-public class OwnerView {
+public class OwnerInfoView {
     private OwnerInfo ownerInfo;
     private BuildingInfo buildingInfo;
-
     public OwnerInfo getOwnerInfo() {
         return ownerInfo;
     }

@@ -32,5 +32,63 @@
                 alert("注册失败！");
             }
         });
+
+
+            //获取后台数据
+            // $.ajax({
+            //  url: url,
+      //           type: 'post',
+      //           dataType: 'json',
+      //           success: function (json) {
+
+      //           },
+      //           error: function (json) {
+      //               alert("Err");
+      //           }
+            // });
+            $('.name').click(function(){
+                $(this).next().toggle();
+                $(this).next().children('button').click(function(){
+                    var newname=$(this).prev().val();
+                    $(this).parent().prev().text(newname);
+                    $(this).parent().toggle();
+                    // $.ajax({
+                 //        type: "get",
+                 //        url: "",//后台页面链接
+                 //        async: true,
+                 //        dataType: 'json',
+                 //        data:{
+                 //         newname:newname
+                 //        },
+                 //        success: function (data) {
+                 //            console.log(data);
+                 //        }
+                 //    });
+                });
+            });
+            $('.delete').click(function(){
+                $(this).parents('.visitor').remove();
+                var name=$(this).parents().find('.name').val();
+                // $.ajax({
+                //  type:'get',
+                //  url:'',
+                //  dataType:'json',
+                //  data:{
+                //      name:name
+                //  },
+                //  success:function(data){
+                //      console.log(data);
+                //  }
+                // });
+            });
+            $('.edit_header button').click(function(){
+                $('.tpl-content-wrapper').css('display','none');
+                $('.tpl-login').css('display','inline-block');
+            });
+            $('.am-btn').click(function(){
+                $('.tpl-content-wrapper').css('display','block');
+                $('.tpl-login').css('display','none');
+            });
+
     });
 }())

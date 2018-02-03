@@ -19,6 +19,8 @@ public class UserInfo {
 
     private Byte state;
 
+    private String pin;
+
     public Long getUid() {
         return uid;
     }
@@ -81,6 +83,14 @@ public class UserInfo {
 
     public void setState(Byte state) {
         this.state = state;
+    }
+
+    public String getPin() {
+        return pin;
+    }
+
+    public void setPin(String pin) {
+        this.pin = pin;
     }
 
     //获得资格证书盐

@@ -10,9 +10,10 @@
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
     <result column="state" property="state" jdbcType="TINYINT" />
+    <result column="pin" property="pin" jdbcType="VARCHAR"/>
   </resultMap>
   <sql id="Base_Column_List" >
-    uid, name, username, password, salt, create_time, last_login_time, state
+    uid, name, username, password, salt, create_time, last_login_time, state,pin
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -42,10 +43,10 @@
   <insert id="insert" parameterType="per.wph.info.model.UserInfo" useGeneratedKeys="true" keyProperty="uid">
     insert into user_info (uid, name, username, 
       password, salt, create_time, 
-      last_login_time, state)
+      last_login_time, state,pin)
     values (#{uid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{lastLoginTime,jdbcType=TIMESTAMP}, #{state,jdbcType=TINYINT})
+      #{lastLoginTime,jdbcType=TIMESTAMP}, #{state,jdbcType=TINYINT},#{pin,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="per.wph.info.model.UserInfo" useGeneratedKeys="true" keyProperty="uid">
     insert into user_info
@@ -74,6 +75,9 @@
       <if test="state != null" >
         state,
       </if>
+      <if test="pin != null" >
+        pin,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="uid != null" >
@@ -99,6 +103,9 @@
       </if>
       <if test="state != null" >
         #{state,jdbcType=TINYINT},
+      </if>
+      <if test="pin != null" >
+        #{pin,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -126,6 +133,9 @@
       <if test="state != null" >
         state = #{state,jdbcType=TINYINT},
       </if>
+      <if test="pin != null" >
+        pin = #{pin,jdbcType=TINYINT},
+      </if>
     </set>
     where uid = #{uid,jdbcType=BIGINT}
   </update>
@@ -137,7 +147,8 @@
       salt = #{salt,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
-      state = #{state,jdbcType=TINYINT}
+      state = #{state,jdbcType=TINYINT},
+      pin = #{pin,jdbcType=VARCHAR}
     where uid = #{uid,jdbcType=BIGINT}
   </update>
 </mapper>

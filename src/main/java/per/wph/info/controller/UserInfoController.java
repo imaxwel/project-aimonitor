@@ -1,17 +1,14 @@
 package per.wph.info.controller;
 
-import org.apache.shiro.SecurityUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import per.wph.common.ApiResult;
+import per.wph.common.controller.BaseController;
 import per.wph.common.generator.ApiResultGenerator;
 import per.wph.common.generator.RandomGenerator;
 import per.wph.info.model.UserInfo;
-import per.wph.info.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,7 +17,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/user")
-public class UserInfoController extends BaseController{
+public class UserInfoController extends BaseController {
 
     @RequestMapping(value="/sendIdenCode")
     public @ResponseBody ApiResult sendIdenCode(HttpSession httpSession){

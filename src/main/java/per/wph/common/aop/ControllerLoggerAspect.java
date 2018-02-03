@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import per.wph.info.controller.BaseController;
+import per.wph.common.controller.BaseController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;

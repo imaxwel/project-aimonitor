@@ -5,6 +5,8 @@ public class BuildingOwner {
 
     private Long oid;
 
+    private String num;
+
     public Long getBid() {
         return bid;
     }
@@ -19,5 +21,13 @@ public class BuildingOwner {
 
     public void setOid(Long oid) {
         this.oid = oid;
+    }
+
+    public String getNum() {
+        return num;
+    }
+
+    public void setNum(String num) {
+        this.num = num;
     }
 }

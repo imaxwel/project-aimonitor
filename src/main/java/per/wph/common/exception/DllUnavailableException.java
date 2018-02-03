@@ -17,9 +17,4 @@ public class DllUnavailableException extends BaseException {
         super(message);
     }
 
-    @Override
-    public void printStackTrace() {
-        System.out.println(this.getMessage());
-    }
-
 }

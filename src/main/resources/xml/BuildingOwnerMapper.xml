@@ -4,23 +4,24 @@
   <resultMap id="BaseResultMap" type="per.wph.info.model.relation.BuildingOwner" >
     <result column="bid" property="bid" jdbcType="BIGINT" />
     <result column="oid" property="oid" jdbcType="BIGINT" />
+    <result column="num" property="num" jdbcType="VARCHAR" />
   </resultMap>
   <select id="selectByBid" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select bid,oid
+    select bid,oid,num
     from building_owner
     where bid = #{oid,jdbcType=BIGINT}
   </select>
   <select id="selectByOid" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select bid,oid
+    select bid,oid,num
     from building_owner
     where oid = #{oid,jdbcType=BIGINT}
   </select>
   <insert id="insert" parameterType="per.wph.info.model.relation.BuildingOwner" >
-    insert into building_owner (bid, oid)
-    values (#{bid,jdbcType=BIGINT}, #{oid,jdbcType=BIGINT})
+    insert into building_owner (bid, oid,num)
+    values (#{bid,jdbcType=BIGINT}, #{oid,jdbcType=BIGINT},#{num,jdbcType=VARCHAR})
   </insert>
   <select id="selectAll" resultMap="BaseResultMap" >
-    select bid, oid
+    select bid, oid,num
     from building_owner
   </select>
 </mapper>

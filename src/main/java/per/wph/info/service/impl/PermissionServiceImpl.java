@@ -3,7 +3,7 @@ package per.wph.info.service.impl;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import per.wph.info.mapper.SysRoleMapper;
+import per.wph.common.service.BaseServiceImpl;
 import per.wph.info.model.SysPermission;
 import per.wph.info.model.SysRole;
 import per.wph.info.service.PermissionService;

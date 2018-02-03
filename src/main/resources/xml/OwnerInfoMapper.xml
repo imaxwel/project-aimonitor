@@ -7,11 +7,11 @@
     <result column="gender" property="gender" jdbcType="BIT" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
-    <result column="idnumber" property="idnumber" jdbcType="INTEGER" />
+    <result column="idnumber" property="idnumber" jdbcType="VARCHAR" />
     <result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
     <result column="isadmin" property="isadmin" jdbcType="BIT" />
     <result column="description" property="description" jdbcType="VARCHAR" />
-    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from owner_info
@@ -23,9 +23,9 @@
       birthday, isadmin, description, 
       status)
     values (#{oid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=BIT}, 
-      #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{idnumber,jdbcType=INTEGER}, 
+      #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{idnumber,jdbcType=VARCHAR},
       #{birthday,jdbcType=TIMESTAMP}, #{isadmin,jdbcType=BIT}, #{description,jdbcType=VARCHAR}, 
-      #{status,jdbcType=TINYINT})
+      #{status,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="per.wph.info.model.OwnerInfo" >
     update owner_info
@@ -33,11 +33,11 @@
       gender = #{gender,jdbcType=BIT},
       phone = #{phone,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
-      idnumber = #{idnumber,jdbcType=INTEGER},
+      idnumber = #{idnumber,jdbcType=VARCHAR},
       birthday = #{birthday,jdbcType=TIMESTAMP},
       isadmin = #{isadmin,jdbcType=BIT},
       description = #{description,jdbcType=VARCHAR},
-      status = #{status,jdbcType=TINYINT}
+      status = #{status,jdbcType=INTEGER}
     where oid = #{oid,jdbcType=BIGINT}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >

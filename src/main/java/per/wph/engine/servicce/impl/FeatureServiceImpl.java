@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import per.wph.common.exception.DllUnavailableException;
+import per.wph.common.exception.ZeroFaceException;
 import per.wph.engine.clib.EngineDll;
 import per.wph.engine.clib.EngineDllManager;
 import per.wph.engine.clib.FaceModel;
@@ -37,7 +38,7 @@ public class FeatureServiceImpl implements FeatureService {
 
     @Override
     @Transactional
-    public Long saveFeatureInfoByImage(String filePath) throws DllUnavailableException, IOException {
+    public Long saveFeatureInfoByImage(String filePath) throws DllUnavailableException, IOException, ZeroFaceException {
         FaceModel faceModel = EngineDllManager.getFeatureByImage(filePath);
         byte[] bytes = new byte[faceModel.lFeatureSize];
         faceModel.pbFeature.read(0,bytes,0,bytes.length);
@@ -57,4 +58,24 @@ public class FeatureServiceImpl implements FeatureService {
         faceFeatureMapper.insert(faceFeature);
         return faceFeature.getFid();
     }
+
+
+    @Override
+    public boolean isAccess(byte[] feature) {
+        return false;
+    }
+
+    @Override
+    public boolean isAccess(byte[] feature, Long cid) {
+        return false;
+    }
+
+    @Override
+    public boolean isAccess(byte[] feature, Long cid, Long bid) {
+        return false;
+    }
+
+
+
+
 }

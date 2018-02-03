@@ -1,10 +1,11 @@
 package per.wph.info.service.impl;
 
 import org.springframework.stereotype.Service;
+import per.wph.common.service.BaseServiceImpl;
 import per.wph.info.model.BuildingInfo;
+import per.wph.info.model.relation.BuildingOwner;
 import per.wph.info.model.relation.CommunityBuilding;
 import per.wph.info.service.BuildingService;
-import per.wph.info.service.CommunityService;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -30,4 +31,10 @@ public class BuildingServiceImpl extends BaseServiceImpl implements BuildingServ
         }
         return buildingInfos;
     }
+
+    @Override
+    public int saveBuildingOwner(BuildingOwner buildingOwner) {
+        return buildingOwnerMapper.insert(buildingOwner);
+    }
+
 }

@@ -4,17 +4,15 @@ package per.wph.common.exception;
  * =============================================
  *
  * @author wu
- * @create 2018-02-01 12:12
+ * @create 2018-02-03 16:07
  * =============================================
  */
-public class MultiTargetException extends BaseException {
-
-    public MultiTargetException() {
+public class ZeroFaceException extends BaseException {
+    public ZeroFaceException() {
     }
 
-    public MultiTargetException(String message) {
+    public ZeroFaceException(String message) {
         super(message);
     }
-
 
 }

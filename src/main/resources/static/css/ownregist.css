@@ -1,0 +1,92 @@
+.edit_header{
+	background-color:  #424b4f;
+	padding: 20px 20px;
+}
+.edit_header p{
+	color: #333;
+	font-size: 1.2em;
+	margin-right: 100px;
+}
+.edit_header p button{
+	margin-left: 200px; 
+}
+.visitor .visitor_msg{
+	width: 240px;
+	height: 400px;
+	margin: 20px 0 0 38px;
+	background-color: #424b4f;
+	float: left;
+}
+.avator img{
+	width: 82px;
+	height: 82px;
+	border-radius: 82px;
+	vertical-align: middle;
+	margin: 20px 79px;
+}
+.message{
+	text-align: center;
+	color: #ccc;
+}
+.newname{
+	display: none;
+}
+.foot{
+	text-align: center;
+	margin-top: 10px;
+}
+.tpl-login{
+	display: none;
+}
+#relation{
+	color: #b5b5b5;
+	font-weight: lighter;
+	width: 40%;
+	padding-top: 10px;
+}
+#shipchoose{
+	width: 65%;
+	float: right;
+}
+#shipchoose select{
+	padding-left: 50px;
+	font-size: 1.3em;
+}
+.addphoto{
+	padding: 10px 0;
+	position: relative;
+}
+#previewImg{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	opacity: 0;
+	cursor: pointer;
+	width: 100%;
+	height: 100%;
+}
+#valid_time{
+	color: white;
+	font-weight: lighter;
+}
+#settime{
+	color: #0e90d2;
+	margin-left: 150px;
+}
+#some_class_1{
+	float: left;
+	width: 45%;
+	display: none;
+	margin-bottom: 20px;
+}
+#some_class_1 span{
+	color: white;
+	display: none;
+}
+#some_class_2{
+	float: left;
+	width: 45%;
+	display: none;
+	margin-bottom: 20px;	
+}

@@ -13,6 +13,9 @@ $(function () {
             case "#owncenter":
                 pathn = "/base/owncenter";
                 break;
+            case "#ownauth":
+                pathn = "/perm/ownauth";
+                break;
             case "#ownregist":
                 pathn = "/base/ownregist";
                 break;
@@ -65,35 +68,41 @@ $(function () {
                 pathn = "/base/personal_msg";
                 break;
         }
-        $("#content").load(pathn,function () {
+        $("#content").load(pathn, function () {
             //加载相对应的内容
             pathbf = pathn;
             // if (flag[pathn] == null || flag[pathn] == false) {
             //     flag[pathn] = true;
-                //owncenter
-                if (pathn == "/base/owncenter") {
-                    $.getScript("/js/page/owncenter.js");
-                }
-                //ownregist访客注册
-                if (pathn == "/base/ownregist") {
-                    $.getScript("/js/page/ownregist.js");
-                }
-                //ownkmjl
-                if (pathn == "/base/ownkmjl") {
-                    $.getScript("/js/page/ownkmjl.js");
-                }
-                //ownsqjl
-                if (pathn == "/base/ownsqjl") {
-                    $.getScript("/js/page/ownsqjl.js");
-                }
-                //ownfault
-                if (pathn == "/base/ownfault") {
-                    $.getScript("/js/page/ownfault.js");
-                }
-                //完善个人信息
-                if (pathn == "/base/personal_msg") {
-                    $.getScript("/js/page/personal_msg.js");
-                }
+            //owncenter
+            if (pathn == "/base/owncenter") {
+                $.getScript("/js/page/owncenter.js");
+            }
+            if (pathn == "/base/ownauth") {
+
+            }
+            //ownregist访客注册
+            if (pathn == "/base/ownregist") {
+                $.getScript("/js/page/ownregist.js");
+            }
+            //ownkmjl
+            if (pathn == "/base/ownkmjl") {
+                $.getScript("/js/page/ownkmjl.js");
+            }
+            //ownsqjl
+            if (pathn == "/base/ownsqjl") {
+                $.getScript("/js/page/ownsqjl.js");
+            }
+            //ownfault
+            if (pathn == "/base/ownfault") {
+                $.getScript("/js/page/ownfault.js");
+            }
+            //完善个人信息
+            if (pathn == "/base/personal_msg") {
+                $.getScript("/js/page/personal_msg.js");
+            }
+            if (pathn == "/base/mngregist") {
+                $.getScript("/js/page/mngregist.js");
+            }
             // }
         });
     }

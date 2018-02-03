@@ -1,22 +1,21 @@
-package per.wph.info.controller;
+package per.wph.common.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import per.wph.common.shiro.util.LoginUtil;
 import per.wph.common.shiro.util.PasswordUtil;
-import per.wph.info.service.BuildingService;
-import per.wph.info.service.CommunityService;
-import per.wph.info.service.PermissionService;
-import per.wph.info.service.UserService;
+import per.wph.engine.servicce.FeatureService;
+import per.wph.info.service.*;
 
 public class BaseController {
     //设置默认的验证码超时时间为两分钟
-    public final static Long OVERTIME = 2*60000L;
-    public final static String IDCODE = "identityCode";
-    public final static String IDCODE_AVAILABLE_TIME = "identityCodeAvailableTime";
+    protected final static Long OVERTIME = 2*60000L;
+    protected final static String IDCODE = "identityCode";
+    protected final static String IDCODE_AVAILABLE_TIME = "identityCodeAvailableTime";
     public final static String USERNAME = "username";
     public final static String LOGINTIME = "logintime";
+    protected final static String FACE_MODEL_LIST = "face_model_list";
 
     @Autowired
     protected LoginUtil loginUtil;
@@ -25,9 +24,13 @@ public class BaseController {
     @Autowired
     protected UserService userService;
     @Autowired
+    protected OwnerService ownerService;
+    @Autowired
     protected PermissionService permissionService;
     @Autowired
     protected CommunityService communityService;
     @Autowired
     protected BuildingService buildingService;
+    @Autowired
+    protected FeatureService featureService;
 }

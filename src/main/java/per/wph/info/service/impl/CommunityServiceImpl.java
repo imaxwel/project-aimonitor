@@ -1,8 +1,9 @@
 package per.wph.info.service.impl;
 
 import org.springframework.stereotype.Service;
+import per.wph.common.service.BaseServiceImpl;
 import per.wph.info.model.CommunityInfo;
-import per.wph.info.service.BaseService;
+import per.wph.info.model.relation.CommunityOwner;
 import per.wph.info.service.CommunityService;
 
 import java.util.List;
@@ -20,5 +21,10 @@ public class CommunityServiceImpl extends BaseServiceImpl implements CommunitySe
     @Override
     public List<CommunityInfo> getAllCommunityInfo() {
         return communityInfoMapper.selectAllUnDetail();
+    }
+
+    @Override
+    public int saveCommunityOwner(CommunityOwner communityOwner) {
+        return communityOwnerMapper.insert(communityOwner);
     }
 }
