@@ -1,21 +1,33 @@
+.visitor{
+	height: 860px;
+	background-color: #ddd;
+}
 .edit_header{
-	background-color:  #424b4f;
+	background-color:  #fff;
 	padding: 20px 20px;
+	margin-top: 10px;
 }
 .edit_header p{
-	color: #333;
-	font-size: 1.2em;
+	color: #666;
+	font-size: 20px;
 	margin-right: 100px;
-}
-.edit_header p button{
-	margin-left: 200px; 
 }
 .visitor .visitor_msg{
 	width: 240px;
 	height: 400px;
 	margin: 20px 0 0 38px;
-	background-color: #424b4f;
+	background-color: #fff;
 	float: left;
+}
+#pagetest{
+	background-color: #ddd;
+	width: 100%;
+	margin-top: 0;
+}
+.clear_float{
+	clear: both;
+	height: 0;
+	overflow: hidden;
 }
 .avator img{
 	width: 82px;
@@ -26,7 +38,7 @@
 }
 .message{
 	text-align: center;
-	color: #ccc;
+	color: #666;
 }
 .newname{
 	display: none;
@@ -67,12 +79,12 @@
 	height: 100%;
 }
 #valid_time{
-	color: white;
+	color: #666;
 	font-weight: lighter;
 }
 #settime{
 	color: #0e90d2;
-	margin-left: 150px;
+	margin-left: 290px;
 }
 #some_class_1{
 	float: left;
@@ -80,13 +92,95 @@
 	display: none;
 	margin-bottom: 20px;
 }
-#some_class_1 span{
-	color: white;
+#fenge{
+	color: #333;
 	display: none;
+	float: left;
+	margin: 0 12px;
 }
 #some_class_2{
 	float: left;
 	width: 45%;
 	display: none;
 	margin-bottom: 20px;	
+}
+.delete{
+	border: none;
+	background-color: #666;
+	color: white;
+	padding: 5px 10px;
+}
+.AddNewVisitor{
+	border: none;
+	background-color: #dd514c;
+	color: white;
+	padding: 5px 10px;
+	margin-left: 80%;
+}
+.sequence{
+	border: 1px #666 solid;
+	width: 20%;
+	padding: 0 10px;
+}
+.select{
+	border: none;
+	background-color: white;
+	margin-top: -5px;
+}
+#new_visitor_content{
+	margin: 5% auto 0;
+}
+/*paging start here!!!*/
+.pageTest{ 
+	width: 1000px; 
+	height: 50px; 
+	margin-top: 100px;    
+}
+.activP{
+    background-color: #367fa9!important;
+    color: #fff!important;
+}
+.pagingUl{
+  float:right;
+  padding:0;
+  margin:0;
+  list-style: none;
+}
+.pagingUl li{
+  float: left;
+  width: 30px;
+  height: 30px;
+  list-style: 30px;
+  text-align: center;
+}
+.pagingUl li a{
+  text-decoration: none;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 28px;
+  padding: 0;
+  background: #fafafa;
+  color: #666;
+  font-size: 12px;
+  border: 1px solid #ddd;
+}
+.prv, .next {
+  width: 30px;
+  height: 30px;
+  float: left;
+  text-align: center;
+  line-height: 30px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+.first, .last {
+  width: 30px;
+  height: 30px;
+  font-size: 12px;
+  text-align: center;
+  line-height: 30px;
+  border: 1px solid #ddd;
+  cursor: pointer;
 }

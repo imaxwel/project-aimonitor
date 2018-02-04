@@ -27,6 +27,8 @@ public class BaseServiceImpl implements BaseService {
     protected CommunityInfoMapper communityInfoMapper;
     @Autowired
     protected FaceFeatureMapper faceFeatureMapper;
+    @Autowired
+    protected VisitorInfoMapper visitorInfoMapper;
 
     @Autowired
     protected CommunityBuildingMapper communityBuildingMapper;

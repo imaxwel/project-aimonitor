@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="per.wph.info.mapper.VisitorInfoMapper" >
+  <resultMap id="BaseResultMap" type="per.wph.info.model.VisitorInfo" >
+    <id column="vid" property="vid" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="idnumber" property="idnumber" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="creat_time" property="creatTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from visitor_info
+    where vid = #{vid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="per.wph.info.model.VisitorInfo" >
+    insert into visitor_info (vid, name, idnumber, 
+      phone, creat_time)
+    values (#{vid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{idnumber,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{creatTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="per.wph.info.model.VisitorInfo" >
+    update visitor_info
+    set name = #{name,jdbcType=VARCHAR},
+      idnumber = #{idnumber,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      creat_time = #{creatTime,jdbcType=TIMESTAMP}
+    where vid = #{vid,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select vid, name, idnumber, phone, creat_time
+    from visitor_info
+    where vid = #{vid,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select vid, name, idnumber, phone, creat_time
+    from visitor_info
+  </select>
+</mapper>

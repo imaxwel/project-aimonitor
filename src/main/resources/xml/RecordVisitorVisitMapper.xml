@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="per.wph.info.mapper.RecordVisitorVisitMapper" >
+  <resultMap id="BaseResultMap" type="per.wph.info.model.RecordVisitorVisit" >
+    <id column="rid" property="rid" jdbcType="BIGINT" />
+    <result column="cid" property="cid" jdbcType="BIGINT" />
+    <result column="bid" property="bid" jdbcType="BIGINT" />
+    <result column="vid" property="vid" jdbcType="BIGINT" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from record_visitor_visit
+    where rid = #{rid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="per.wph.info.model.RecordVisitorVisit" >
+    insert into record_visitor_visit (rid, cid, bid, vid, 
+      time, status)
+    values (#{rid,jdbcType=BIGINT}, #{cid,jdbcType=BIGINT}, #{bid,jdbcType=BIGINT}, #{vid,jdbcType=BIGINT}, 
+      #{time,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="per.wph.info.model.RecordVisitorVisit" >
+    update record_visitor_visit
+    set cid = #{cid,jdbcType=BIGINT},
+      bid = #{bid,jdbcType=BIGINT},
+      vid = #{vid,jdbcType=BIGINT},
+      time = #{time,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT}
+    where rid = #{rid,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select rid, cid, bid, vid, time, status
+    from record_visitor_visit
+    where rid = #{rid,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select rid, cid, bid, vid, time, status
+    from record_visitor_visit
+  </select>
+</mapper>

@@ -31,7 +31,7 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
         <!-- 生成模型的包名和位置-->
-        <javaModelGenerator targetPackage="main.java.per.wph.engine.model" targetProject="src">
+        <javaModelGenerator targetPackage="main.java.per.wph.info.model" targetProject="src">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
@@ -40,13 +40,18 @@
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!-- 生成DAO的包名和位置-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="main.java.per.wph.engine.mapper" targetProject="src">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="main.java.per.wph.info.mapper" targetProject="src">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
         <!--<table tableName="sys_role" domainObjectName="SysRole" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
         <!--<table tableName="owner_info"  domainObjectName="OwnerInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
         <!--<table tableName="community_owner"  domainObjectName="CommunityOwner" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
-        <table tableName="face_feature"  domainObjectName="FaceFeature" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <!--<table tableName="face_feature"  domainObjectName="FaceFeature" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
+        <!--<table tableName="visitor_feature"  domainObjectName="VisitorFeature" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
+        <table tableName="record_owner_visit" domainObjectName="RecordOwnerVisit"></table>
+        <table tableName="record_visitor_visit" domainObjectName="RecordVisitorVisit"></table>
+        <table tableName="record_stranger_visit" domainObjectName="RecordStrangerVisit"></table>
+
     </context>
 </generatorConfiguration>

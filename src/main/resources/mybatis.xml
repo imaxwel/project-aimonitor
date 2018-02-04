@@ -19,6 +19,12 @@
         <mapper resource="xml/BuildingOwnerMapper.xml"/>
         <mapper resource="xml/CommunityOwnerMapper.xml"/>
         <mapper resource="xml/CommunityBuildingMapper.xml"/>
+        <mapper resource="xml/VisitorInfoMapper.xml"/>
+        <mapper resource="xml/OwnerVisitorMapper.xml"/>
+        <mapper resource="xml/VisitorFeatureMapper.xml"/>
+        <mapper resource="xml/RecordOwnerVisitMapper.xml"/>
+        <mapper resource="xml/RecordStrangerVisitMapper.xml"/>
+        <mapper resource="xml/RecordVisitorVisitMapper.xml"/>
     </mappers>
 
 </configuration>

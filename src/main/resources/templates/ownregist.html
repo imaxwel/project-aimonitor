@@ -1,39 +1,38 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
+<!-- 访客管理 -->
 <div class="tpl-content-wrapper">
+    <!-- 头部 -->
     <div class="edit_header">
-        <p>访客管理
-            <button>新增访客</button>
+        <p>
+            访客管理
+            <button class="AddNewVisitor">新增访客</button>
         </p>
-        <select class="select">
-            <option value="0">注册时间</option>
-            <option value="1">有效期</option>
-            <option value="2">姓氏</option>
-            <option value="3">访客等级</option>
-            <option value="4">注册时间</option>
-            <option value="5">注册时间</option>
-            <option value="6">注册时间</option>
-        </select>
+        <div class="sequence">
+            <span>排序：</span>
+            <select class="select">
+                <option value="0">注册时间</option>
+                <option value="1">有效期</option>
+                <option value="2">姓氏</option>
+                <option value="3">访客等级</option>
+            </select>
+        </div>                
     </div>
+    <!-- 访客名单 -->
     <div class="visitor">
         <div class="visitor_msg">
             <div class="avator">
-                <img src="../static/images/user02.png" th:src="@{/image/user02.png}">
+                <img src="../static/images/user02.png" th:src="@{image/user02.png}">
             </div>
             <div class="message">
-                <hr style="height:1px;border:none;border-top:1px solid #ccc;width: 40%;margin: auto;"/>
+                <hr style="height:1px;border:none;border-top:1px solid #ccc;width: 40%;margin: auto;" />
                 <p class="name">name</p>
-                <label class="newname"><input type="" name="">
-                    <button>确定</button>
-                </label>
-
+                <label class="newname"><input type="" name=""><button>确定</button></label>
                 <p class="begin_time"><span>begin_time  </span><span></span></p>
                 <p class="end_time"><span>end_time  </span><span></span></p>
-                <!--                        <input type="text" class="some_class" value="" id="some_class_1" style="display: none;" />
-                                        <input type="text" class="some_class" value="" id="some_class_2" style="display: none;" />
-
-                 -->
+<!--            <input type="text" class="some_class" value="" id="some_class_1" style="display: none;" />
+                <input type="text" class="some_class" value="" id="some_class_2" style="display: none;" />-->                        
                 <p><span>regist_time</span><span></span></p>
                 <p><span>last_time</span><span></span></p>
             </div>
@@ -43,70 +42,59 @@
             </div>
         </div>
     </div>
-
+    <div class="pageTest">
+        
+    </div>
 </div>
 <!-- add new visitor -->
 <div class="tpl-login">
-    <div class="tpl-login-content">
+    <div class="tpl-login-content" id="new_visitor_content">
         <div class="tpl-login-title">访客注册</div>
         <span class="tpl-login-content-info">
-                  为来访者进行注册
-              </span>
-
-
-        <form class="am-form tpl-form-line-form">
+              为来访者进行注册
+        </span>
+            <form class="am-form tpl-form-line-form">
             <div class="am-form-group">
                 <input type="text" class="tpl-form-input" id="user-name" placeholder="姓名">
-
             </div>
-
             <div class="am-form-group">
                 <input type="text" class="tpl-form-input" id="user-id" placeholder="身份证号码">
             </div>
-
             <div class="am-form-group">
                 <input type="password" class="tpl-form-input" id="user-num" placeholder="联系方式">
             </div>
-
             <div class="am-form-group">
-                <label>
-                    <span id="relation">与业主关系</span>
-
-                </label>
-                <div class="am-u-sm-9" id="shipchoose">
+                <label for="user-phone">
+                    <span id="relation">与业主关系</span> 
+                </label> 
+                <div class="am-u-sm-9" id="shipchoose">                  
                     <select data-am-selected="{searchBox: 1}">
                         <option value="a">夫妻</option>
                         <option value="b">父母</option>
                         <option value="o">子女</option>
-                        <option value="o">亲戚</option>
+                        <option value="o">亲戚</option>                   
                         <option value="o">其他</option>
-                    </select>
+                    </select> 
                 </div>
-            </div>
+            </div>   
             <div id="preview">
             </div>
             <div class="submit_btn addphoto">
-                <button type="button" id="photo" class="am-btn am-btn-primary  am-btn-block tpl-btn-bg-color-success">
-                    本地上传照片
-                </button>
+                <button type="button" id="photo" class="am-btn am-btn-primary  am-btn-block tpl-btn-bg-color-success">本地上传照片</button>
                 <input type="file" onchange="previewImage(this)" id="previewImg">
-            </div>
-
+            </div>    
             <div class="am-form-group">
                 <label>
-                    <span id="valid_time">访客有效期</span>
+                    <span id="valid_time">访客有效期</span>        
                     <span id="settime">设置时间</span>
-                </label>
+                </label> 
             </div>
-            <!-- //时间选择插件 -->
-            <input type="text" class="some_class" value="" id="some_class_1"/><span id="fenge">---</span>
-            <input type="text" class="some_class" value="" id="some_class_2"/>
-
-
+<!-- //时间选择插件 -->
+            <input type="text" class="some_class" value="" id="some_class_1"/>
+            <span id="fenge">---</span>
+            <input type="text" class="some_class" value="" id="some_class_2" />
             <div class="am-form-group">
-                <button type="button"
-                        class="am-btn am-btn-primary  am-btn-block tpl-btn-bg-color-success  tpl-login-btn">提交
-                </button>
+                <button type="button" class="am-btn am-btn-primary  am-btn-block tpl-btn-bg-color-success  tpl-login-btn">提交</button>
             </div>
         </form>
     </div>

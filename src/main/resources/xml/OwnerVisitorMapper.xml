@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="per.wph.info.mapper.relation.OwnerVisitorMapper" >
+  <resultMap id="BaseResultMap" type="per.wph.info.model.relation.OwnerVisitor" >
+    <result column="oid" property="oid" jdbcType="BIGINT" />
+    <result column="vid" property="vid" jdbcType="BIGINT" />
+    <result column="relation_type" property="relationType" jdbcType="INTEGER" />
+    <result column="allow_begin" property="allowBegin" jdbcType="TIMESTAMP" />
+    <result column="allow_end" property="allowEnd" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insert" parameterType="per.wph.info.model.relation.OwnerVisitor" >
+    insert into owner_visitor (oid, vid, relation_type, 
+      allow_begin, allow_end)
+    values (#{oid,jdbcType=BIGINT}, #{vid,jdbcType=BIGINT}, #{relationType,jdbcType=INTEGER}, 
+      #{allowBegin,jdbcType=TIMESTAMP}, #{allowEnd,jdbcType=TIMESTAMP})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select oid, vid, relation_type, allow_begin, allow_end
+    from owner_visitor
+  </select>
+</mapper>

@@ -33,4 +33,6 @@ public class BaseController {
     protected BuildingService buildingService;
     @Autowired
     protected FeatureService featureService;
+    @Autowired
+    protected VisitorService visitorService;
 }
