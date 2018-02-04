@@ -92,4 +92,8 @@
       role = #{role,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <update id="insertUserRole" >
+    insert into sys_user_role
+    VALUES (#{uid,jdbcType=BIT},#{roleId,jdbcType=BIT})
+  </update>
 </mapper>

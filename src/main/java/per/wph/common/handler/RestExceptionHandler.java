@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 import per.wph.common.ApiResult;
+import per.wph.common.exception.ImgUnavailableException;
 import per.wph.common.generator.ApiResultGenerator;
 
 import java.sql.SQLException;
@@ -41,5 +42,12 @@ public class RestExceptionHandler {
     public ApiResult numberFormatExceptionHandle(Exception e){
         LOGGER.error(e.getMessage(),e);
         return ApiResultGenerator.errorResult("请输入数字",e);
+    }
+
+    @ExceptionHandler(ImgUnavailableException.class)
+    @ResponseStatus
+    public ApiResult imgUnavailableExceptionHandle(Exception e){
+        LOGGER.error(e.getMessage(),e);
+        return ApiResultGenerator.errorResult("图片识别失败",e);
     }
 }

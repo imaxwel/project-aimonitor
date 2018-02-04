@@ -16,7 +16,8 @@ public interface OwnerService extends BaseService {
      * @return
      * @throws MultiTargetException 查询超过多个对象时抛出异常
      */
-    List<OwnerInfoView> getOwnerAndBuildingListByAdminUsername(String username) throws MultiTargetException;
+    List<OwnerInfoView> getOwnerAndBuildingListByAdminUsername(String username);
 
     int saveOwnerRegistView(OwnerRegistView ownerRegistView,Boolean isAdmin);
+
 }

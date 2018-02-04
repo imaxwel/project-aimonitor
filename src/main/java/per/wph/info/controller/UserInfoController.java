@@ -1,6 +1,7 @@
 package per.wph.info.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,7 +26,7 @@ public class UserInfoController extends BaseController {
         System.out.println("iden==" + iden);
         httpSession.setAttribute(IDCODE, iden);
         httpSession.setAttribute(IDCODE_AVAILABLE_TIME, System.currentTimeMillis() + OVERTIME);
-        return ApiResultGenerator.succssResult("验证码发送成功");
+        return ApiResultGenerator.succssResult(iden);
     }
 
     /**
@@ -51,9 +52,9 @@ public class UserInfoController extends BaseController {
         Integer iden = Integer.valueOf(request.getParameter("iden"));
         Integer idencode = (Integer) httpSession.getAttribute(IDCODE);
         if(idencode.equals(iden)){
-            passwordUtil.encryptPassword(userInfo);
-            userService.saveUserInfo(userInfo);
-            loginUtil.login(username,password,Boolean.TRUE);
+            userService.userRegist(userInfo);
+            userInfo.setLastLoginTime(new Date());
+            userService.updateUserInfo(userInfo);
             return ApiResultGenerator.succssResult("注册成功");
         }
         return ApiResultGenerator.errorResult("注册失败",null);

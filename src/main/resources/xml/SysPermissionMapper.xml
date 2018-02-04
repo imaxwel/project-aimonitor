@@ -30,9 +30,11 @@
     where 1=1
     <if test="collection!=null and collection.size>0">
       and id in
+      ( select permission_id from sys_role_permission where role_id in
       <foreach collection="collection" index="index" item="item" open="(" separator="," close=")">
         #{item}
       </foreach>
+      )
     </if>
     <if test="collection==null or collection.size==0">and 1=0</if>
   </select>

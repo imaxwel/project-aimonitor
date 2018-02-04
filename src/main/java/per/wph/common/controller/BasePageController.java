@@ -16,13 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 @Controller
-public class BasePageController {
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private LoginUtil loginUtil;
-    @Autowired
-    private PasswordUtil passwordUtil;
+public class BasePageController extends BaseController{
 
     @RequestMapping({"/","/index"})
     public String index(){

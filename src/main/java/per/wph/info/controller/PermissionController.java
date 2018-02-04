@@ -29,7 +29,6 @@ public class PermissionController extends BaseController {
     @RequestMapping("ownauth")
     public String getOwnAuth(HttpSession session,Model model){
         Set<SysPermission> permissions = permissionService.getSysPermissionsByUsername((String)session.getAttribute(USERNAME));
-
         model.addAttribute("permissions",permissions);
         return "ownauth";
     }

@@ -8,8 +8,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import per.wph.info.mapper.OwnerInfoMapper;
 import per.wph.info.model.OwnerInfo;
+import per.wph.info.model.view.OwnerInfoView;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * =============================================
@@ -33,5 +35,10 @@ public class OwnerTest {
         ownerInfoMapper.selectAll();
         ownerInfoMapper.deleteByPrimaryKey(1L);
         ownerInfoMapper.selectByPrimaryKey(2L);
+    }
+
+    @Test
+    public void test2(){
+        List<OwnerInfoView> ownerInfoViewList = ownerInfoMapper.selectOwnerAndBuildingInfoByAdminUsername("1234");
     }
 }

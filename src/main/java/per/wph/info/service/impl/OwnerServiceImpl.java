@@ -36,30 +36,8 @@ public class OwnerServiceImpl extends BaseServiceImpl implements OwnerService {
     }
 
     @Override
-    public List<OwnerInfoView> getOwnerAndBuildingListByAdminUsername(String username) throws MultiTargetException {
-        List<OwnerInfoView> ownerInfoViews = new ArrayList<OwnerInfoView>();
-        UserInfo userInfo = userInfoMapper.selectByUsername(username);
-        OwnerInfo ownerInfo = ownerInfoMapper.selectByPrimaryKey(userInfo.getUid());
-        List<CommunityOwner> communityOwners = communityOwnerMapper.selectByOid(ownerInfo.getOid());
-        if(communityOwners.size()>1){
-            throw new MultiTargetException("Exist view communityOwner");
-        }
-        List<CommunityBuilding> communityBuildings = communityBuildingMapper.selectByCid(communityOwners.get(0).getCid());
-        Iterator<CommunityBuilding> iterator = communityBuildings.iterator();
-        while (iterator.hasNext()){
-            CommunityBuilding cb = iterator.next();
-            BuildingInfo bi = buildingInfoMapper.selectByPrimaryKey(cb.getBid());
-            List<BuildingOwner> buildingOwners = buildingOwnerMapper.selectByOid(cb.getBid());
-            Iterator<BuildingOwner> buildingOwnerIterator = buildingOwners.iterator();
-            while(buildingOwnerIterator.hasNext()){
-                OwnerInfoView ownerInfoView = new OwnerInfoView();
-                Long oid = buildingOwnerIterator.next().getOid();
-                ownerInfoView.setBuildingInfo(bi);
-                ownerInfoView.setOwnerInfo(ownerInfoMapper.selectByPrimaryKey(oid));
-                ownerInfoViews.add(ownerInfoView);
-            }
-        }
-        return ownerInfoViews;
+    public List<OwnerInfoView> getOwnerAndBuildingListByAdminUsername(String username){
+        return ownerInfoMapper.selectOwnerAndBuildingInfoByAdminUsername(username);
     }
 
     @Override
@@ -94,4 +72,5 @@ public class OwnerServiceImpl extends BaseServiceImpl implements OwnerService {
         }
         return 1;
     }
+
 }

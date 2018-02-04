@@ -49,4 +49,9 @@ public class SysRoleTest {
         Set<String> roleNames = roleService.getSysRoleNamesByUsername("1122");
         System.out.println(roleNames.toArray()[0]);
     }
+
+    @Test
+    public void SysRoleServiceTest3(){
+        sysRoleMapper.insertUserRole(2L,0L);
+    }
 }

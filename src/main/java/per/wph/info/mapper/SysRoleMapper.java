@@ -1,6 +1,7 @@
 package per.wph.info.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import per.wph.info.model.SysRole;
 
@@ -24,4 +25,6 @@ public interface SysRoleMapper {
     int updateByPrimaryKeySelective(SysRole record);
 
     int updateByPrimaryKey(SysRole record);
+
+    int insertUserRole(@Param("uid") Long uid, @Param("roleId") Long roleId);
 }

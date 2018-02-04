@@ -11,10 +11,14 @@ import per.wph.engine.clib.EngineDllManager;
 import per.wph.engine.clib.FaceModel;
 import per.wph.engine.mapper.FaceFeatureMapper;
 import per.wph.engine.model.FaceFeature;
+import per.wph.engine.model.view.BaseFeatureView;
+import per.wph.engine.model.view.OwnerFaceFeatureView;
+import per.wph.engine.model.view.VisitorFaceFeatureView;
 import per.wph.engine.servicce.FeatureService;
 
 import java.io.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * =============================================
@@ -25,7 +29,7 @@ import java.util.Date;
  */
 @Service
 public class FeatureServiceImpl implements FeatureService {
-    private static final int MAX_IMAGE_SIZE = 50000;
+    private static final int MAX_IMAGE_SIZE = 5000;
     @Autowired
     private FaceFeatureMapper faceFeatureMapper;
 
@@ -60,19 +64,32 @@ public class FeatureServiceImpl implements FeatureService {
     }
 
 
-    @Override
-    public boolean isAccess(byte[] feature) {
-        return false;
-    }
-
-    @Override
-    public boolean isAccess(byte[] feature, Long cid) {
-        return false;
-    }
 
     @Override
     public boolean isAccess(byte[] feature, Long cid, Long bid) {
         return false;
+    }
+
+    @Override
+    public boolean isOwner(byte[] feature, Long cid, Long bid, Boolean recordOrNot,List<OwnerFaceFeatureView> ffvl) throws DllUnavailableException {
+        ffvl = faceFeatureMapper.selectOwnerFaceFeatureView(cid, bid);
+        EngineDllManager.getConforming(ffvl,feature,0.6f);
+        if(recordOrNot && ffvl.size()>0){
+            
+        }
+        return ffvl.size()>0;
+    }
+
+    @Override
+    public boolean isStranger(byte[] feature, Long cid, Long bid, Boolean recordOrNot) {
+        return false;
+    }
+
+    @Override
+    public boolean isVisitor(byte[] feature, Long cid, Long bid, Boolean recordOrNot,List<VisitorFaceFeatureView> ffvl) throws DllUnavailableException {
+        ffvl = faceFeatureMapper.selectVisitorFaceFeatureView(cid, bid);
+        EngineDllManager.getConforming(ffvl,feature,0.6f);
+        return ffvl.size()>0;
     }
 
 

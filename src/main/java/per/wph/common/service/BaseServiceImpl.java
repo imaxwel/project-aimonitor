@@ -1,6 +1,7 @@
 package per.wph.common.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import per.wph.common.shiro.util.PasswordUtil;
 import per.wph.engine.mapper.FaceFeatureMapper;
 import per.wph.info.mapper.*;
 import per.wph.info.mapper.relation.BuildingOwnerMapper;
@@ -35,4 +36,7 @@ public class BaseServiceImpl implements BaseService {
     protected BuildingOwnerMapper buildingOwnerMapper;
     @Autowired
     protected OwnerFeatureMapper ownerFeatureMapper;
+
+    @Autowired
+    protected PasswordUtil passwordUtil;
 }

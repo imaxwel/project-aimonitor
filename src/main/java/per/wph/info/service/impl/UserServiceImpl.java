@@ -28,16 +28,24 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
         return userInfoMapper.selectAll();
     }
 
-    @Override
-    @Transactional
-    public int saveUserInfo(UserInfo userInfo) {
-        return userInfoMapper.insert(userInfo);
-    }
+//    @Override
+//    @Transactional
+//    public int saveUserInfo(UserInfo userInfo) {
+//        return userInfoMapper.insert(userInfo);
+//    }
 
     @Override
     @Transactional
     public int updateUserInfo(UserInfo userInfo) {
         return userInfoMapper.updateByPrimaryKeySelective(userInfo);
+    }
+
+    @Override
+    public int userRegist(UserInfo userInfo) {
+        passwordUtil.encryptPassword(userInfo);
+        userInfoMapper.insert(userInfo);
+        sysRoleMapper.insertUserRole(userInfo.getUid(),DEFAULT_ROLE);
+        return 1;
     }
 
 }

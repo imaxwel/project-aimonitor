@@ -4,3 +4,6 @@ spring:
 
 fileUpload:
   path: G:\\image\\
+
+dll:
+  name: samplecode.dll

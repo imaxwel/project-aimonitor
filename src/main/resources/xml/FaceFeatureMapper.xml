@@ -1,36 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="per.wph.engine.mapper.FaceFeatureMapper">
-  <resultMap id="BaseResultMap" type="per.wph.engine.model.FaceFeature">
-    <id column="fid" jdbcType="BIGINT" property="fid" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="feature" jdbcType="LONGVARBINARY" property="feature" />
-    <result column="image" jdbcType="LONGVARBINARY" property="image" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <resultMap id="BaseResultMap" type="per.wph.engine.model.FaceFeature">
+        <id column="fid" jdbcType="BIGINT" property="fid"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="feature" jdbcType="LONGVARBINARY" property="feature"/>
+        <result column="image" jdbcType="LONGVARBINARY" property="image"/>
+    </resultMap>
+    <resultMap id="OwnerFaceFeatureView" type="per.wph.engine.model.view.OwnerFaceFeatureView">
+        <result column="oid" jdbcType="BIGINT" property="oid"/>
+        <result column="feature" jdbcType="LONGVARBINARY" property="feature"/>
+    </resultMap>
+    <resultMap id="VisitorFaceFeatureView" type="per.wph.engine.model.view.VisitorFaceFeatureView">
+        <result column="vid" jdbcType="BIGINT" property="vid"/>
+        <result column="feature" jdbcType="LONGVARBINARY" property="feature"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from face_feature
     where fid = #{fid,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="per.wph.engine.model.FaceFeature" useGeneratedKeys="true" keyProperty="fid">
+    <insert id="insert" parameterType="per.wph.engine.model.FaceFeature" useGeneratedKeys="true" keyProperty="fid">
     insert into face_feature (fid, create_time, feature, 
       image)
     values (#{fid,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{feature,jdbcType=LONGVARBINARY}, 
       #{image,jdbcType=LONGVARBINARY})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="per.wph.engine.model.FaceFeature">
+    <update id="updateByPrimaryKey" parameterType="per.wph.engine.model.FaceFeature">
     update face_feature
     set create_time = #{createTime,jdbcType=TIMESTAMP},
       feature = #{feature,jdbcType=LONGVARBINARY},
       image = #{image,jdbcType=LONGVARBINARY}
     where fid = #{fid,jdbcType=BIGINT}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select fid, create_time, feature, image
     from face_feature
     where fid = #{fid,jdbcType=BIGINT}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap">
+    <select id="selectAll" resultMap="BaseResultMap">
     select fid, create_time, feature, image
     from face_feature
   </select>
+    <select id="selectOwnerFaceFeatureView" resultMap="OwnerFaceFeatureView">
+        select owner_feature.oid,face_feature.feature from owner_feature,face_feature
+        <if test="cid!=null">
+            where owner_feature.oid in
+            (select community_owner.oid from community_owner where community_owner.cid = #{cid}
+            <if test="bid!=null">
+                and community_owner.oid in
+                (select building_owner.oid from building_owner where building_owner.bid = #{bid})
+            </if>
+            );
+        </if>
+    </select>
+
+    <select id="selectVisitorFaceFeatureView" resultMap="VisitorFaceFeatureView">
+        select visitor_feature.vid,face_feature.feature from visitor_feature,face_feature
+        <if test="cid!=null or bid !=null">
+            where visitor_feature.vid in(
+            select owner_visitor.vid from owner_visitor
+            <if test="cid!=null">
+                where owner_visitor.oid in
+                (select community_owner.oid from community_owner
+                where community_owner.cid = #{cid}
+                <if test="bid!=null">
+                    and community_owner.oid in
+                    (select building_owner.oid from building_owner where building_owner.bid = #{bid})
+                </if>
+                )
+            </if>
+            );
+        </if>
+    </select>
 </mapper>
