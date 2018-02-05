@@ -1,5 +1,6 @@
 package per.wph.common.aop;
 
+import org.apache.shiro.SecurityUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -33,7 +34,8 @@ public class ControllerLoggerAspect {
         logger.info("-->URL:" + request.getRequestURI());
         logger.info("-->HTTP_METHOD:" + request.getMethod());
         logger.info("-->IP:" + request.getRemoteAddr());
-        logger.info("-->USERNAME:" + request.getSession().getAttribute(BaseController.USERNAME));
+        logger.info("-->SESSION:" + request.getSession().getId());
+        logger.info("-->USERNAME:" + SecurityUtils.getSubject().getPrincipal());
         logger.info("-->LOGIN_TIME:" + request.getSession().getAttribute(BaseController.LOGINTIME));
         logger.info("-->NOWER_TIME:" + System.currentTimeMillis());
         logger.info("-->CLASS_METHOD:" + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());

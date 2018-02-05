@@ -25,4 +25,8 @@ public interface FaceFeatureMapper {
     List<OwnerFaceFeatureView> selectOwnerFaceFeatureView(@Param("cid") Long cid, @Param("bid") Long bid);
 
     List<VisitorFaceFeatureView> selectVisitorFaceFeatureView(@Param("cid") Long cid, @Param("bid") Long bid);
+
+    List<FaceFeature> selectOwnerAndVsisotrFeatureIdListByOid(Long oid);
+
+    FaceFeature selectByFid(Long fid);
 }

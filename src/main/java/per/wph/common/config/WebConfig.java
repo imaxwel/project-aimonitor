@@ -19,8 +19,12 @@ public class WebConfig extends WebMvcConfigurerAdapter{
      */
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**").allowedOrigins("*")
+        registry.addMapping("/**")
+                //允许跨域url
+                .allowedOrigins("*")
+                //允许跨域session
+                .allowCredentials(true)
                 .allowedMethods("GET","HEAD","POST","PUT","DELETE","OPTIONS")
-                .allowCredentials(false).maxAge(3600);
+                .maxAge(3600);
     }
 }

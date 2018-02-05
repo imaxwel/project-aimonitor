@@ -23,12 +23,21 @@
         <result column="num" property="num" jdbcType="VARCHAR" />
         <result column="status" property="status" jdbcType="INTEGER" />
     </resultMap>
-  <select id="selectOwnerAndBuildingInfoByAdminUsername" parameterType="java.lang.String" resultType="per.wph.info.model.view.OwnerInfoView">
+  <select id="selectOwnerAndBuildingInfoByAdminUsername" parameterType="java.lang.String" resultMap="OwnerInfoView">
     select user_info.username,owner_info.*,community_info.`name` as communityName,building_info.location as buildingName,building_owner.num
     from user_info,owner_info,community_info,building_info,building_owner
     where owner_info.oid in (select oid from community_owner
     where oid = (select uid from user_info
     where username = #{username,jdbcType=VARCHAR}))
+    and user_info.uid = owner_info.oid
+    and owner_info.oid = building_owner.oid
+    group by oid;
+  </select>
+  <select id="selectByUsername" parameterType="java.lang.String" resultMap="OwnerInfoView">
+    select user_info.username,owner_info.*,community_info.`name` as communityName,building_info.location as buildingName,building_owner.num
+    from user_info,owner_info,community_info,building_info,building_owner
+    where owner_info.oid = (select uid from user_info
+    where username = #{username,jdbcType=VARCHAR})
     and user_info.uid = owner_info.oid
     and owner_info.oid = building_owner.oid
     group by oid;

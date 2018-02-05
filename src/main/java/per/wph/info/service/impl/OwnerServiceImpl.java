@@ -6,18 +6,18 @@ import per.wph.common.exception.MultiTargetException;
 import per.wph.common.service.BaseServiceImpl;
 import per.wph.info.model.BuildingInfo;
 import per.wph.info.model.OwnerInfo;
+import per.wph.info.model.SysRole;
 import per.wph.info.model.UserInfo;
-import per.wph.info.model.relation.BuildingOwner;
-import per.wph.info.model.relation.CommunityBuilding;
-import per.wph.info.model.relation.CommunityOwner;
-import per.wph.info.model.relation.OwnerFeature;
+import per.wph.info.model.relation.*;
 import per.wph.info.model.view.OwnerInfoView;
 import per.wph.info.model.view.OwnerRegistView;
 import per.wph.info.service.OwnerService;
 
+import javax.management.relation.RoleInfo;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * =============================================
@@ -28,23 +28,16 @@ import java.util.List;
  */
 @Service
 public class OwnerServiceImpl extends BaseServiceImpl implements OwnerService {
-
     @Override
-    @Transactional
-    public int saveOwnerInfo(OwnerInfo ownerInfo) {
-        return ownerInfoMapper.insert(ownerInfo);
-    }
-
-    @Override
-    public List<OwnerInfoView> getOwnerAndBuildingListByAdminUsername(String username){
+    public List<OwnerInfoView> getOwnerInfoViewListByAdminUsername(String username){
         return ownerInfoMapper.selectOwnerAndBuildingInfoByAdminUsername(username);
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int saveOwnerRegistView(OwnerRegistView ownerRegistView,Boolean isAdmin) {
         OwnerInfo ownerInfo = new OwnerInfo();
-        ownerInfo.setOid(ownerRegistView.getOid());
+//        ownerInfo.setOid(ownerRegistView.getOid());
         ownerInfo.setName(ownerRegistView.getName());
         ownerInfo.setIdnumber(ownerRegistView.getIdnumber());
         ownerInfo.setPhone(ownerRegistView.getPhone());
@@ -71,6 +64,46 @@ public class OwnerServiceImpl extends BaseServiceImpl implements OwnerService {
             ownerFeatureMapper.insert(ownerFeature);
         }
         return 1;
+    }
+
+    @Override
+    public int deleteOwnerRegistView(OwnerRegistView ownerRegistView) {
+
+        return 0;
+    }
+
+    @Override
+    public OwnerInfoView getOwnerInfoViewByUsername(String username) {
+        return ownerInfoMapper.selectByUsername(username);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public int accessOwnerRegist(Long oid) {
+        OwnerInfo ownerInfo = ownerInfoMapper.selectByPrimaryKey(oid);
+        ownerInfo.setStatus(OwnerInfo.STATUS.AVAILABLE.status());
+        SysUserRole sysUserRole = sysUserRoleMapper.selectByPrimaryKey(oid);
+        sysUserRole.setRoleId(SysRole.SysRoleDefault.OWNER.id());
+        sysUserRoleMapper.updateByPrimaryKey(sysUserRole);
+        return ownerInfoMapper.updateByPrimaryKey(ownerInfo);
+    }
+
+    @Override
+    public int unAccessOwnerRegist(Long oid) {
+        OwnerInfo ownerInfo = ownerInfoMapper.selectByPrimaryKey(oid);
+        ownerInfo.setStatus(OwnerInfo.STATUS.FROZEN.status());
+        return ownerInfoMapper.updateByPrimaryKey(ownerInfo);
+    }
+
+    @Override
+    public boolean isFrozen(String username) {
+        Optional<OwnerInfoView> op = Optional.ofNullable(ownerInfoMapper.selectByUsername(username));
+        if(op.isPresent()){
+            if(OwnerInfo.STATUS.FROZEN.status().equals(op.get().getStatus())){
+                return true;
+            }
+        }
+        return false;
     }
 
 }

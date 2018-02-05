@@ -1,5 +1,7 @@
 package per.wph.engine.controller;
 
+import com.sun.deploy.net.HttpResponse;
+import com.sun.tools.internal.ws.wsdl.document.Output;
 import org.apache.ibatis.annotations.Param;
 import org.aspectj.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +23,16 @@ import per.wph.engine.mapper.FaceFeatureMapper;
 import per.wph.engine.model.FaceFeature;
 import per.wph.engine.model.view.OwnerFaceFeatureView;
 import per.wph.engine.servicce.FeatureService;
+import per.wph.info.model.UserInfo;
 
+import javax.jws.soap.SOAPBinding;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.io.OutputStream;
+import java.util.*;
+import java.util.function.Function;
 
 /**
  * =============================================
@@ -43,12 +47,44 @@ public class EngineController extends BaseController{
     @Value("${fileUpload.path}")
     private String IMAGE_BUFF_PATH;
 
+    /**
+     *
+     * @param session
+     * @param fid
+     * @param response
+     * @throws IOException
+     */
+    @RequestMapping("/getImage")
+    public void getImageByUsername(HttpSession session, Long fid, HttpServletResponse response) throws IOException {
+        Object username = session.getAttribute(USERNAME);
+        if(username!=null){
+            UserInfo userInfo = userService.getUserInfoByUsername((String)username);
+            List<FaceFeature> faceFeatures = featureService.getOwnerAndVsisotrFeatureIdListByOid(userInfo.getUid());
+            Optional<Long> ret = faceFeatures.stream().map((o)->{return o.getFid();}).filter((o)->{return o.equals(fid);}).findFirst();
+            if(ret.isPresent()){
+                FaceFeature faceFeature = featureService.getFaceFeatureByFid(ret.get());
+                OutputStream os = response.getOutputStream();
+                os.write(faceFeature.getFeature());
+                os.close();
+            }
+        }
+    };
+
+    @RequestMapping("/deleteImage")
+    public @ResponseBody ApiResult deleteImageByUsername(HttpSession session, Long fid, HttpServletResponse response) throws IOException {
+        Object username = session.getAttribute(USERNAME);
+        if(username!=null){
+            featureService.deleteImageByFid(fid);
+        }
+        return ApiResultGenerator.succssResult("删除成功");
+    };
 
     @RequestMapping("/checkFeature")
     @Transactional
     public @ResponseBody ApiResult uploadImage(@RequestParam("file") MultipartFile file, Integer mid ,HttpSession session) throws DllUnavailableException{
         String path = IMAGE_BUFF_PATH + session.getId() + mid;
         File mfile = new File(path);
+        FaceFeature faceFeature = new FaceFeature();
         try {
             file.transferTo(mfile);
             FaceModel.ByValue faceModel = EngineDllManager.getFeatureByImage(path);
@@ -57,8 +93,6 @@ public class EngineController extends BaseController{
                 faceIdMap = new HashMap<Integer,Long>();
                 session.setAttribute(FACE_MODEL_LIST,faceIdMap);
             }
-
-            FaceFeature faceFeature = new FaceFeature();
             faceFeature.setImage(FileUtil.readAsByteArray(mfile));
             faceFeature.setCreateTime(new Date());
             faceFeature.setFeature(faceModel.pbFeature.getByteArray(0,faceModel.lFeatureSize));
@@ -76,17 +110,13 @@ public class EngineController extends BaseController{
                 mfile.delete();
             }
         }
-        return ApiResultGenerator.succssResult("图片有效");
+        return ApiResultGenerator.succssResult(faceFeature.getFid());
     }
 
-    @Autowired
-    FaceFeatureMapper faceFeatureMapper;
 
-    @RequestMapping("/test")
-    public @ResponseBody ApiResult test() throws DllUnavailableException {
-        FaceFeature faceFeature = faceFeatureMapper.selectAll().get(1);
-        List<OwnerFaceFeatureView> ownerFaceFeatureViews = new ArrayList<OwnerFaceFeatureView>();
-        if(featureService.isOwner(faceFeature.getFeature(),1L,1L,false,ownerFaceFeatureViews)) {
+    @RequestMapping("/requestAccess")
+    public @ResponseBody ApiResult checkAccess(byte[] feature,Long bid,Long cid) throws DllUnavailableException {
+        if(featureService.isAccess(feature,cid,bid)) {
             return ApiResultGenerator.succssResult("识别成功");
         }else {
             return ApiResultGenerator.errorResult("识别失败",null);

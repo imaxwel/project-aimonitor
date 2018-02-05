@@ -7,7 +7,7 @@
     <result column="bid" property="bid" jdbcType="BIGINT" />
     <result column="vid" property="vid" jdbcType="BIGINT" />
     <result column="time" property="time" jdbcType="TIMESTAMP" />
-    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from record_visitor_visit
@@ -17,7 +17,7 @@
     insert into record_visitor_visit (rid, cid, bid, vid, 
       time, status)
     values (#{rid,jdbcType=BIGINT}, #{cid,jdbcType=BIGINT}, #{bid,jdbcType=BIGINT}, #{vid,jdbcType=BIGINT}, 
-      #{time,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT})
+      #{time,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="per.wph.info.model.RecordVisitorVisit" >
     update record_visitor_visit
@@ -25,7 +25,7 @@
       bid = #{bid,jdbcType=BIGINT},
       vid = #{vid,jdbcType=BIGINT},
       time = #{time,jdbcType=TIMESTAMP},
-      status = #{status,jdbcType=TINYINT}
+      status = #{status,jdbcType=INTEGER}
     where rid = #{rid,jdbcType=BIGINT}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >

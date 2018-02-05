@@ -28,4 +28,6 @@ public interface UserService extends BaseService{
 
     //用户注册
     int userRegist(UserInfo userInfo);
+
+
 }

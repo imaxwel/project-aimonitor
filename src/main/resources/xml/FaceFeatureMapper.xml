@@ -50,7 +50,7 @@
                 and community_owner.oid in
                 (select building_owner.oid from building_owner where building_owner.bid = #{bid})
             </if>
-            );
+            )
         </if>
     </select>
 
@@ -69,7 +69,16 @@
                 </if>
                 )
             </if>
-            );
+            )
         </if>
+    </select>
+    <select id="selectOwnerAndVsisotrFeatureIdListByOid" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT fid FROM face_feature where face_feature.fid in
+        (select fid from owner_feature where owner_feature.oid = #{oid,jdbcType=BIGINT})
+        or face_feature.fid in (select fid from visitor_feature where visitor_feature.vid
+        in (select vid from owner_visitor where owner_visitor.oid = #{oid,jdbcType=BIGINT}))
+    </select>
+    <select id="selectByFid" parameterType="java.lang.Long" resultMap="BaseResultMap">
+       SELECT * FROM face_feature where face_feature.fid = #{fid,jdbcType=BIGINT}
     </select>
 </mapper>

@@ -41,4 +41,9 @@ public class OwnerTest {
     public void test2(){
         List<OwnerInfoView> ownerInfoViewList = ownerInfoMapper.selectOwnerAndBuildingInfoByAdminUsername("1234");
     }
+
+    @Test
+    public void test3(){
+        OwnerInfoView oif = ownerInfoMapper.selectByUsername("1234");
+    }
 }

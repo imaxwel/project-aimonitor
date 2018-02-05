@@ -35,4 +35,6 @@ public class BaseController {
     protected FeatureService featureService;
     @Autowired
     protected VisitorService visitorService;
+    @Autowired
+    protected RecordService recordService;
 }

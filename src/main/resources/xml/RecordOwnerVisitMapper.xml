@@ -7,8 +7,17 @@
     <result column="cid" property="cid" jdbcType="BIGINT" />
     <result column="bid" property="bid" jdbcType="BIGINT" />
     <result column="time" property="time" jdbcType="TIMESTAMP" />
-    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
   </resultMap>
+    <resultMap id="RecordOwnerView" type="per.wph.info.model.view.RecordOwnerView" >
+        <id column="rid" property="rid" jdbcType="BIGINT" />
+        <result column="name" property="ownName" jdbcType="VARCHAR" />
+        <result column="phone" property="phone" jdbcType="VARCHAR" />
+        <result column="community" property="community" jdbcType="VARCHAR" />
+        <result column="building" property="building" jdbcType="VARCHAR" />
+        <result column="time" property="time" jdbcType="TIMESTAMP" />
+        <result column="status" property="status" jdbcType="VARCHAR" />
+    </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from record_owner_visit
     where rid = #{rid,jdbcType=BIGINT}
@@ -17,7 +26,7 @@
     insert into record_owner_visit (rid, oid, cid, bid, 
       time, status)
     values (#{rid,jdbcType=BIGINT}, #{oid,jdbcType=BIGINT}, #{cid,jdbcType=BIGINT}, #{bid,jdbcType=BIGINT}, 
-      #{time,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT})
+      #{time,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="per.wph.info.model.RecordOwnerVisit" >
     update record_owner_visit
@@ -25,7 +34,7 @@
       cid = #{cid,jdbcType=BIGINT},
       bid = #{bid,jdbcType=BIGINT},
       time = #{time,jdbcType=TIMESTAMP},
-      status = #{status,jdbcType=TINYINT}
+      status = #{status,jdbcType=INTEGER}
     where rid = #{rid,jdbcType=BIGINT}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
@@ -36,5 +45,19 @@
   <select id="selectAll" resultMap="BaseResultMap" >
     select rid, oid, cid, bid, time, status
     from record_owner_visit
+  </select>
+  <select id="selectAllRecordOwnerViewByUsername" resultMap="RecordOwnerView" parameterType="java.lang.String">
+        SELECT record_owner_visit.rid,owner_info.name,
+        owner_info.phone,community_info.name as community,building_info.location as building,
+        record_owner_visit.time,record_owner_visit.status
+        FROM record_owner_visit
+        left JOIN owner_info on record_owner_visit.oid = owner_info.oid
+        LEFT JOIN community_owner on community_owner.oid = owner_info.oid
+        LEFT JOIN community_info on community_owner.cid = community_info.cid
+        LEFT JOIN building_owner on building_owner.oid = owner_info.oid
+        LEFT JOIN building_info on building_info.bid = building_owner.bid
+        where owner_info.oid in (select oid from community_owner where community_owner.cid =
+        (select cid from community_owner where community_owner.oid =
+        (select uid from user_info where username = #{username,jdbcType=VARCHAR})))
   </select>
 </mapper>

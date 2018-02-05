@@ -19,7 +19,22 @@ public interface FeatureService {
 
     Long saveFeatureInfoByImage(String filePath) throws DllUnavailableException, IOException, ZeroFaceException;
 
-    boolean isAccess(byte[] feature,Long cid,Long bid);
+    List<FaceFeature> getOwnerAndVsisotrFeatureIdListByOid(Long oid);
+
+    FaceFeature getFaceFeatureByFid(Long fid);
+
+    //删除照片
+    int deleteImageByFid(Long fid);
+
+    /**
+     * 判断是否通过
+     * @param feature 特征值
+     * @param cid 小区id
+     * @param bid 楼栋id
+     * @return 返回识别结果
+     * @throws DllUnavailableException dll不可用异常
+     */
+    boolean isAccess(byte[] feature,Long cid,Long bid) throws DllUnavailableException;
 
     /**
      * 判断是否是业主

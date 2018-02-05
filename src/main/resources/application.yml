@@ -7,3 +7,7 @@ fileUpload:
 
 dll:
   name: samplecode.dll
+
+management:
+  security:
+    enabled: false

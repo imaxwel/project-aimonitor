@@ -8,7 +8,6 @@ import per.wph.info.model.view.OwnerRegistView;
 import java.util.List;
 
 public interface OwnerService extends BaseService {
-    int saveOwnerInfo(OwnerInfo ownerInfo);
 
     /**
      * 根据管理员名称 获得用户信息和楼房信息
@@ -16,8 +15,47 @@ public interface OwnerService extends BaseService {
      * @return
      * @throws MultiTargetException 查询超过多个对象时抛出异常
      */
-    List<OwnerInfoView> getOwnerAndBuildingListByAdminUsername(String username);
+    List<OwnerInfoView> getOwnerInfoViewListByAdminUsername(String username);
 
+    /**
+     *  保存业主信息
+     * @param ownerRegistView
+     * @param isAdmin
+     * @return
+     */
     int saveOwnerRegistView(OwnerRegistView ownerRegistView,Boolean isAdmin);
 
+    /**
+     * 删除业主相关注册信息
+     * @param ownerRegistView
+     * @return
+     */
+    int deleteOwnerRegistView(OwnerRegistView ownerRegistView);
+
+    /**
+     * 根据用户名获得业主信息
+     * @param username
+     * @return
+     */
+    OwnerInfoView getOwnerInfoViewByUsername(String username);
+
+    /**
+     * 通过业主的审核申请
+     * @param oid
+     * @return
+     */
+    int accessOwnerRegist(Long oid);
+
+    /**
+     *  不通过业主的审核申请
+     * @param oid
+     * @return
+     */
+    int unAccessOwnerRegist(Long oid);
+
+    /**
+     * 判断审核是否不被通过，为第二次提交
+     * @return
+     */
+    boolean isFrozen(String username);
 }

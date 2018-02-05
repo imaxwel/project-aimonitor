@@ -96,6 +96,10 @@ public class ShiroFilterFactory {
         filter.put("/js/**",Authority.ANON.value());
         filter.put("/css/**",Authority.ANON.value());
         filter.put("/image/**",Authority.ANON.value());
+//        //actuator注册的端点
+//        filter.put("/mappings",Authority.ANON.value());
+//        filter.put("/beans",Authority.ANON.value());
+//        filter.put("/autoconfig",Authority.ANON.value());
     }
 
     /**

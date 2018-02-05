@@ -2,6 +2,7 @@ package per.wph.common.handler;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import org.apache.shiro.ShiroException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,13 @@ public class RestExceptionHandler {
     @ExceptionHandler(ShiroException.class)
     @ResponseStatus
     public ApiResult shiroExceptionHandler(Exception e){
+        LOGGER.error(e.getMessage(),e);
+        return ApiResultGenerator.errorResult("登录失败，请检查账号或密码",e);
+    }
+
+    @ExceptionHandler(IncorrectCredentialsException.class)
+    @ResponseStatus
+    public ApiResult incorrectCredentialsExceptionHandler(Exception e){
         LOGGER.error(e.getMessage(),e);
         return ApiResultGenerator.errorResult("登录失败，请检查账号或密码",e);
     }

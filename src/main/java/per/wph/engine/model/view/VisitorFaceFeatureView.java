@@ -43,6 +43,7 @@ public class VisitorFaceFeatureView implements BaseFeatureView{
         this.degree = degree;
     }
 
+    @Override
     public float getDegree() {
         return degree;
     }

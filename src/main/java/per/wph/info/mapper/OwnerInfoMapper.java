@@ -16,6 +16,8 @@ public interface OwnerInfoMapper {
 
     OwnerInfo selectByPrimaryKey(Long oid);
 
+    OwnerInfoView selectByUsername(String username);
+
     List<OwnerInfo> selectAll();
 
     int updateByPrimaryKey(OwnerInfo record);

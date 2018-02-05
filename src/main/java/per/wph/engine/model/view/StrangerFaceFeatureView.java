@@ -19,6 +19,11 @@ public class StrangerFaceFeatureView implements BaseFeatureView {
     }
 
     @Override
+    public float getDegree() {
+        return 0;
+    }
+
+    @Override
     public void setDegree(float degree) {
 
     }

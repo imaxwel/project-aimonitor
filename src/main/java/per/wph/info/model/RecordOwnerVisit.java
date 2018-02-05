@@ -3,6 +3,19 @@ package per.wph.info.model;
 import java.util.Date;
 
 public class RecordOwnerVisit {
+    public enum RecordStatus{
+        ACCESS(100),UNACCESS(-100);
+        private Integer status;
+        private RecordStatus(Integer status){
+            this.status = status;
+        }
+        public Integer status(){
+            return this.status;
+        }
+        public String value(){
+            return this.name();
+        }
+    }
     private Long rid;
 
     private Long oid;
@@ -13,7 +26,7 @@ public class RecordOwnerVisit {
 
     private Date time;
 
-    private Byte status;
+    private Integer status;
 
     public Long getRid() {
         return rid;
@@ -55,11 +68,11 @@ public class RecordOwnerVisit {
         this.time = time;
     }
 
-    public Byte getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Byte status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 }

@@ -1,8 +1,15 @@
 package per.wph.info.mapper;
 
+import java.security.Signature;
 import java.util.List;
-import per.wph.info.model.RecordOwnerVisit;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
+import per.wph.info.model.RecordOwnerVisit;
+import per.wph.info.model.view.RecordOwnerView;
+
+@Mapper
+@Repository
 public interface RecordOwnerVisitMapper {
     int deleteByPrimaryKey(Long rid);
 
@@ -13,4 +20,6 @@ public interface RecordOwnerVisitMapper {
     List<RecordOwnerVisit> selectAll();
 
     int updateByPrimaryKey(RecordOwnerVisit record);
+
+    List<RecordOwnerView> selectAllRecordOwnerViewByUsername(String username);
 }

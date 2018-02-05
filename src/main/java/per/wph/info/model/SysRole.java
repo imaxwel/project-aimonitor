@@ -1,6 +1,17 @@
 package per.wph.info.model;
 
 public class SysRole {
+    public enum SysRoleDefault{
+        STRANGER(0L),OWNER(1L);
+        private Long id;
+        private SysRoleDefault(Long id){
+            this.id = id;
+        }
+        public Long id(){
+            return this.id;
+        }
+    }
+
     private Long id;
 
     private Boolean available;

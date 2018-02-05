@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="per.wph.info.mapper.relation.SysUserRoleMapper" >
+  <resultMap id="BaseResultMap" type="per.wph.info.model.relation.SysUserRole" >
+    <id column="uid" property="uid" jdbcType="BIGINT" />
+    <result column="role_id" property="roleId" jdbcType="BIGINT" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_user_role
+    where uid = #{uid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="per.wph.info.model.relation.SysUserRole" >
+    insert into sys_user_role (uid, role_id)
+    values (#{uid,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="per.wph.info.model.relation.SysUserRole" >
+    update sys_user_role
+    set role_id = #{roleId,jdbcType=BIGINT}
+    where uid = #{uid,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select uid, role_id
+    from sys_user_role
+    where uid = #{uid,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select uid, role_id
+    from sys_user_role
+  </select>
+</mapper>

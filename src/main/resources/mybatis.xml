@@ -6,6 +6,12 @@
     <typeAliases>
         <package name="per.wph.redis.mybatis.model"/>
     </typeAliases>
+    <!--&lt;!&ndash;配置mybatis分页插件PageHelper&ndash;&gt;-->
+    <!--<plugins>-->
+        <!--<plugin interceptor="com.github.pagehelper.PageHelper">-->
+            <!--<property name="dialect" value="mysql"/>-->
+        <!--</plugin>-->
+    <!--</plugins>-->
     <mappers>
         <mapper resource="xml/UserInfoMapper.xml"/>
         <mapper resource="xml/SysRoleMapper.xml"/>
@@ -25,6 +31,6 @@
         <mapper resource="xml/RecordOwnerVisitMapper.xml"/>
         <mapper resource="xml/RecordStrangerVisitMapper.xml"/>
         <mapper resource="xml/RecordVisitorVisitMapper.xml"/>
+        <mapper resource="xml/SysUserRoleMapper.xml"/>
     </mappers>
-
 </configuration>
