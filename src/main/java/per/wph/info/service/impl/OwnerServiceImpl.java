@@ -37,7 +37,7 @@ public class OwnerServiceImpl extends BaseServiceImpl implements OwnerService {
     @Transactional(rollbackFor = Exception.class)
     public int saveOwnerRegistView(OwnerRegistView ownerRegistView,Boolean isAdmin) {
         OwnerInfo ownerInfo = new OwnerInfo();
-//        ownerInfo.setOid(ownerRegistView.getOid());
+        ownerInfo.setOid(ownerRegistView.getOid());
         ownerInfo.setName(ownerRegistView.getName());
         ownerInfo.setIdnumber(ownerRegistView.getIdnumber());
         ownerInfo.setPhone(ownerRegistView.getPhone());

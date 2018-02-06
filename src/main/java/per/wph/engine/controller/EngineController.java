@@ -29,9 +29,7 @@ import per.wph.info.model.UserInfo;
 import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.*;
 import java.util.function.Function;
 
@@ -87,6 +85,7 @@ public class EngineController extends BaseController{
             if(null == faceIdMap){
                 faceIdMap = new HashMap<Integer,Long>();
                 session.setAttribute(FACE_MODEL_LIST,faceIdMap);
+
             }
             faceFeature.setImage(FileUtil.readAsByteArray(mfile));
             faceFeature.setCreateTime(new Date());
@@ -110,8 +109,17 @@ public class EngineController extends BaseController{
 
 
     @RequestMapping("/requestAccess")
-    public @ResponseBody ApiResult checkAccess(byte[] feature,Long bid,Long cid) throws DllUnavailableException {
-        if(featureService.isAccess(feature,cid,bid)) {
+    public @ResponseBody ApiResult checkAccess(@RequestParam("feature") MultipartFile file,Long bid,Long cid) throws DllUnavailableException, IOException {
+//        File file = new File("test");
+        InputStream is = file.getInputStream();
+        File file1 = new File("test");
+        FileOutputStream fos = new FileOutputStream(file1);
+        byte[] bytes = new byte[20020];
+        is.read(bytes);
+        fos.write(bytes);
+        fos.close();
+        is.close();
+        if(featureService.isAccess(file.getBytes(),cid,bid)) {
             return ApiResultGenerator.succssResult("识别成功");
         }else {
             return ApiResultGenerator.errorResult("识别失败",null);

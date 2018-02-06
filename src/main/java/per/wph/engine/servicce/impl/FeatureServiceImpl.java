@@ -104,9 +104,9 @@ public class FeatureServiceImpl extends BaseServiceImpl implements FeatureServic
     @Transactional(rollbackFor = Exception.class)
     public boolean isOwner(byte[] feature, Long cid, Long bid, Boolean recordOrNot,List<OwnerFaceFeatureView> ffvl) throws DllUnavailableException {
         ffvl = faceFeatureMapper.selectOwnerFaceFeatureView(cid, bid);
-        EngineDllManager.getConforming(ffvl,feature,0.6f);
+        List<BaseFeatureView> ret = EngineDllManager.getConforming(ffvl,feature,0.6f);
         //日志记录
-        if(recordOrNot && ffvl.size()>0){
+        if(recordOrNot && ret.size()>0){
             RecordOwnerVisit recordOwnerVisit = new RecordOwnerVisit();
             OwnerFaceFeatureView offv = findMatchesAmongList(ffvl);
             recordOwnerVisit.setOid(offv.getOid());
@@ -116,7 +116,7 @@ public class FeatureServiceImpl extends BaseServiceImpl implements FeatureServic
             recordOwnerVisit.setTime(new Date());
             recordOwnerVisitMapper.insert(recordOwnerVisit);
         }
-        return ffvl.size()>0;
+        return ret.size()>0;
     }
 
     @Override
@@ -136,8 +136,8 @@ public class FeatureServiceImpl extends BaseServiceImpl implements FeatureServic
     @Transactional(rollbackFor = Exception.class)
     public boolean isVisitor(byte[] feature, Long cid, Long bid, Boolean recordOrNot,List<VisitorFaceFeatureView> ffvl) throws DllUnavailableException {
         ffvl = faceFeatureMapper.selectVisitorFaceFeatureView(cid, bid);
-        EngineDllManager.getConforming(ffvl,feature,0.6f);
-        if(recordOrNot && ffvl.size()>0){
+        List<BaseFeatureView> ret = EngineDllManager.getConforming(ffvl,feature,0.6f);
+        if(recordOrNot && ret.size()>0){
             RecordVisitorVisit recordVisitorVisit = new RecordVisitorVisit();
             VisitorFaceFeatureView visitorFaceFeatureView = findMatchesAmongList(ffvl);
             recordVisitorVisit.setBid(bid);
@@ -146,7 +146,7 @@ public class FeatureServiceImpl extends BaseServiceImpl implements FeatureServic
             recordVisitorVisit.setTime(new Date());
             recordVisitorVisitMapper.insert(recordVisitorVisit);
         }
-        return ffvl.size()>0;
+        return ret.size()>0;
     }
 
 

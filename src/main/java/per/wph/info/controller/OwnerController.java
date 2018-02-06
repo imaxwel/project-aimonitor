@@ -15,6 +15,7 @@ import per.wph.info.model.view.OwnerInfoView;
 import per.wph.info.model.view.OwnerRegistView;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -48,6 +49,7 @@ public class OwnerController extends BaseController {
             ownerService.deleteOwnerRegistView(ownerRegistView);
         }
         Object faceIdMap = session.getAttribute(FACE_MODEL_LIST);
+
         if (faceIdMap==null){
             return ApiResultGenerator.errorResult("请上传照片",null);
         }
