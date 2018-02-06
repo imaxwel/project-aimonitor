@@ -1,5 +1,6 @@
 package per.wph.info.controller;
 
+import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import per.wph.common.ApiResult;
@@ -7,7 +8,6 @@ import per.wph.common.controller.BaseController;
 import per.wph.common.generator.ApiResultGenerator;
 import per.wph.common.util.MapUtil;
 import per.wph.info.model.UserInfo;
-import per.wph.info.model.VisitorInfo;
 import per.wph.info.model.view.VisitorRegistView;
 
 import javax.servlet.http.HttpSession;
@@ -26,7 +26,7 @@ import java.util.Map;
 public class VisitorController extends BaseController {
     @RequestMapping("/regist")
     public ApiResult regist(HttpSession session, VisitorRegistView visitorRegistView,Integer[] ids){
-        String username = (String) session.getAttribute(USERNAME);
+        String username = (String) SecurityUtils.getSubject().getPrincipal();
         UserInfo userInfo = userService.getUserInfoByUsername(username);
         Long ownId = userInfo.getUid();
         visitorRegistView.setOid(ownId);

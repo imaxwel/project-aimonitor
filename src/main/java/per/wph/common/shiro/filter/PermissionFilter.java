@@ -32,8 +32,10 @@ public class PermissionFilter extends AuthorizationFilter {
     @Override
     protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse, Object o) throws Exception {
         HttpServletRequest httpRequest = ((HttpServletRequest)servletRequest);
-        String uri = httpRequest.getRequestURI();//获取URI
-        Subject subject = getSubject(servletRequest,servletResponse);//获得subject对象
+        //获取URI
+        String uri = httpRequest.getRequestURI();
+        //获得subject对象
+        Subject subject = getSubject(servletRequest,servletResponse);
         if(subject.getPrincipal()==null){
             //未登录
             return Boolean.FALSE;

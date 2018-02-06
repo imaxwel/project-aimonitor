@@ -13,8 +13,6 @@ public class BaseController {
     protected final static Long OVERTIME = 2*60000L;
     protected final static String IDCODE = "identityCode";
     protected final static String IDCODE_AVAILABLE_TIME = "identityCodeAvailableTime";
-    public final static String USERNAME = "username";
-    public final static String LOGINTIME = "logintime";
     protected final static String FACE_MODEL_LIST = "face_model_list";
 
     @Autowired

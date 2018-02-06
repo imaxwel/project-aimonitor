@@ -1,6 +1,7 @@
 package per.wph.info.controller;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +14,6 @@ import per.wph.info.model.UserInfo;
 import per.wph.info.model.view.OwnerInfoView;
 import per.wph.info.model.view.OwnerRegistView;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
@@ -40,13 +40,13 @@ public class OwnerController extends BaseController {
     @RequestMapping("/regist")
     @ResponseBody
     public ApiResult regist(HttpSession session, Integer ids[] ,OwnerRegistView ownerRegistView){
-        Optional username = Optional.of(session.getAttribute(USERNAME));
-        if(ownerService.isFrozen((String) username.get())){
-
-        }
+        Optional username = Optional.of(SecurityUtils.getSubject().getPrincipal());
         UserInfo userInfo = userService.getUserInfoByUsername((String) username.get());
         Long ownId = userInfo.getUid();
         ownerRegistView.setOid(ownId);
+        if(ownerService.isFrozen((String) username.get())){
+            ownerService.deleteOwnerRegistView(ownerRegistView);
+        }
         Object faceIdMap = session.getAttribute(FACE_MODEL_LIST);
         if (faceIdMap==null){
             return ApiResultGenerator.errorResult("请上传照片",null);
@@ -73,25 +73,23 @@ public class OwnerController extends BaseController {
 
     /**
      *  获得小区下的所有业主信息
-     * @param session
      * @return
      */
     @RequestMapping("/permit/getOwnInfo")
     @ResponseBody
-    public List<OwnerInfoView> getOwnerInfos(HttpSession session){
-        Object username = session.getAttribute(USERNAME);
+    public List<OwnerInfoView> getOwnerInfos(){
+        Object username = SecurityUtils.getSubject().getPrincipal();
         return ownerService.getOwnerInfoViewListByAdminUsername((String) username);
     }
 
     /**
      * 获得单个业主信息
-     * @param session
      * @return
      */
     @RequestMapping("/info")
     @ResponseBody
-    public OwnerInfoView getOwnerInfo(HttpSession session){
-        Object username = session.getAttribute(USERNAME);
+    public OwnerInfoView getOwnerInfo(){
+        Object username = SecurityUtils.getSubject().getPrincipal();
         return ownerService.getOwnerInfoViewByUsername((String)username);
     }
 

@@ -1,13 +1,12 @@
 package per.wph.info.controller;
 
+import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import per.wph.common.controller.BaseController;
 import per.wph.info.model.SysPermission;
-
-import javax.servlet.http.HttpSession;
 import java.util.Set;
 
 /**
@@ -22,13 +21,13 @@ import java.util.Set;
 public class PermissionController extends BaseController {
     @RequestMapping("getPermList")
     @ResponseBody
-    public Set<SysPermission> getPermissions(HttpSession session){
-        return permissionService.getSysPermissionsByUsername((String) session.getAttribute(USERNAME));
+    public Set<SysPermission> getPermissions(){
+        return permissionService.getSysPermissionsByUsername((String) SecurityUtils.getSubject().getPrincipal());
     }
 
     @RequestMapping("ownauth")
-    public String getOwnAuth(HttpSession session,Model model){
-        Set<SysPermission> permissions = permissionService.getSysPermissionsByUsername((String)session.getAttribute(USERNAME));
+    public String getOwnAuth(Model model){
+        Set<SysPermission> permissions = permissionService.getSysPermissionsByUsername((String)SecurityUtils.getSubject().getPrincipal());
         model.addAttribute("permissions",permissions);
         return "ownauth";
     }

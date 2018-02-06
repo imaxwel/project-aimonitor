@@ -13,4 +13,12 @@
     select oid, fid
     from owner_feature
   </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select oid, fid
+    from owner_feature
+    where fid = #{fid,jdbcType=BIGINT}
+  </select>
+  <select id="deleteByOid" parameterType="java.lang.Long">
+    DELETE FROM owner_feature WHERE oid = #{oid,jdbcType=BIGINT}
+  </select>
 </mapper>

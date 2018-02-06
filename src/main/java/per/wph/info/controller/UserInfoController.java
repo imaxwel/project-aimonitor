@@ -61,15 +61,13 @@ public class UserInfoController extends BaseController {
     }
     @RequestMapping(value = "/checkLogin")
     @ResponseBody
-    public ApiResult checkuser(HttpSession session,String username, String password, boolean rememberMe){
+    public ApiResult checkuser(String username, String password, boolean rememberMe){
         if(loginUtil.login(username,password,rememberMe)){
             //如果login方法没有抛出异常，则会继续执行下面更新登录信息的方法
             UserInfo userInfo = userService.getUserInfoByUsername(username);
             Long loginTime = System.currentTimeMillis();
             userInfo.setLastLoginTime(new Date(loginTime));
             userService.updateUserInfo(userInfo);
-            session.setAttribute(USERNAME,username);
-            session.setAttribute(LOGINTIME,loginTime);
             return ApiResultGenerator.succssResult("登录成功");
         }
         return ApiResultGenerator.errorResult("登录失败,请检查账号或者密码",null);

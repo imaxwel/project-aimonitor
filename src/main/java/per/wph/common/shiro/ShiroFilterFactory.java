@@ -15,6 +15,9 @@ public class ShiroFilterFactory {
     @Autowired
     private PermissionFilter permissionFilter;
 
+    /**
+     * 默认跳转Url
+     */
     private enum DefaultUrl{
         LOGIN("/login"),SUCCESS("/success"),UNAUTHORIZED("/unauthorized");
         private String value;
@@ -26,6 +29,9 @@ public class ShiroFilterFactory {
         }
     }
 
+    /**
+     * 默认权限映射
+     */
     private enum Authority{
         ANON("anon"),AUTHC("authc"),LOGOUT("logout");
         private String value;
@@ -63,7 +69,7 @@ public class ShiroFilterFactory {
     private void setFilterChain(ShiroFilterFactoryBean bean){
         Map<String,String> filter = new LinkedHashMap<>();
         setDefaultFilterChain(filter);
-        filter.put("/**",Authority.ANON.value());
+        filter.put("/**",Authority.AUTHC.value());
         setCustomFilterChain(filter);
         bean.setFilterChainDefinitionMap(filter);
     }
@@ -96,10 +102,6 @@ public class ShiroFilterFactory {
         filter.put("/js/**",Authority.ANON.value());
         filter.put("/css/**",Authority.ANON.value());
         filter.put("/image/**",Authority.ANON.value());
-//        //actuator注册的端点
-//        filter.put("/mappings",Authority.ANON.value());
-//        filter.put("/beans",Authority.ANON.value());
-//        filter.put("/autoconfig",Authority.ANON.value());
     }
 
     /**

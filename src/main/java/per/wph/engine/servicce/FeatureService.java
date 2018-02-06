@@ -21,9 +21,25 @@ public interface FeatureService {
 
     List<FaceFeature> getOwnerAndVsisotrFeatureIdListByOid(Long oid);
 
+    /**
+     * 获得特征
+     * @param fid
+     * @return
+     */
     FaceFeature getFaceFeatureByFid(Long fid);
 
-    //删除照片
+    /**
+     * 获得未绑定的特征值
+     * @param fid
+     * @return
+     */
+    FaceFeature getFaceFeatureUnBindByFid(Long fid);
+
+    /**
+     * 删除照片
+     * @param fid
+     * @return
+     */
     int deleteImageByFid(Long fid);
 
     /**

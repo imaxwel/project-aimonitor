@@ -3,6 +3,7 @@ package per.wph.engine.controller;
 import com.sun.deploy.net.HttpResponse;
 import com.sun.tools.internal.ws.wsdl.document.Output;
 import org.apache.ibatis.annotations.Param;
+import org.apache.shiro.SecurityUtils;
 import org.aspectj.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -49,30 +50,24 @@ public class EngineController extends BaseController{
 
     /**
      *
-     * @param session
      * @param fid
      * @param response
      * @throws IOException
      */
     @RequestMapping("/getImage")
-    public void getImageByUsername(HttpSession session, Long fid, HttpServletResponse response) throws IOException {
-        Object username = session.getAttribute(USERNAME);
+    public void getImageByUsername( Long fid, HttpServletResponse response) throws IOException {
+        Object username = SecurityUtils.getSubject().getPrincipal();
         if(username!=null){
-            UserInfo userInfo = userService.getUserInfoByUsername((String)username);
-            List<FaceFeature> faceFeatures = featureService.getOwnerAndVsisotrFeatureIdListByOid(userInfo.getUid());
-            Optional<Long> ret = faceFeatures.stream().map((o)->{return o.getFid();}).filter((o)->{return o.equals(fid);}).findFirst();
-            if(ret.isPresent()){
-                FaceFeature faceFeature = featureService.getFaceFeatureByFid(ret.get());
-                OutputStream os = response.getOutputStream();
-                os.write(faceFeature.getFeature());
-                os.close();
-            }
+            FaceFeature faceFeature = featureService.getFaceFeatureByFid(fid);
+            OutputStream os = response.getOutputStream();
+            os.write(faceFeature.getImage());
+            os.close();
         }
     };
 
     @RequestMapping("/deleteImage")
-    public @ResponseBody ApiResult deleteImageByUsername(HttpSession session, Long fid, HttpServletResponse response) throws IOException {
-        Object username = session.getAttribute(USERNAME);
+    public @ResponseBody ApiResult deleteImageByUsername(Long fid){
+        Object username = SecurityUtils.getSubject().getPrincipal();
         if(username!=null){
             featureService.deleteImageByFid(fid);
         }

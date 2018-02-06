@@ -72,6 +72,14 @@ public class FeatureServiceImpl extends BaseServiceImpl implements FeatureServic
     }
 
     @Override
+    public FaceFeature getFaceFeatureUnBindByFid(Long fid) {
+        if(ownerFeatureMapper.selectByPrimaryKey(fid)!=null){
+            return faceFeatureMapper.selectByFid(fid);
+        };
+        return null;
+    }
+
+    @Override
     public int deleteImageByFid(Long fid) {
         return faceFeatureMapper.deleteByPrimaryKey(fid);
     }

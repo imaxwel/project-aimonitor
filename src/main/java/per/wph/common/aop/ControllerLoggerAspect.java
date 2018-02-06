@@ -36,7 +36,6 @@ public class ControllerLoggerAspect {
         logger.info("-->IP:" + request.getRemoteAddr());
         logger.info("-->SESSION:" + request.getSession().getId());
         logger.info("-->USERNAME:" + SecurityUtils.getSubject().getPrincipal());
-        logger.info("-->LOGIN_TIME:" + request.getSession().getAttribute(BaseController.LOGINTIME));
         logger.info("-->NOWER_TIME:" + System.currentTimeMillis());
         logger.info("-->CLASS_METHOD:" + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
         logger.info("-->ARGS:" + Arrays.toString(joinPoint.getArgs()));

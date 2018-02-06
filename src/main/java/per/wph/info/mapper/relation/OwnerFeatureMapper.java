@@ -12,4 +12,8 @@ public interface OwnerFeatureMapper {
     int insert(OwnerFeature record);
 
     List<OwnerFeature> selectAll();
+
+    int deleteByOid(Long oid);
+
+    OwnerFeature selectByPrimaryKey(Long fid);
 }

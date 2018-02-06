@@ -68,8 +68,11 @@ public class OwnerServiceImpl extends BaseServiceImpl implements OwnerService {
 
     @Override
     public int deleteOwnerRegistView(OwnerRegistView ownerRegistView) {
-
-        return 0;
+        ownerFeatureMapper.deleteByOid(ownerRegistView.getBid());
+        communityOwnerMapper.deleteByPrimaryKey(ownerRegistView.getCid(),ownerRegistView.getOid());
+        buildingOwnerMapper.deleteByPrimaryKey(ownerRegistView.getBid(),ownerRegistView.getOid());
+        ownerInfoMapper.deleteByPrimaryKey(ownerRegistView.getOid());
+        return 1;
     }
 
     @Override

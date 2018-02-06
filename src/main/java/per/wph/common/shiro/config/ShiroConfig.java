@@ -6,8 +6,11 @@ import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.cache.RedisCacheManager;
+import org.springframework.data.redis.core.RedisOperations;
 import per.wph.common.shiro.DefaultShiroRealm;
 import per.wph.common.shiro.ShiroFilterFactory;
 
@@ -48,7 +51,7 @@ public class ShiroConfig {
     }
 
     /**
-     * 被指安全管理器
+     * 配置安全管理器
      * @param realm
      * @return
      */
@@ -68,7 +71,6 @@ public class ShiroConfig {
     public ShiroFilterFactory shiroFilterFactory(){
         return new ShiroFilterFactory();
     }
-
     @Autowired
     private ShiroFilterFactory shiroFilterFactory;
 

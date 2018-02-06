@@ -15,6 +15,13 @@ public class AppTests {
 
 	@Test
 	public void contextLoads() {
+		int sample[] = new int[10];
+		int i,m;
+		for(i=0;i<10;i++){
+			for(m=1;m<11;m++)
+				sample[i] = m;
+		}
+		System.out.println();
 	}
 
 }

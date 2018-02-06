@@ -16,6 +16,11 @@
     from building_owner
     where oid = #{oid,jdbcType=BIGINT}
   </select>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from building_owner
+    where bid = #{bid,jdbcType=BIGINT}
+    and oid = #{oid,jdbcType=BIGINT}
+  </delete>
   <insert id="insert" parameterType="per.wph.info.model.relation.BuildingOwner" >
     insert into building_owner (bid, oid,num)
     values (#{bid,jdbcType=BIGINT}, #{oid,jdbcType=BIGINT},#{num,jdbcType=VARCHAR})
