@@ -18,6 +18,7 @@ import per.wph.engine.model.view.StrangerFaceFeatureView;
 import per.wph.engine.model.view.VisitorFaceFeatureView;
 import per.wph.engine.servicce.FeatureService;
 import per.wph.info.model.*;
+import per.wph.info.service.OwnerService;
 
 import java.io.*;
 import java.util.*;
@@ -31,6 +32,12 @@ import java.util.*;
  */
 @Service
 public class FeatureServiceImpl extends BaseServiceImpl implements FeatureService {
+    /**
+     * 依赖OwnerService的判断是否账号冻结的方法
+     */
+    @Autowired
+    private OwnerService ownerService;
+
     @Override
     @Transactional
     public Long saveFeatureInfo(FaceFeature faceFeature) {
@@ -102,14 +109,15 @@ public class FeatureServiceImpl extends BaseServiceImpl implements FeatureServic
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public boolean isOwner(byte[] feature, Long cid, Long bid, Boolean recordOrNot,List<OwnerFaceFeatureView> ffvl) throws DllUnavailableException {
-        ffvl = faceFeatureMapper.selectOwnerFaceFeatureView(cid, bid);
-        List<BaseFeatureView> ret = EngineDllManager.getConforming(ffvl,feature,0.6f);
+    public boolean isOwner(byte[] feature, Long cid, Long bid, Boolean recordOrNot,List<OwnerFaceFeatureView> ret) throws DllUnavailableException {
+        //获取列表里可用的业主特征值
+        List<OwnerFaceFeatureView>ffvl = faceFeatureMapper.selectOwnerFaceFeatureView(cid, bid);
+        ret = EngineDllManager.getConforming(ffvl,feature,PASS_LINE);
         //日志记录
         if(recordOrNot && ret.size()>0){
             RecordOwnerVisit recordOwnerVisit = new RecordOwnerVisit();
-            OwnerFaceFeatureView offv = findMatchesAmongList(ffvl);
-            recordOwnerVisit.setOid(offv.getOid());
+            OwnerFaceFeatureView ownerFaceFeatureView = findMatchesAmongList(ret);
+            recordOwnerVisit.setOid(ownerFaceFeatureView.getOid());
             recordOwnerVisit.setBid(bid);
             recordOwnerVisit.setCid(cid);
             recordOwnerVisit.setStatus(RecordOwnerVisit.RecordStatus.ACCESS.status());
@@ -134,12 +142,13 @@ public class FeatureServiceImpl extends BaseServiceImpl implements FeatureServic
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public boolean isVisitor(byte[] feature, Long cid, Long bid, Boolean recordOrNot,List<VisitorFaceFeatureView> ffvl) throws DllUnavailableException {
-        ffvl = faceFeatureMapper.selectVisitorFaceFeatureView(cid, bid);
-        List<BaseFeatureView> ret = EngineDllManager.getConforming(ffvl,feature,0.6f);
+    public boolean isVisitor(byte[] feature, Long cid, Long bid, Boolean recordOrNot,List<VisitorFaceFeatureView> ret) throws DllUnavailableException {
+        List<VisitorFaceFeatureView> ffvl = faceFeatureMapper.selectVisitorFaceFeatureView(cid, bid);
+        ret = EngineDllManager.getConforming(ffvl,feature,PASS_LINE);
         if(recordOrNot && ret.size()>0){
             RecordVisitorVisit recordVisitorVisit = new RecordVisitorVisit();
             VisitorFaceFeatureView visitorFaceFeatureView = findMatchesAmongList(ffvl);
+            recordVisitorVisit.setVid(visitorFaceFeatureView.getVid());
             recordVisitorVisit.setBid(bid);
             recordVisitorVisit.setCid(cid);
             recordVisitorVisit.setStatus(RecordVisitorVisit.RecordStatus.ACCESS.status());
@@ -156,9 +165,10 @@ public class FeatureServiceImpl extends BaseServiceImpl implements FeatureServic
      * @return
      */
     private<T extends BaseFeatureView> T findMatchesAmongList(List<T> ffvl){
-        T offv = ffvl.stream().max(((o1, o2) -> {return (int)(o1.getDegree()-o2.getDegree());})).get();
+        T offv = ffvl.stream().max(((o1, o2) -> {return (o1.getDegree()>o2.getDegree())?1:-1;})).get();
         return offv;
     }
+
 
 
 }

@@ -22,7 +22,21 @@ public interface FaceFeatureMapper {
 
     int updateByPrimaryKey(FaceFeature record);
 
+    /**
+     * 获取业主所有可用的特征View,包括未通过认证的
+     * @param cid
+     * @param bid
+     * @return
+     */
     List<OwnerFaceFeatureView> selectOwnerFaceFeatureView(@Param("cid") Long cid, @Param("bid") Long bid);
+
+    /**
+     * 获取所有业主可用的特征View,不包括未认证的
+     * @param cid
+     * @param bid
+     * @return
+     */
+    List<OwnerFaceFeatureView> selectAvailableOwnerFaceFeatureView(@Param("cid") Long cid, @Param("bid") Long bid,@Param("stauts")Integer stauts);
 
     List<VisitorFaceFeatureView> selectVisitorFaceFeatureView(@Param("cid") Long cid, @Param("bid") Long bid);
 

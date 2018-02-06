@@ -1,5 +1,6 @@
 package per.wph.engine.servicce;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import per.wph.common.exception.DllUnavailableException;
@@ -14,6 +15,8 @@ import java.io.IOException;
 import java.util.List;
 
 public interface FeatureService {
+    @Value("#{passline}")
+    static float PASS_LINE = 0.58f;
 
     Long saveFeatureInfo(FaceFeature faceFeature);
 

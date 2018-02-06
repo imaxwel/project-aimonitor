@@ -99,8 +99,19 @@ public class OwnerServiceImpl extends BaseServiceImpl implements OwnerService {
     }
 
     @Override
-    public boolean isFrozen(String username) {
+    public boolean ownAvailable(String username) {
         Optional<OwnerInfoView> op = Optional.ofNullable(ownerInfoMapper.selectByUsername(username));
+        if(op.isPresent()){
+            if(OwnerInfo.STATUS.FROZEN.status().equals(op.get().getStatus())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean ownAvailable(Long oid) {
+        Optional<OwnerInfo> op = Optional.ofNullable(ownerInfoMapper.selectByPrimaryKey(oid));
         if(op.isPresent()){
             if(OwnerInfo.STATUS.FROZEN.status().equals(op.get().getStatus())){
                 return true;

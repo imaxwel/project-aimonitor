@@ -8,6 +8,7 @@ fileUpload:
 dll:
   name: samplecode.dll
 
+passline: 0.50f
 management:
   security:
     enabled: false

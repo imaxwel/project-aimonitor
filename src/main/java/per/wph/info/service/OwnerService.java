@@ -54,8 +54,15 @@ public interface OwnerService extends BaseService {
     int unAccessOwnerRegist(Long oid);
 
     /**
-     * 判断审核是否不被通过，为第二次提交
+     * 判断业主账号是否可用
      * @return
      */
-    boolean isFrozen(String username);
+    boolean ownAvailable(String username);
+
+    /**
+     * 判断业主账号是否可用
+     * @param oid 根据oid
+     * @return
+     */
+    boolean ownAvailable(Long oid);
 }

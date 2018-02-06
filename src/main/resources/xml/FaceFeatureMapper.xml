@@ -42,7 +42,19 @@
     from face_feature
   </select>
     <select id="selectOwnerFaceFeatureView" resultMap="OwnerFaceFeatureView">
-        select owner_feature.oid,face_feature.feature from owner_feature,face_feature
+        select owner_feature.oid,face_feature.feature from face_feature left JOIN owner_feature on face_feature.fid = owner_feature.fid
+        <if test="cid!=null">
+            where owner_feature.oid in
+            (select community_owner.oid from community_owner where community_owner.cid = #{cid}
+            <if test="bid!=null">
+                and community_owner.oid in
+                (select building_owner.oid from building_owner where building_owner.bid = #{bid})
+            </if>
+            )
+        </if>
+    </select>
+    <select id="selectAvailableOwnerFaceFeatureView" resultMap="OwnerFaceFeatureView">
+        select owner_feature.oid,face_feature.feature from face_feature left JOIN owner_feature on face_feature.fid = owner_feature.fid
         <if test="cid!=null">
             where owner_feature.oid in
             (select community_owner.oid from community_owner where community_owner.cid = #{cid}
@@ -72,12 +84,14 @@
             )
         </if>
     </select>
+
     <select id="selectOwnerAndVsisotrFeatureIdListByOid" parameterType="java.lang.Long" resultMap="BaseResultMap">
         SELECT fid FROM face_feature where face_feature.fid in
         (select fid from owner_feature where owner_feature.oid = #{oid,jdbcType=BIGINT})
         or face_feature.fid in (select fid from visitor_feature where visitor_feature.vid
         in (select vid from owner_visitor where owner_visitor.oid = #{oid,jdbcType=BIGINT}))
     </select>
+
     <select id="selectByFid" parameterType="java.lang.Long" resultMap="BaseResultMap">
        SELECT * FROM face_feature where face_feature.fid = #{fid,jdbcType=BIGINT}
     </select>

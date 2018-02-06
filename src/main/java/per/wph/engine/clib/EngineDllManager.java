@@ -71,12 +71,12 @@ public class EngineDllManager {
 
     ;
 
-    public static List<BaseFeatureView> getConforming(List<? extends BaseFeatureView> views, byte[] feature, float passLine) throws DllUnavailableException {
-        List<BaseFeatureView> retViews = new ArrayList<>();
-        Iterator<? extends BaseFeatureView> iterator = views.iterator();
+    public static <T extends BaseFeatureView>  List<T> getConforming(List<T> views, byte[] feature, float passLine) throws DllUnavailableException {
+        List<T> retViews = new ArrayList<>();
+        Iterator<T> iterator = views.iterator();
         float degree = 0;
         while (iterator.hasNext()) {
-            BaseFeatureView i = iterator.next();
+            T i = iterator.next();
             degree = compareImageWithFeature(feature,i.getBytes());
             if(degree>passLine){
                 i.setDegree(degree);

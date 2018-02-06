@@ -110,15 +110,6 @@ public class EngineController extends BaseController{
 
     @RequestMapping("/requestAccess")
     public @ResponseBody ApiResult checkAccess(@RequestParam("feature") MultipartFile file,Long bid,Long cid) throws DllUnavailableException, IOException {
-//        File file = new File("test");
-        InputStream is = file.getInputStream();
-        File file1 = new File("test");
-        FileOutputStream fos = new FileOutputStream(file1);
-        byte[] bytes = new byte[20020];
-        is.read(bytes);
-        fos.write(bytes);
-        fos.close();
-        is.close();
         if(featureService.isAccess(file.getBytes(),cid,bid)) {
             return ApiResultGenerator.succssResult("识别成功");
         }else {
