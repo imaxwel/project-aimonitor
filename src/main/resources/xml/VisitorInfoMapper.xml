@@ -12,7 +12,7 @@
     delete from visitor_info
     where vid = #{vid,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="per.wph.info.model.VisitorInfo" >
+  <insert id="insert" parameterType="per.wph.info.model.VisitorInfo" useGeneratedKeys="true" keyProperty="vid">
     insert into visitor_info (vid, name, idnumber, 
       phone, creat_time)
     values (#{vid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{idnumber,jdbcType=VARCHAR}, 

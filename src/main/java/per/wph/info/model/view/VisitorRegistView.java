@@ -19,7 +19,7 @@ public class VisitorRegistView {
     private Date creatTime;
     private Date allowBegin;
     private Date allowEnd;
-    private String relationType;
+    private Integer relationType;
     private List<Long> faceIdList;
 
     public Long getVid() {
@@ -86,11 +86,11 @@ public class VisitorRegistView {
         this.allowEnd = allowEnd;
     }
 
-    public String getRelationType() {
+    public Integer getRelationType() {
         return relationType;
     }
 
-    public void setRelationType(String relationType) {
+    public void setRelationType(Integer relationType) {
         this.relationType = relationType;
     }
 

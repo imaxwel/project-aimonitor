@@ -45,7 +45,7 @@ public class OwnerController extends BaseController {
         UserInfo userInfo = userService.getUserInfoByUsername((String) username.get());
         Long ownId = userInfo.getUid();
         ownerRegistView.setOid(ownId);
-        if(ownerService.isFrozen((String) username.get())){
+        if(ownerService.ownAvailable((String) username.get())){
             ownerService.deleteOwnerRegistView(ownerRegistView);
         }
         Object faceIdMap = session.getAttribute(FACE_MODEL_LIST);

@@ -43,7 +43,9 @@ public class BaseServiceImpl implements BaseService {
     protected OwnerFeatureMapper ownerFeatureMapper;
     @Autowired
     protected SysUserRoleMapper sysUserRoleMapper;
-
+    @Autowired
+    protected OwnerVisitorMapper ownerVisitorMapper;
+    
     @Autowired
     protected PasswordUtil passwordUtil;
 }

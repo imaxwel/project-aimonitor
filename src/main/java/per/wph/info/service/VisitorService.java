@@ -10,4 +10,12 @@ import java.util.List;
 
 public interface VisitorService extends BaseService{
     int saveVisitorRegistView(VisitorRegistView visitorRegistView);
+
+
+    /**
+     * 判断访客是否在可用期限内
+     * @param vid
+     * @return
+     */
+    boolean visitorAvailable(Long vid);
 }

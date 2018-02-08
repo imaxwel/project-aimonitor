@@ -3,6 +3,17 @@ package per.wph.info.model.relation;
 import java.util.Date;
 
 public class OwnerVisitor {
+    public enum STATUS{
+        PERMANENT(100),SHORT(200);
+        private Integer status;
+        private STATUS(Integer status){
+            this.status = status;
+        }
+        public Integer status(){
+            return this.status;
+        }
+    }
+
     private Long oid;
 
     private Long vid;

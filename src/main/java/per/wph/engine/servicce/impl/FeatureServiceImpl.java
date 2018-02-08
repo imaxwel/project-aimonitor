@@ -19,6 +19,7 @@ import per.wph.engine.model.view.VisitorFaceFeatureView;
 import per.wph.engine.servicce.FeatureService;
 import per.wph.info.model.*;
 import per.wph.info.service.OwnerService;
+import per.wph.info.service.VisitorService;
 
 import java.io.*;
 import java.util.*;
@@ -37,6 +38,12 @@ public class FeatureServiceImpl extends BaseServiceImpl implements FeatureServic
      */
     @Autowired
     private OwnerService ownerService;
+
+    /**
+     * 依赖VisitorService的判断是否在可用期内的方法
+     */
+    @Autowired
+    private VisitorService visitorService;
 
     @Override
     @Transactional
@@ -103,6 +110,8 @@ public class FeatureServiceImpl extends BaseServiceImpl implements FeatureServic
                     return false;
                 }
             }
+        }else{
+
         };
         return true;
     }
@@ -117,12 +126,22 @@ public class FeatureServiceImpl extends BaseServiceImpl implements FeatureServic
         if(recordOrNot && ret.size()>0){
             RecordOwnerVisit recordOwnerVisit = new RecordOwnerVisit();
             OwnerFaceFeatureView ownerFaceFeatureView = findMatchesAmongList(ret);
+            //判断账号是否能使用
             recordOwnerVisit.setOid(ownerFaceFeatureView.getOid());
             recordOwnerVisit.setBid(bid);
             recordOwnerVisit.setCid(cid);
-            recordOwnerVisit.setStatus(RecordOwnerVisit.RecordStatus.ACCESS.status());
             recordOwnerVisit.setTime(new Date());
-            recordOwnerVisitMapper.insert(recordOwnerVisit);
+            if(ownerService.ownAvailable(ownerFaceFeatureView.getOid())){
+                //如果可以使用，则进行日志记录
+                recordOwnerVisit.setStatus(RecordOwnerVisit.RecordStatus.ACCESS.status());
+                recordOwnerVisitMapper.insert(recordOwnerVisit);
+                return true;
+            }else {
+                //如果不可以使用,则记录访问失败记录
+                recordOwnerVisit.setStatus(RecordOwnerVisit.RecordStatus.UNACCESS.status());
+                recordOwnerVisitMapper.insert(recordOwnerVisit);
+                return false;
+            }
         }
         return ret.size()>0;
     }

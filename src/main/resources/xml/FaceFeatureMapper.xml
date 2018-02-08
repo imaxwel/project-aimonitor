@@ -67,7 +67,7 @@
     </select>
 
     <select id="selectVisitorFaceFeatureView" resultMap="VisitorFaceFeatureView">
-        select visitor_feature.vid,face_feature.feature from visitor_feature,face_feature
+        select visitor_feature.vid,face_feature.feature from face_feature LEFT JOIN visitor_feature on face_feature.fid = visitor_feature.fid
         <if test="cid!=null or bid !=null">
             where visitor_feature.vid in(
             select owner_visitor.vid from owner_visitor
