@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import per.wph.common.util.ResourceLoaderUtil;
+import per.wph.engine.clib.EngineDll;
 
 /**
  * =============================================
@@ -21,6 +22,7 @@ public class DemoDllTest {
 
     @Test
     public void test2(){
-        System.out.println(ResourceLoaderUtil.getResourceFilePathWithPackage("dll","Demo.dll"));
+        System.out.println(ResourceLoaderUtil.getResourceFilePathWithPackage("dll","engine.dll"));
+        EngineDll.INSTANCE.engineInit();
     }
 }

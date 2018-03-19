@@ -1,11 +1,7 @@
 package per.wph.engine.controller;
 
-import com.sun.deploy.net.HttpResponse;
-import com.sun.tools.internal.ws.wsdl.document.Output;
-import org.apache.ibatis.annotations.Param;
 import org.apache.shiro.SecurityUtils;
 import org.aspectj.util.FileUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,18 +16,15 @@ import per.wph.common.exception.ZeroFaceException;
 import per.wph.common.generator.ApiResultGenerator;
 import per.wph.engine.clib.EngineDllManager;
 import per.wph.engine.clib.FaceModel;
-import per.wph.engine.mapper.FaceFeatureMapper;
 import per.wph.engine.model.FaceFeature;
-import per.wph.engine.model.view.OwnerFaceFeatureView;
-import per.wph.engine.servicce.FeatureService;
-import per.wph.info.model.UserInfo;
 
-import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.*;
-import java.util.*;
-import java.util.function.Function;
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Date;
+import java.util.HashMap;
 
 /**
  * =============================================
@@ -45,7 +38,6 @@ import java.util.function.Function;
 public class EngineController extends BaseController{
     @Value("${fileUpload.path}")
     private String IMAGE_BUFF_PATH;
-
     /**
      *
      * @param fid
@@ -85,7 +77,6 @@ public class EngineController extends BaseController{
             if(null == faceIdMap){
                 faceIdMap = new HashMap<Integer,Long>();
                 session.setAttribute(FACE_MODEL_LIST,faceIdMap);
-
             }
             faceFeature.setImage(FileUtil.readAsByteArray(mfile));
             faceFeature.setCreateTime(new Date());

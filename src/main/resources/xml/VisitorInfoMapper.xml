@@ -35,4 +35,9 @@
     select vid, name, idnumber, phone, creat_time
     from visitor_info
   </select>
+  <select id="selectByUsername" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select vid, name, idnumber, phone, creat_time
+    from visitor_info
+		where vid in (select vid from owner_visitor where oid in (select uid from user_info where user_info.username = #{username,jdbcType=VARCHAR}))
+  </select>
 </mapper>

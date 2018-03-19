@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import per.wph.common.ApiResult;
+import per.wph.common.annotation.DeBug;
 import per.wph.common.controller.BaseController;
 import per.wph.common.generator.ApiResultGenerator;
 import per.wph.common.util.MapUtil;
@@ -16,6 +17,7 @@ import per.wph.info.model.view.OwnerRegistView;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -29,7 +31,8 @@ import java.util.Optional;
  */
 @Controller
 @RequestMapping("/owner")
-public class OwnerController extends BaseController {
+public class OwnerController extends BaseController{
+
 
     /**
      * 业主提交认证申请
@@ -81,7 +84,7 @@ public class OwnerController extends BaseController {
     @ResponseBody
     public List<OwnerInfoView> getOwnerInfos(){
         Object username = SecurityUtils.getSubject().getPrincipal();
-        return ownerService.getOwnerInfoViewListByAdminUsername((String) username);
+        return ownerService.getOwnerInfoViewListByAdminUsername((String) "username");
     }
 
     /**
@@ -90,9 +93,11 @@ public class OwnerController extends BaseController {
      */
     @RequestMapping("/info")
     @ResponseBody
+    @DeBug
     public OwnerInfoView getOwnerInfo(){
         Object username = SecurityUtils.getSubject().getPrincipal();
-        return ownerService.getOwnerInfoViewByUsername((String)username);
+        return ownerService.getOwnerInfoViewByUsername((String)"1234");
+        //**return ownerService.getOwnerInfoViewByUsername((String)username);
     }
 
 }

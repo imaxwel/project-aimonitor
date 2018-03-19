@@ -80,6 +80,7 @@ public class OwnerServiceImpl extends BaseServiceImpl implements OwnerService {
         return ownerInfoMapper.selectByUsername(username);
     }
 
+
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int accessOwnerRegist(Long oid) {

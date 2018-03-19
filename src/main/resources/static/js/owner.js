@@ -13,9 +13,6 @@ $(function () {
             case "#owncenter":
                 pathn = "/base/owncenter";
                 break;
-            case "#ownauth":
-                pathn = "/perm/ownauth";
-                break;
             case "#ownregist":
                 pathn = "/base/ownregist";
                 break;
@@ -64,45 +61,111 @@ $(function () {
             case "#personal_msg":
                 pathn = "/base/personal_msg";
                 break;
-            default:
-                pathn = "/base/personal_msg";
+            case"#mngownmsg":
+                pathn = "/base/mngownmsg";
                 break;
-        }
-        $("#content").load(pathn, function () {
+            default:
+                pathn = pathbf;
+                break;
             //加载相对应的内容
             pathbf = pathn;
+        }
+        $("#content").load(pathn,function () {
             // if (flag[pathn] == null || flag[pathn] == false) {
             //     flag[pathn] = true;
-            //owncenter
-            if (pathn == "/base/owncenter") {
-                $.getScript("/js/page/owncenter.js");
-            }
-            if (pathn == "/base/ownauth") {
-
-            }
-            //ownregist访客注册
-            if (pathn == "/base/ownregist") {
-                $.getScript("/js/page/ownregist.js");
-            }
-            //ownkmjl
-            if (pathn == "/base/ownkmjl") {
-                $.getScript("/js/page/ownkmjl.js");
-            }
-            //ownsqjl
-            if (pathn == "/base/ownsqjl") {
-                $.getScript("/js/page/ownsqjl.js");
-            }
-            //ownfault
-            if (pathn == "/base/ownfault") {
-                $.getScript("/js/page/ownfault.js");
-            }
-            //完善个人信息
-            if (pathn == "/base/personal_msg") {
-                $.getScript("/js/page/personal_msg.js");
-            }
-            if (pathn == "/base/mngregist") {
-                $.getScript("/js/page/mngregist.js");
-            }
+                //owncenter
+                if (pathn == "/base/owncenter") {
+                    $.getScript("/js/owncenter.js");
+                    $.getScript("/js/msg_out.js");
+                }
+                //ownregist访客注册
+                if (pathn == "/base/ownregist") {
+                    $.getScript("/js/page.js");
+                    $.getScript("/js/ownregist.js");
+                    $.getScript("/js/msg_out.js");
+                }
+                //ownkmjl
+                if (pathn == "/base/ownkmjl") {
+                    $.getScript("/js/ownkmjl.js");
+                    $.getScript("/js/msg_out.js");
+                }
+                //ownsqjl
+                // if (pathn == "ownsqjl.html") {
+                //     $.getScript("../static/js/ownsqjl.js");
+                //     $.getScript("../static/js/msg_out.js");
+                // }
+                //ownfault
+                if (pathn == "/base/ownfault") {
+                    $.getScript("/js/ownfault.js");
+                    $.getScript("/js/msg_out.js");
+                }
+                //mngcenter.html
+                if (pathn=="/base/mngcenter") {
+                    $.getScript("/js/mngcenter.js");
+                    $.getScript("/js/msg_out.js");
+                }
+                //mngregist.html
+                if (pathn=="/base/mngregist") {
+                    $.getScript("/js/mngregist.js");
+                    $.getScript("/js/msg_out.js");
+                }
+                //mngrequest.html
+                if (pathn=="/base/mngrequest") {
+                    $.getScript("/js/mngrequest.js");
+                    $.getScript("/js/msg_out.js");
+                }
+                //mngnonregist.html
+                if (pathn=="/base/mngnonregist") {
+                    $.getScript("/js/mngnonregist.js");
+                    $.getScript("/js/msg_out.js");
+                }
+                //mngfault.html
+                if (pathn=="/base/mngfault") {
+                    $.getScript("/js/mngfault.js");
+                    $.getScript("/js/msg_out.js");
+                }
+                //mngcontrol.html
+                if (pathn=="/base/mngcontrol") {
+                    $.getScript("/js/bootstrap-treeview.js");
+                    $.getScript("/js/mngcontrol.js");
+                    $.getScript("/js/msg_out.js");
+                }
+                //pptcheck.html
+                if (pathn=="/base/pptcheck") {
+                    $.getScript("/js/pptcheck.js");
+                    $.getScript("/js/msg_out.js");
+                }
+                //ppthosmsg.html
+                if (pathn=="/base/ppthosmsg") {
+                    $.getScript("/js/ppthosmsg.js");
+                    $.getScript("/js/msg_out.js");
+                }
+                //pptusermsg.html
+                if (pathn=="/base/pptusermsg") {
+                    $.getScript("/js/pptusermsg.js");
+                    $.getScript("/js/msg_out.js");
+                }
+                //pptfault.html
+                if (pathn=="/base/pptfault") {
+                    $.getScript("/js/pptfault.js");
+                    $.getScript("/js/xcConfirm.js");
+                    $.getScript("/js/msg_out.js");
+                }
+                //pptsystem.html
+                if (pathn=="/base/pptsystem") {
+                    $.getScript("/js/pptsystem.js");
+                    $.getScript("/js/msg_out.js");
+                }
+                //完善个人信息
+                if (pathn == "/base/personal_msg") {
+                    $.getScript("/js/personal_msg.js");
+                    $.getScript("/js/msg_out.js");
+                }
+                //业主信息
+                if (pathn == "/base/mngownmsg") {
+                    $.getScript("/js/mngownmsg.js");
+                    $.getScript("/js/msg_out.js");
+                }
             // }
         });
     }

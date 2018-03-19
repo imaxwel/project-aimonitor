@@ -1,0 +1,61 @@
+ <div class="tpl-login">
+            <div class="tpl-login-content">
+                <div class="tpl-login-title">访客注册</div>
+                <span class="tpl-login-content-info">
+                  为来访者进行注册
+              </span>
+
+
+                <form class="am-form tpl-form-line-form">
+                    <div class="am-form-group">
+                        <input type="text" class="tpl-form-input" id="user-name" placeholder="姓名">
+
+                    </div>
+
+                    <div class="am-form-group">
+                        <input type="text" class="tpl-form-input" id="user-id" placeholder="身份证号码">
+                    </div>
+
+                    <div class="am-form-group">
+                        <input type="password" class="tpl-form-input" id="user-num" placeholder="联系方式">
+                    </div>
+
+                    <div class="am-form-group">
+                        <label for="user-phone">
+                            <span style="color: #b5b5b5;font-weight: lighter;width: 40%;padding-top: 10px;">与业主关系</span> 
+
+                        </label> 
+                        <div class="am-u-sm-9" style="width: 65%;float: right;">                  
+                            <select data-am-selected="{searchBox: 1}" style="padding-left: 50px;font-size: 1.3em;">
+                                <option value="a">夫妻</option>
+                                <option value="b">父母</option>
+                                <option value="o">子女</option>
+                                <option value="o">亲戚</option>                   
+                                <option value="o">其他</option>
+                            </select> 
+                        </div>
+                    </div>   
+                    <div id="preview">
+                    </div>
+                    <div class="submit_btn addphoto" style="padding: 10px 0;position: relative;">
+                        <button type="button" id="photo" class="am-btn am-btn-primary  am-btn-block tpl-btn-bg-color-success">本地上传照片</button>
+                        <input type="file" onchange="previewImage(this,)" id="previewImg" style="position: absolute;top: 0;left: 0;z-index: 1;opacity: 0; cursor: pointer;width: 100%;height: 100%;">
+                    </div>
+                    
+                    <div class="am-form-group">
+                        <label>
+                            <span style="color: white;font-weight: lighter;">访客有效期</span>        
+                            <span id="settime" style="color: #0e90d2;margin-left: 150px;">设置时间</span>
+                        </label> 
+                    </div>
+<!-- //时间选择插件 -->
+                    <input type="text" class="some_class" value="" id="some_class_1" style="float: left;width: 45%;display: none;margin-bottom: 20px;" /><span style="color: white;display: none;" id="fenge">---</span>
+                    <input type="text" class="some_class" value="" id="some_class_2" style="float: right;width: 45%;display: none;margin-bottom: 20px;" />
+
+
+                    <div class="am-form-group">
+                        <button type="button" class="am-btn am-btn-primary  am-btn-block tpl-btn-bg-color-success  tpl-login-btn">提交</button>
+                    </div>
+                </form>
+            </div>
+        </div>

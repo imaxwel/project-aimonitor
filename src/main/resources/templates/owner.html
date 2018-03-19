@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -11,43 +10,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <!--<link rel="icon" type="/image/png" href="http://www.17sucai.com/preview/2/2016-12-20/admin/assets/i/favicon.png">-->
-    <!--<link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">-->
+    <link rel="icon" type="image/png" href="http://www.17sucai.com/preview/2/2016-12-20/admin/assets/i/favicon.png" th:href="@{http://www.17sucai.com/preview/2/2016-12-20/admin/assets/i/favicon.png}">
     <meta name="apple-mobile-web-app-title" content="Amaze UI" />
-    <script src="http://cdn.bootcss.com/echarts/3.3.2/echarts.min.js"></script>
-    <link rel="stylesheet" th:href="@{/css/amazeui.min.css}" />
-    <!--<link rel="stylesheet" th:href="@{/css/amazeui.datatables.min.css}" />-->
-    <link rel="stylesheet" th:href="@{/css/app.css}">
-    <!--<link rel="stylesheet" th:href="@{/css/bootstrap-treeview.min.css}">-->
-    <link rel="stylesheet" th:href="@{/css/ownregist.css}"/>
-    <link th:href="@{css/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet">
+    <script src="http://cdn.bootcss.com/echarts/3.3.2/echarts.min.js" th:src="@{http://cdn.bootcss.com/echarts/3.3.2/echarts.min.js}"></script>
 
+    <link rel="stylesheet" href="../static/css/amazeui.min.css"  th:href="@{/css/amazeui.min.css}"/>
+    <link rel="stylesheet" href="../static/css/amazeui.datatables.min.css" th:href="@{/css/amazeui.datatables.min.css}" />
+    <link rel="stylesheet" type="text/css" href="../static/css/ownregist.css" th:href="@{/css/ownregist.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/xcConfirm.css" th:href="@{/css/xcConfirm.css}"/><!-- !!!!!!!添加样式 -->
+    <link rel="stylesheet" href="../static/css/app.css" th:href="@{/css/app.css}">
+<!--     <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
+ -->    
+<link href="../static/css/font-awesome.min.css" rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+ <link rel="stylesheet" type="text/css" href="../static/css/jquery.datetimepicker.css" th:href="@{/css/jquery.datetimepicker.css}"/>
 
-    <link rel="stylesheet" type="text/css" href="../css/demos.css" th:href="@{/css/jsgrid/demos.css}"/>
-    <link rel="stylesheet" type="text/css" href="../css/jsgrid.css" th:href="@{/css/jsgrid/jsgrid.css}"/>
-    <link rel="stylesheet" type="text/css" href="../css/theme.css" th:href="@{/css/jsgrid/theme.css}"/>
+    <script src="../static/js/jquery-1.10.2.js" th:src="@{/js/jquery-1.10.2.js}"></script>
+    <script type="text/javascript" src="../static/js/owner.js" th:src="@{/js/owner.js}"></script>
+    <link href="http://www.jq22.com/jquery/bootstrap-3.3.4.css" rel="stylesheet" th:href="@{http://www.jq22.com/jquery/bootstrap-3.3.4.css}">
 
-    <script src="/js/db.js" th:src="@{/js/jquery-1.10.2.js}"></script>
-    <script src="../src/db.js" th:src="@{/js/jsgrid/db.js}"></script>
-    <script src="../src/jsgrid.core.js" th:src="@{/js/jsgrid/jsgrid.core.js}"></script>
-    <script src="../src/jsgrid.load-indicator.js" th:src="@{/js/jsgrid/jsgrid.load-indicator.js}"></script>
-    <script src="../src/jsgrid.load-strategies.js" th:src="@{/js/jsgrid/jsgrid.load-strategies.js}"></script>
-    <script src="../src/jsgrid.sort-strategies.js" th:src="@{/js/jsgrid/jsgrid.sort-strategies.js}"></script>
-    <script src="../src/jsgrid.field.js" th:src="@{/js/jsgrid/jsgrid.field.js}"></script>
-    <script src="../src/fields/jsgrid.field.text.js" th:src="@{/js/jsgrid/jsgrid.field.text.js}"></script>
-    <script src="../src/fields/jsgrid.field.number.js" th:src="@{/js/jsgrid/jsgrid.field.number.js}"></script>
-    <script src="../src/fields/jsgrid.field.control.js" th:src="@{/js/jsgrid/jsgrid.field.control.js}"></script>
-    <script th:src="@{/js/owner.js}"></script>
 </head>
 
 <body data-type="widgets">
-    <script src="/js/theme.js"></script>
+    <script src="../static/js/theme.js" th:src="@{/js/theme.js}"></script>
     <div class="am-g tpl-g">
         <!-- 头部 -->
         <header>
             <!-- logo -->
             <div class="am-fl tpl-header-logo">
-                <a href="javascript:;"><img src="/image/logo.png" alt=""></a>
+                <a href="javascript:;"><img src="../static/images/6.png" alt="" th:src="@{/images/6.png}"></a>
             </div>
             <!-- 右侧内容 -->
             <div class="tpl-header-fluid">
@@ -83,7 +73,7 @@
                                 <li class="tpl-dropdown-menu-messages">
                                     <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
                                         <div class="menu-messages-ico">
-                                            <img src="/image/user04.png" alt="">
+                                            <img src="../static/images/user04.png" th:src="@{/images/user04.png}">
                                         </div>
                                         <div class="menu-messages-time">
                                             3小时前
@@ -102,7 +92,7 @@
                                 <li class="tpl-dropdown-menu-messages">
                                     <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
                                         <div class="menu-messages-ico">
-                                            <img src="/image/user02.png" alt="">
+                                            <img src="../static/images/user02.png" alt="" th:src="@{/images/user02.png}">
                                         </div>
                                         <div class="menu-messages-time">
                                             5天前
@@ -179,7 +169,7 @@
 
                         <!-- 退出 -->
                         <li class="am-text-sm">
-                            <a href="/logout">
+                            <a href="index.html">
                                 <span class="am-icon-sign-out"></span> 退出
                             </a>
                         </li>
@@ -207,8 +197,8 @@
             <!-- 用户信息 -->
             <div class="tpl-sidebar-user-panel">
                 <div class="tpl-user-panel-slide-toggleable">
-                    <div class="tpl-user-panel-profile-picture">
-                        <img src="/image/user04.png" alt="">
+                    <div class="tpl-user-panel-profile-picture" id="preview_avator">
+                        <img src="../static/images/user04.png" th:href="@{/images/user04.png}">
                     </div>
                     <span class="user-panel-logged-in-text">
                         <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon username"></i>manager
@@ -224,11 +214,6 @@
                         <i class="am-icon-pencil sidebar-nav-link-logo"></i> 完善个人信息
                     </a>
                 </li>
-                <li class="sidebar-nav-link current" data-id="ownauth">
-                    <a>
-                        <i class="am-icon-pencil sidebar-nav-link-logo"></i> 我的权限
-                    </a>
-                </li>
                 <li class="sidebar-nav-link current" data-id="owncenter">
                     <a>
                         <i class="am-icon-home sidebar-nav-link-logo"></i> 个人中心
@@ -236,7 +221,7 @@
                 </li>
                 <li class="sidebar-nav-link" data-id="ownregist">
                     <a>
-                        <i class="am-icon-clone sidebar-nav-link-logo"></i> 访客注册
+                        <i class="am-icon-clone sidebar-nav-link-logo"></i> 访客管理
                     </a>
                 </li>
                 <li class="sidebar-nav-link" data-id="ownkmjl">
@@ -244,11 +229,11 @@
                         <i class="am-icon-table sidebar-nav-link-logo"></i> 开门记录
                     </a>
                 </li>
-                <li class="sidebar-nav-link" data-id="ownsqjl">
+                <!-- <li class="sidebar-nav-link" data-id="ownsqjl">
                     <a>
-                        <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 授权记录
+                        <i class="am-icon-sticky-note sidebar-nav-link-logo"></i> 授权记录
                     </a>
-                </li>
+                </li> -->
                 <li class="sidebar-nav-link" data-id="ownfault">
                     <a >
                         <i class="am-icon-tv sidebar-nav-link-logo"></i> 错误反馈
@@ -265,6 +250,11 @@
                         <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
                     </a>
                     <ul class="sidebar-nav sidebar-nav-sub">
+                        <li class="sidebar-nav-link" data-id="mngownmsg">
+                            <a>
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 业主信息管理
+                            </a>
+                        </li>
                         <li class="sidebar-nav-link" data-id="mngregist">
                             <a>
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 注册申请审核
@@ -278,21 +268,21 @@
                         </li>
                     </ul>
                 </li>
-                <li class="sidebar-nav-link" data-id="mngnonregist">
+                <!-- <li class="sidebar-nav-link" data-id="mngnonregist">
                     <a>
-                        <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 非注册人员管理
+                        <i class="am-icon-users sidebar-nav-link-logo"></i> 非注册人员管理
                     </a>
-                </li>
+                </li> -->
                 <li class="sidebar-nav-link" data-id="mngfault">
                     <a>
                         <i class="am-icon-tv sidebar-nav-link-logo"></i> 处理反馈
                     </a>
                 </li>
-                <li class="sidebar-nav-link" data-id="mngcontrol">
+                <!-- <li class="sidebar-nav-link" data-id="mngcontrol">
                     <a>
                         <i class="am-icon-bell sidebar-nav-link-logo"></i> 控制门禁
                     </a>
-                </li>
+                </li> -->
                 <li class="sidebar-nav-link" data-id="pptcheck">
                     <a>
                         <i class="am-icon-columns sidebar-nav-link-logo"></i>入驻物业审核
@@ -300,7 +290,7 @@
                 </li>
                 <li class="sidebar-nav-link" data-id="ppthosmsg">
                     <a>
-                        <i class="am-icon-wpforms sidebar-nav-link-logo"></i>小区信息管理
+                        <i class="am-icon-hospital-o sidebar-nav-link-logo"></i>小区信息管理
                     </a>
                 </li>
                 <li class="sidebar-nav-link" data-id="pptusermsg">
@@ -325,17 +315,30 @@
         <div id="content"></div>
         
     </div>
-    <script src="http://cdn.bootcss.com/amazeui/2.7.2/js/amazeui.min.js"></script>
-    <script src="/js/amazeui.datatables.min.js"></script>
-    <script src="/js/dataTables.responsive.min.js"></script>
-    <script src="/js/app.js"></script>
-    <script type="text/javascript" src="/js/upphoto.js"></script>
-        <!-- 多图片上传插件 -->
-<!--     <link rel="stylesheet" href="/css/zyUpload.css" type="text/css">
-    <script src="/js/zyFile.js"></script>
-    <script src="/js/zyUpload.js"></script>
-    <script src="/js/jq22.js"></script>
- -->
+    <script src="http://cdn.bootcss.com/amazeui/2.7.2/js/amazeui.min.js" th:src="@{http://cdn.bootcss.com/amazeui/2.7.2/js/amazeui.min.js}"></script>
+    <script src="../static/js/amazeui.datatables.min.js" th:src="@{/js/amazeui.datatables.min.js}"></script>
+    <script src="../static/js/dataTables.responsive.min.js" th:src="@{/js/dataTables.responsive.min.js}"></script>
+    <script src="../static/js/app.js" th:src="@{/js/app.js}"></script>
+    <script src="../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" src="../static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
+    <script src="../static/js/jquery.datetimepicker.full.js" th:src="@{/js/jquery.datetimepicker.full.js}"></script>
+    <script type="text/javascript" src="../static/js/upphoto.js" th:src="@{/js/upphoto.js}"></script>
+    <!-- 分页表格插件 -->
+    <link rel="stylesheet" type="text/css" href="../static/css/demos.css" th:href="@{/css/demos.css}"/>
+<!--     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>
+ -->    <link rel="stylesheet" type="text/css" href="../static/css/jsgrid.css" th:href="@{/css/jsgrid.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/theme.css" th:href="@{/css/theme.css}"/>
+    <!-- <script src="../static/js/db.js"></script> -->
+    <script src="../static/js/jsgrid.core.js" th:src="@{/js/jsgrid.core.js}"></script>
+    <script src="../static/js/jsgrid.load-indicator.js" th:src="@{/js/jsgrid.load-indicator.js}"></script>
+    <script src="../static/js/jsgrid.load-strategies.js" th:src="@{/js/jsgrid.load-strategies.js}"></script>
+    <script src="../static/js/jsgrid.sort-strategies.js" th:src="@{/js/jsgrid.sort-strategies.js}"></script>
+    <script src="../static/js/jsgrid.field.js" th:src="@{/js/jsgrid.field.js}"></script>
+    <script src="../static/js/jsgrid.field.text.js" th:src="@{/js/jsgrid.field.text.js}"></script>
+    <script src="../static/js/jsgrid.field.number.js" th:src="@{/js/jsgrid.field.number.js}"></script>
+    <script src="../static/js/jsgrid.field.control.js" th:src="@{/js/jsgrid.field.control.js}"></script>
+    <script type="text/javascript" src="../static/js/table_oprt.js" th:src="@{/js/table_oprt.js}"></script>
+    <script type="text/javascript" src="../static/js/jsgrid.min.js" th:src="@{/js/jsgrid.min.js}"></script>
 </body>
 
 </html>

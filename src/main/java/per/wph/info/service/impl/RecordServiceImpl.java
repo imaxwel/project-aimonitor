@@ -23,4 +23,9 @@ public class RecordServiceImpl extends BaseServiceImpl implements RecordService 
         PageHelper.startPage(pageNum,pageSize);
         return recordOwnerVisitMapper.selectAllRecordOwnerViewByUsername(username);
     }
+
+    @Override
+    public List<RecordOwnerView> getAllOwnerRecordByUsername(String username) {
+        return recordOwnerVisitMapper.selectAllRecordOwnerViewByUsername(username);
+    }
 }

@@ -49,4 +49,9 @@ public class VisitorServiceImpl extends BaseServiceImpl implements VisitorServic
     public boolean visitorAvailable(Long vid) {
         return false;
     }
+
+    @Override
+    public List<VisitorInfo> getVisitorInfoListByAdminUsername(String username) {
+        return visitorInfoMapper.selectByUsername(username);
+    }
 }

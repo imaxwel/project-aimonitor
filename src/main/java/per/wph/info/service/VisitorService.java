@@ -18,4 +18,6 @@ public interface VisitorService extends BaseService{
      * @return
      */
     boolean visitorAvailable(Long vid);
+
+    List<VisitorInfo> getVisitorInfoListByAdminUsername(String username);
 }

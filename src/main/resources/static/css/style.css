@@ -30,7 +30,7 @@ img{max-width:100%;}
 /*end reset*/
 /*--header start here--*/
 body {
-  background: url(../image/banner.jpg)no-repeat;
+  background: url(../images/banner.jpg)no-repeat;
   background-size: cover;
   padding: 70px 0px 70px 0px;
   /*min-height: 900px;*/
@@ -70,7 +70,7 @@ span.anc-color {
 	display:inline-block;
 }
 .login-top ul li a {
-  background: url(../image/sprite.png)no-repeat;
+  background: url(../images/sprite.png)no-repeat;
   width: 35px;
   height: 34px;
   display: block;
@@ -159,7 +159,7 @@ span.anc-color {
   color:#9F8D78;
 }
 .login-top input[type="text"] {
-  /*background: url(../image/email.png)no-repeat 7px 17px;*/
+  /*background: url(../images/email.png)no-repeat 7px 17px;*/
   font-size: 15px;
   font-weight: 400;
   color: #000;
@@ -172,7 +172,7 @@ span.anc-color {
   -webkit-appearance: none;
 }
 .login-top input[type="password"]{
-  /*background: url(../image/lock.png)no-repeat 8px 14px;*/
+  /*background: url(../images/lock.png)no-repeat 8px 14px;*/
   font-size: 15px;
   font-weight: 400;
   color: #000;
@@ -235,7 +235,7 @@ span.anc-color {
 	-webkit-transition: opacity 0.1s;
 }
 .login-top .checkbox input + i:after {
-	content: url(../image/tick.png) no-repeat 7px 1px;
+	content: url(../images/tick.png) no-repeat 7px 1px;
 	top: 0px;
 	left: 0px;
 	width: 15px;

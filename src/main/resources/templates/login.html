@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 <!-- saved from url=(0064)http://www.17sucai.com/preview/364088/2015-06-24/html/index.html -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html xmlns:th="http://www.thymeleaf.org"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Pearl Login Form Flat Responsive Widget  Template</title>
 <!-- Custom Theme files -->
-<link href="/css/style.css" rel="stylesheet" type="text/css" media="all">
+<link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}">
 <!-- Custom Theme files -->
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
  
 <meta name="keywords" content="Login form web template, Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design">
-<script src="/js/jquery-1.10.2.js"></script>
+<script src="../static/js/jquery-1.10.2.js" th:src="@{/js/jquery-1.10.2.js}"></script>
 <script type="text/javascript">
     $(document).ready(function(){
         
-        $("#login").click(function(){
+        $("#login").click(function(){  
             var account=$("#account").val();
             var password=$("#password").val();
         	var param="/user/checkLogin";
-        	console.log(account);
-            console.log(password);
 		    $.ajax({
-		          type:"post",
+		          type:"get",
 		          url:param,//后台页面链接
 		          async:true,
 		          dataType:'json',
@@ -34,16 +32,13 @@
 		            if (data['flag']) {
                         alert("登录成功");
                         $(function () {
-                            window.location.href = "/success";
+                            window.location.href = "/base/owner";
                         })
                         
                     } else {
                         alert(data['msg']+','+data['result']);
                     }
-		          },
-		          error : function (data) {
-                      alert(data['msg']+','+data['result']);
-                  }
+		          }
 			});
         });
 
@@ -59,7 +54,7 @@
 	<div class="login">
 		 <div class="login-main">
 		 		<div class="login-top">
-		 			<img src="/image/head-img.png" alt="">
+		 			<img src="../static/images/head-img.png" alt="" th:href="@{/images/head-img.png}">
 		 			<h1>Login <span class="anc-color"> to your account</span> </h1>
 		 			<input type="text" placeholder="Phonenumber" required="" id="account">
 		 			<div id="errorAccount" style="color:red;display:inline;"></div>
@@ -68,15 +63,15 @@
 
 		 			<div class="login-bottom">
 		 			  <div class="login-check">
-			 			<label class="checkbox"><input type="checkbox" name="checkbox" checked="checked"><i> <img src="/image/cc-yes-crude.png" style="display: none;"></i> Remember Me</label>
+			 			<label class="checkbox"><input type="checkbox" name="checkbox" checked="checked"><i> <img src="../static/images/cc-yes-crude.png" style="display: none;"></i> Remember Me</label>
 			 		  </div>
 			 		  <div class="login-para" style="color: #999;">
 			 			<p>Forgot Password </p>
 			 		 </div>
 			 			<div class="clear"> </div>
 		 			</div>
-		 			<input type="button" value="Login" id="login">
-		 			<h4>Don't have an account? <a href="/regist"> Register now! </a></h4>
+		 			<input type="submit" value="Login" id="login">
+		 			<h4>Don't have an account? <a href="regist.html"> Register now! </a></h4>
 		 		</div>
 		 	</div>
   </div>

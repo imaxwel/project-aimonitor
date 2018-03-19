@@ -4,16 +4,17 @@ function previewImage(file)
           var MAXWIDTH  = 90; 
           var MAXHEIGHT = 90;
           var div = document.getElementById('preview');
+          var count=0+(Math.floor(Math.random() * 10000));
           if (file.files && file.files[0])
           {
 
-              div.innerHTML =div.innerHTML+'<img class=imghead onclick=$("#previewImg").click()>';
+              div.innerHTML =div.innerHTML+'<div"><img id="'+count+'" class=imghead onclick=$("#previewImg").click()><button style="background-color:red;color:white;" class="delete_photo">删除</button></div>';
               var x = document.getElementsByClassName("imghead").length;
               var img = document.getElementsByClassName('imghead')[x-1];
               img.onload = function(){
                 var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
-                img.width  =  400;
-                img.height =  300;
+                img.width  =  300;
+                img.height =  400;
                 img.style.marginLeft = 0+'px';
                 // img.style.marginTop = rect.top+'px';
               }

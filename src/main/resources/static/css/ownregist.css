@@ -40,7 +40,16 @@
 	text-align: center;
 	color: #666;
 }
+.message p{
+	margin: 15px 0;
+}
 .newname{
+	display: none;
+}
+.NewBeginTime{
+	display: none;
+}
+.NewEndTime{
 	display: none;
 }
 .foot{
@@ -125,7 +134,7 @@
 .select{
 	border: none;
 	background-color: white;
-	margin-top: -5px;
+	margin-top: -4px;
 }
 #new_visitor_content{
 	margin: 5% auto 0;

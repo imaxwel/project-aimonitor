@@ -1,5 +1,6 @@
 package per.wph.common.aop;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.shiro.SecurityUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import per.wph.common.controller.BaseController;
+import per.wph.common.shiro.util.LoginUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
@@ -22,7 +24,8 @@ import java.util.Enumeration;
 public class ControllerLoggerAspect {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Pointcut("execution(public * per.wph.common.controller..*.*(..)) " +
-            "|| execution(public * per.wph.info.controller..*.*(..))")
+            "|| execution(public * per.wph.info.controller..*.*(..))" +
+            "|| execution(public * per.wph.engine.controller..*.*(..))")
     public void webLog(){};
 
     @Before("webLog()")

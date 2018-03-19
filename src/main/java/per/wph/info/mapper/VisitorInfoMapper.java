@@ -18,4 +18,6 @@ public interface VisitorInfoMapper {
     List<VisitorInfo> selectAll();
 
     int updateByPrimaryKey(VisitorInfo record);
+
+    List<VisitorInfo> selectByUsername(String username);
 }
