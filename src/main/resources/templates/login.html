@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <!-- saved from url=(0064)http://www.17sucai.com/preview/364088/2015-06-24/html/index.html -->
-<html xmlns:th="http://www.thymeleaf.org"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Pearl Login Form Flat Responsive Widget  Template</title>
 <!-- Custom Theme files -->
-<link href="../static/css/style.css" rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}">
+<link href="/css/style.css" rel="stylesheet" type="text/css" media="all">
 <!-- Custom Theme files -->
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
  
 <meta name="keywords" content="Login form web template, Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design">
-<script src="../static/js/jquery-1.10.2.js" th:src="@{/js/jquery-1.10.2.js}"></script>
+<script src="/js/jquery-1.10.2.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
         
@@ -30,9 +30,8 @@
 		            console.log(data);
 		            
 		            if (data['flag']) {
-                        alert("登录成功");
                         $(function () {
-                            window.location.href = "/base/owner";
+                            window.location.href = "/success";
                         })
                         
                     } else {
@@ -54,8 +53,8 @@
 	<div class="login">
 		 <div class="login-main">
 		 		<div class="login-top">
-		 			<img src="../static/images/head-img.png" alt="" th:href="@{/images/head-img.png}">
-		 			<h1>Login <span class="anc-color"> to your account</span> </h1>
+		 			<img src="/images/head-img.png" alt="">
+		 			<h1>登录 <span class="anc-color"> 账号</span> </h1>
 		 			<input type="text" placeholder="Phonenumber" required="" id="account">
 		 			<div id="errorAccount" style="color:red;display:inline;"></div>
 		 			<input type="password" placeholder="Password" required="" id="password">
@@ -63,15 +62,15 @@
 
 		 			<div class="login-bottom">
 		 			  <div class="login-check">
-			 			<label class="checkbox"><input type="checkbox" name="checkbox" checked="checked"><i> <img src="../static/images/cc-yes-crude.png" style="display: none;"></i> Remember Me</label>
+			 			<label class="checkbox"><input type="checkbox" name="checkbox" checked="checked"><i> <img src="/images/cc-yes-crude.png" style="display: none;"></i> 请记住我</label>
 			 		  </div>
 			 		  <div class="login-para" style="color: #999;">
-			 			<p>Forgot Password </p>
+			 			<p>忘记密码</p>
 			 		 </div>
 			 			<div class="clear"> </div>
 		 			</div>
 		 			<input type="submit" value="Login" id="login">
-		 			<h4>Don't have an account? <a href="regist.html"> Register now! </a></h4>
+		 			<!--<h4>Don't have an account? <a href="regist.html"> 账号注册! </a></h4>-->
 		 		</div>
 		 	</div>
   </div>

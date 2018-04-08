@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import per.wph.common.ApiResult;
+import per.wph.common.annotation.DeBug;
 import per.wph.common.annotation.UnTest;
 import per.wph.common.controller.BaseController;
 import per.wph.common.generator.ApiResultGenerator;
@@ -13,8 +14,10 @@ import per.wph.info.model.UserInfo;
 import per.wph.info.model.VisitorInfo;
 import per.wph.info.model.view.OwnerInfoView;
 import per.wph.info.model.view.VisitorRegistView;
+import per.wph.info.model.view.VisitorRegistView2;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -30,7 +33,9 @@ import java.util.Optional;
 @RequestMapping("/visitor")
 public class VisitorController extends BaseController {
     @RequestMapping("/regist")
-    public ApiResult regist(HttpSession session, VisitorRegistView visitorRegistView,Integer[] ids){
+    @ResponseBody
+    public ApiResult regist(HttpSession session, VisitorRegistView visitorRegistView, Integer[] ids){
+
         String username = (String) SecurityUtils.getSubject().getPrincipal();
         UserInfo userInfo = userService.getUserInfoByUsername(username);
         Long ownId = userInfo.getUid();

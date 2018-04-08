@@ -1,8 +1,67 @@
-<div class="tpl-content-wrapper">
-    <div style="background-color: white;height: 800px;margin-top: 20px;padding: 20px;">
+<div class="row">
         <h1>注册申请审核
-            <span style="margin-left: 800px;"><button id="pass">已审核</button>｜<button id="fail">未通过</button></span></h1>
+            <span style="margin-left: 800px;"><button id="pass" onclick="fun_pass()">已审核</button>｜<button id="fail" onclick="fun_fail()">未通过</button></span></h1>
         <div id="jsGrid" style="padding-top: 20px;">
         </div>
-    </div>   
 </div>
+
+<!-- modal -->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="gridSystemModalLabel">申请详情</h4>
+      </div>
+      <div class="modal-body">
+      	<img src="/images/user07.png" class="am-circle img-responsive center-block" width="140" height="140">
+        <div style="margin: 10px 80px;">
+           <div class="dropdown" class="row">
+	           <p class="col-lg-4">姓名：</p>
+	           <p class="col-lg-8">小王</p>
+           </div>
+        </div>
+        <div style="margin: 10px 80px;">
+        	<div class="dropdown" class="row">
+           <p class="col-lg-4">身份证号码：</p>
+           <p class="col-lg-8">111111111111111111</p>
+       		</div>
+        </div>
+        <div style="margin: 10px 80px;">
+        	<div class="dropdown" class="row">
+           <p class="col-lg-4">电话：</p>
+           <p class="col-lg-8">22222222222</p>
+       		</div>
+        </div>
+        <div style="margin: 10px 80px;">
+        	<div class="dropdown" class="row">
+           <p class="col-lg-4">关系：</p>
+           <p class="col-lg-8">朋友</p>
+       		</div>
+        </div>
+        <div style="margin: 10px 80px;" class="row">
+        	<div class="dropdown">
+           <p class="col-lg-4">有效时间：</p>
+           <p class="col-lg-8">2017/01/12 19:00--2018/01/12 19:00</p>
+       		</div>
+        </div>
+        <!-- <div style="margin: 10px 150px;" class="row">
+          <div class="col-lg-4">服务时间</div>
+          <div class="col-lg-8">服务时间</div>
+        </div>
+        <div style="margin: 10px 150px;">
+          <span>服务时间</span>
+          <input type="text" name="" class="server_time">
+        </div>
+        <div style="margin: 10px 150px;">
+          <span>服务时间</span>
+          <input type="text" name="" class="server_time">
+        </div> -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">拒绝</button>
+        <button type="button" class="btn btn-primary confirmbtn" data-dismiss="modal">同意</button>
+      </div>
+    </div>
+  </div>
+</div> 

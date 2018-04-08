@@ -53,7 +53,7 @@
   function doUpload() { 
     var formData = new FormData($( "#uploadForm" )[0]);
     $.ajax({  
-      url: '/eng/checkFeature' ,
+      url: 'http://192.168.0.106:4001/eng/checkFeature' ,  
       type: 'POST',  
       data: formData,  
       async: false,  

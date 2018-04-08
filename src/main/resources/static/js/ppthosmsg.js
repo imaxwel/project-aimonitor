@@ -1,5 +1,5 @@
 $.ajax({
-    url: '/comm/getAll',
+    url: 'http://192.168.0.106:4001/comm/getAll',
     type: 'get',
     dataType: 'json',
     success: function (data) {

@@ -1,0 +1,207 @@
+<!-- page specific plugin styles -->
+<link rel="stylesheet" href="/assets/css/jquery-ui.min.css" />
+<!-- page specific plugin styles -element2-->
+<link rel="stylesheet" href="/assets/css/bootstrap-duallistbox.min.css" />
+<link rel="stylesheet" href="/assets/css/bootstrap-multiselect.min.css" />
+<link rel="stylesheet" href="/assets/css/select2.min.css" />
+
+<div class="col-sm-6">
+    <h3 class="header blue lighter smaller">
+        <i class="ace-icon fa fa-bars smaller-90"></i>
+        楼栋列表
+    </h3>
+
+    <ul id="menu" class="ui-menu ui-widget ui-widget-content" role="menu" tabindex="0" aria-activedescendant="ui-id-4">
+        <li class="ui-state-disabled ui-menu-item" id="ui-id-3" tabindex="-1" role="menuitem" aria-disabled="true">正大门</li>
+        <li class="ui-menu-item" id="ui-id-4" tabindex="-1" role="menuitem">Ada</li>
+
+
+        <li aria-haspopup="true" class="ui-menu-item" id="ui-id-12" tabindex="-1" role="menuitem"><span class="ui-menu-icon ui-icon ui-icon-carat-1-e"></span>
+            Salzburg
+            <ul class="ui-menu ui-widget ui-widget-content ui-front" role="menu" aria-expanded="false" style="display: none; top: -0.200024px; left: 149.2px;" aria-hidden="true">
+                <li aria-haspopup="true" class="ui-menu-item" id="ui-id-13" tabindex="-1" role="menuitem"><span class="ui-menu-icon ui-icon ui-icon-carat-1-e"></span>
+                    Delphi
+                    <ul class="ui-menu ui-widget ui-widget-content ui-front" role="menu" aria-hidden="true" aria-expanded="false" style="display: none;">
+                        <li class="ui-menu-item" id="ui-id-14" tabindex="-1" role="menuitem">Ada</li>
+                        <li class="ui-menu-item" id="ui-id-15" tabindex="-1" role="menuitem">Saarland</li>
+                        <li class="ui-menu-item" id="ui-id-16" tabindex="-1" role="menuitem">Salzburg</li>
+                    </ul>
+                </li>
+
+                <li aria-haspopup="true" class="ui-menu-item" id="ui-id-17" tabindex="-1" role="menuitem"><span class="ui-menu-icon ui-icon ui-icon-carat-1-e"></span>
+                    Delphi
+                    <ul class="ui-menu ui-widget ui-widget-content ui-front" role="menu" aria-hidden="true" aria-expanded="false" style="display: none;">
+                        <li class="ui-menu-item" id="ui-id-18" tabindex="-1" role="menuitem">Ada</li>
+                        <li class="ui-menu-item" id="ui-id-19" tabindex="-1" role="menuitem">Saarland</li>
+                        <li class="ui-menu-item" id="ui-id-20" tabindex="-1" role="menuitem">Salzburg</li>
+                    </ul>
+                </li>
+                <li class="ui-menu-item" id="ui-id-21" tabindex="-1" role="menuitem">Perch</li>
+            </ul>
+        </li>
+        <li class="ui-state-disabled ui-menu-item" id="ui-id-22" tabindex="-1" role="menuitem" aria-disabled="true">Amesville</li>
+    </ul>
+</div>
+<div class="col-sm-6">
+    <h3 class="header blue lighter smaller">
+        <i class="ace-icon fa fa-bars smaller-90"></i>
+        户主信息
+    </h3>
+    <div class="row">
+        <div class="col-xs-12 col-sm-3 center">
+            <span class="profile-picture">
+                <img class="editable img-responsive" alt="Alex's Avatar" id="avatar2" src="/assets/images/avatars/profile-pic.jpg">
+            </span>
+
+            <div class="space space-4"></div>
+
+            <a href="#" class="btn btn-sm btn-block btn-success">
+                <i class="ace-icon fa fa-plus-circle bigger-120"></i>
+                <span class="bigger-110">Add as a friend</span>
+            </a>
+
+            <a href="#" class="btn btn-sm btn-block btn-primary">
+                <i class="ace-icon fa fa-envelope-o bigger-110"></i>
+                <span class="bigger-110">Send a message</span>
+            </a>
+        </div><!-- /.col -->
+
+        <div class="col-xs-12 col-sm-9">
+            <h4 class="blue">
+                <span class="middle">陈泽</span>
+            </h4>
+
+            <div class="profile-user-info">
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> 注册用户名 </div>
+
+                    <div class="profile-info-value">
+                        <span>alexdoe</span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> 注册门牌号 </div>
+
+                    <div class="profile-info-value">
+                        <i class="fa fa-map-marker light-orange bigger-110"></i>
+                        <span>19栋</span>
+                        <span>1605</span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> 年龄 </div>
+
+                    <div class="profile-info-value">
+                        <span>38</span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> 注册时间 </div>
+
+                    <div class="profile-info-value">
+                        <span>2010/06/20</span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> 最后一次访问时间 </div>
+
+                    <div class="profile-info-value">
+                        <span>2018/07/20</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hr hr-8 dotted"></div>
+
+            <div class="row">
+                <div class="profile-info-name"> 标签 </div>
+
+                <div class="profile-info-value">
+                    <select multiple="" id="state" name="state" class="select2" data-placeholder="Click to Choose...">
+                        <option value="AL" selected="selected">独居</option>
+                        <option value="AK">有老人</option>
+                        <option value="AZ">行动不便</option>
+                        <option value="AR">有小孩</option>
+                        <option value="CA" selected="selected">经常外出</option>
+                        <option value="CO" selected="selected">早出晚归</option>
+                        <option value="CT">自定义标签1</option>
+                        <option value="DE">自定义标签2</option>
+                        <option value="FL">自定义标签3</option>
+                        <option value="GA">自定义标签4</option>
+                        <option value="HI">自定义标签5</option>
+                        <option value="ID">自定义标签6</option>
+                        <option value="IL">自定义标签7</option>
+                        <option value="IN">自定义标签8</option>
+                        <option value="IA">自定义标签9</option>
+                        <option value="KS">自定义标签10</option>
+                        <option value="KY">自定义标签11</option>
+                        <option value="LA">自定义标签12</option>
+                        <option value="ME">自定义标签13</option>
+                        <option value="MD">自定义标签14</option>
+                        <option value="MA">自定义标签15</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="profile-user-info">
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> Website </div>
+
+                    <div class="profile-info-value">
+                        <a href="#" target="_blank">www.alexdoe.com</a>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name">
+                        <i class="middle ace-icon fa fa-facebook-square bigger-150 blue"></i>
+                    </div>
+
+                    <div class="profile-info-value">
+                        <a href="#">Find me on Facebook</a>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name">
+                        <i class="middle ace-icon fa fa-twitter-square bigger-150 light-blue"></i>
+                    </div>
+
+                    <div class="profile-info-value">
+                        <a href="#">Follow me on Twitter</a>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.col -->
+    </div>
+</div>
+<!-- page specific plugin scripts -->
+<script src="/assets/js/jquery-ui.min.js"></script>
+<script src="/assets/js/jquery.ui.touch-punch.min.js"></script>
+<!-- page specific plugin scripts element2-->
+<script src="/assets/js/jquery.bootstrap-duallistbox.min.js"></script>
+<script src="/assets/js/jquery.raty.min.js"></script>
+<script src="/assets/js/bootstrap-multiselect.min.js"></script>
+<script src="/assets/js/select2.min.js"></script>
+<script src="/assets/js/jquery-typeahead.js"></script>
+<script>
+    //Menu
+    $( "#menu" ).menu();
+</script>
+
+<script type="text/javascript">
+    //////////////////
+    //select2
+    $('.select2').css('width','200px').select2({allowClear:true})
+    $('#select2-multiple-style .btn').on('click', function(e){
+        var target = $(this).find('input[type=radio]');
+        var which = parseInt(target.val());
+        if(which == 2) $('.select2').addClass('tag-input-style');
+        else $('.select2').removeClass('tag-input-style');
+    });
+</script>

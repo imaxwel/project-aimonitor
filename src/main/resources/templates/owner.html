@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -10,34 +10,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="icon" type="image/png" href="http://www.17sucai.com/preview/2/2016-12-20/admin/assets/i/favicon.png" th:href="@{http://www.17sucai.com/preview/2/2016-12-20/admin/assets/i/favicon.png}">
+    <link rel="icon" type="image/png" href="http://www.17sucai.com/preview/2/2016-12-20/admin//assets/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="/assets/i/app-icon72x72@2x.png">
     <meta name="apple-mobile-web-app-title" content="Amaze UI" />
-    <script src="http://cdn.bootcss.com/echarts/3.3.2/echarts.min.js" th:src="@{http://cdn.bootcss.com/echarts/3.3.2/echarts.min.js}"></script>
+    <script src="http://cdn.bootcss.com/echarts/3.3.2/echarts.min.js"></script>
+    <script src="/js/bootstrap-treeview.js"></script>
 
-    <link rel="stylesheet" href="../static/css/amazeui.min.css"  th:href="@{/css/amazeui.min.css}"/>
-    <link rel="stylesheet" href="../static/css/amazeui.datatables.min.css" th:href="@{/css/amazeui.datatables.min.css}" />
-    <link rel="stylesheet" type="text/css" href="../static/css/ownregist.css" th:href="@{/css/ownregist.css}">
-    <link rel="stylesheet" type="text/css" href="../static/css/xcConfirm.css" th:href="@{/css/xcConfirm.css}"/><!-- !!!!!!!添加样式 -->
-    <link rel="stylesheet" href="../static/css/app.css" th:href="@{/css/app.css}">
-<!--     <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="/css/amazeui.min.css" />
+    <link rel="stylesheet" href="/css/amazeui.datatables.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/ownregist.css">
+    <link rel="stylesheet" type="text/css" href="/css/xcConfirm.css"/><!-- !!!!!!!添加样式 -->
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/admin.css">
+<!--     <link rel="stylesheet" href="http://fontawesome.io//assets/font-awesome/css/font-awesome.css">
  -->    
-<link href="../static/css/font-awesome.min.css" rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
- <link rel="stylesheet" type="text/css" href="../static/css/jquery.datetimepicker.css" th:href="@{/css/jquery.datetimepicker.css}"/>
+<link href="/css/font-awesome.min.css" rel="stylesheet">
+ <link rel="stylesheet" type="text/css" href="/css/jquery.datetimepicker.css"/>
 
-    <script src="../static/js/jquery-1.10.2.js" th:src="@{/js/jquery-1.10.2.js}"></script>
-    <script type="text/javascript" src="../static/js/owner.js" th:src="@{/js/owner.js}"></script>
-    <link href="http://www.jq22.com/jquery/bootstrap-3.3.4.css" rel="stylesheet" th:href="@{http://www.jq22.com/jquery/bootstrap-3.3.4.css}">
+    <script src="/js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="/js/owner.js"></script>
+    <link href="http://www.jq22.com/jquery/bootstrap-3.3.4.css" rel="stylesheet">    
 
+    <!-- bootstrap模板-->
+    <!-- bootstrap & fontawesome -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+    <!-- page specific plugin styles -->
+    <link rel="stylesheet" href="/assets/css/colorbox.min.css" />
+
+    <!-- text fonts -->
+    <link rel="stylesheet" href="/assets/css/fonts.googleapis.com.css" />
+
+    <!-- ace styles -->
+    <link rel="stylesheet" href="/assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="/assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
+    <![endif]-->
+    <link rel="stylesheet" href="/assets/css/ace-skins.min.css" />
+    <link rel="stylesheet" href="/assets/css/ace-rtl.min.css" />
+    <script src="/assets/js/ace-extra.min.js"></script>
 </head>
 
 <body data-type="widgets">
-    <script src="../static/js/theme.js" th:src="@{/js/theme.js}"></script>
+    <script src="/js/theme.js"></script>
     <div class="am-g tpl-g">
         <!-- 头部 -->
         <header>
             <!-- logo -->
             <div class="am-fl tpl-header-logo">
-                <a href="javascript:;"><img src="../static/images/6.png" alt="" th:src="@{/images/6.png}"></a>
+                <a href="javascript:;"><img src="/images/6.png" alt=""></a>
             </div>
             <!-- 右侧内容 -->
             <div class="tpl-header-fluid">
@@ -46,13 +69,6 @@
                     <span>
 
                 </span>
-                </div>
-                <!-- 搜索 -->
-                <div class="am-fl tpl-header-search">
-                    <form class="tpl-header-search-form" action="javascript:;">
-                        <button class="tpl-header-search-btn am-icon-search"></button>
-                        <input class="tpl-header-search-box" type="text" placeholder="搜索内容...">
-                    </form>
                 </div>
                 <!-- 其它功能-->
                 <div class="am-fr tpl-header-navbar">
@@ -73,7 +89,7 @@
                                 <li class="tpl-dropdown-menu-messages">
                                     <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
                                         <div class="menu-messages-ico">
-                                            <img src="../static/images/user04.png" th:src="@{/images/user04.png}">
+                                            <img src="/images/user04.png" alt="">
                                         </div>
                                         <div class="menu-messages-time">
                                             3小时前
@@ -92,7 +108,7 @@
                                 <li class="tpl-dropdown-menu-messages">
                                     <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
                                         <div class="menu-messages-ico">
-                                            <img src="../static/images/user02.png" alt="" th:src="@{/images/user02.png}">
+                                            <img src="/images/user02.png" alt="">
                                         </div>
                                         <div class="menu-messages-time">
                                             5天前
@@ -194,56 +210,57 @@
         </div>
         <!-- 侧边导航栏 -->
         <div class="left-sidebar">
-            <!-- 用户信息 -->
-            <div class="tpl-sidebar-user-panel">
-                <div class="tpl-user-panel-slide-toggleable">
-                    <div class="tpl-user-panel-profile-picture" id="preview_avator">
-                        <img src="../static/images/user04.png" th:href="@{/images/user04.png}">
-                    </div>
-                    <span class="user-panel-logged-in-text">
-                        <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon username"></i>manager
-                    </span>
-                </div>
-            </div>
-
             <!-- 菜单 -->
             <ul class="sidebar-nav">
-                <li class="sidebar-nav-heading">Page</li>
-                <li class="sidebar-nav-link current" data-id="personal_msg">
-                    <a>
-                        <i class="am-icon-pencil sidebar-nav-link-logo"></i> 完善个人信息
+                <li class="sidebar-nav-heading">物业管理中心</li>
+                <li class="sidebar-nav-link" >
+                    <a class="sidebar-nav-sub-title">
+                        <i class="am-icon-tablet sidebar-nav-link-logo"></i> 我的工作台
+                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
                     </a>
+                    <ul class="sidebar-nav sidebar-nav-sub">
+                        <li class="sidebar-nav-link" data-id="lssq">
+                            <a>
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 临时授权
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-link" data-id="mjgzzt">
+                            <a>
+                                <i class="am-icon-angle-right sidebar-nav-link-logo"></i> 超时报警
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-link" data-id="dbsw">
+                            <a>
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 待办事务
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-                <li class="sidebar-nav-link current" data-id="owncenter">
-                    <a>
-                        <i class="am-icon-home sidebar-nav-link-logo"></i> 个人中心
+                <li class="sidebar-nav-link" >
+                    <a class="sidebar-nav-sub-title">
+                        <i class="am-icon-camera sidebar-nav-link-logo"></i> 智能监控
+                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
                     </a>
+                    <ul class="sidebar-nav sidebar-nav-sub">
+                        <li class="sidebar-nav-link" data-id="mjgzzt">
+                            <a>
+                                <i class="am-icon-angle-right sidebar-nav-link-logo"></i> 门禁工作状态监控
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-link" data-id="zzqk">
+                            <a>
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 业主在住情况
+                            </a>
+                        </li>
+
+                        <li class="sidebar-nav-link" data-id="jcqk">
+                            <a>
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 工作人员进出情况
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-                <li class="sidebar-nav-link" data-id="ownregist">
-                    <a>
-                        <i class="am-icon-clone sidebar-nav-link-logo"></i> 访客管理
-                    </a>
-                </li>
-                <li class="sidebar-nav-link" data-id="ownkmjl">
-                    <a>
-                        <i class="am-icon-table sidebar-nav-link-logo"></i> 开门记录
-                    </a>
-                </li>
-                <!-- <li class="sidebar-nav-link" data-id="ownsqjl">
-                    <a>
-                        <i class="am-icon-sticky-note sidebar-nav-link-logo"></i> 授权记录
-                    </a>
-                </li> -->
-                <li class="sidebar-nav-link" data-id="ownfault">
-                    <a >
-                        <i class="am-icon-tv sidebar-nav-link-logo"></i> 错误反馈
-                    </a>
-                </li>
-                 <li class="sidebar-nav-link" data-id="mngcenter">
-                    <a>
-                        <i class="am-icon-home sidebar-nav-link-logo"></i> 物业中心
-                    </a>
-                </li>
+                
                 <li class="sidebar-nav-link" >
                     <a class="sidebar-nav-sub-title">
                         <i class="am-icon-table sidebar-nav-link-logo"></i> 注册人员管理
@@ -260,54 +277,268 @@
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 注册申请审核
                             </a>
                         </li>
-
                         <li class="sidebar-nav-link" data-id="mngrequest">
                             <a>
                                 <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 进出情况查询
                             </a>
                         </li>
+                        <!--<li class="sidebar-nav-link" data-id="jtcy">-->
+                            <!--<a>-->
+                                <!--<span class="am-icon-angle-right sidebar-nav-link-logo"></span> 家庭成员管理-->
+                            <!--</a>-->
+                        <!--</li>-->
+                        <!--<li class="sidebar-nav-link" data-id="yzfk">-->
+                            <!--<a>-->
+                                <!--<span class="am-icon-angle-right sidebar-nav-link-logo"></span> 业主访客管理-->
+                            <!--</a>-->
+                        <!--</li>-->
                     </ul>
                 </li>
-                <!-- <li class="sidebar-nav-link" data-id="mngnonregist">
-                    <a>
-                        <i class="am-icon-users sidebar-nav-link-logo"></i> 非注册人员管理
+                <li class="sidebar-nav-link" >
+                    <a class="sidebar-nav-sub-title">
+                        <i class="am-icon-street-view sidebar-nav-link-logo"></i> 业主管理
+                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
                     </a>
+                    <ul class="sidebar-nav sidebar-nav-sub">
+                        <!-- <li class="sidebar-nav-link" data-id="fjyzda">
+                            <a>
+                                <i class="am-icon-file-text-o sidebar-nav-link-logo"></i> 房间业主档案
+                            </a>
+                        </li> -->
+                        <li class="sidebar-nav-link" data-id="yzqrgl">
+                            <a>
+                                <i class="am-icon-sign-in sidebar-nav-link-logo"></i> 业主迁入管理
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-link" data-id="yzqcgl">
+                            <a>
+                                <i class="am-icon-sign-out sidebar-nav-link-logo"></i> 业主迁出管理
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-link" data-id="yzsjgl">
+                            <a>
+                                <i class="am-icon-maxcdn sidebar-nav-link-logo"></i> 业主事件管理
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-link" data-id="yzrzls">
+                            <a>
+                                <i class="am-icon-history sidebar-nav-link-logo"></i> 业主入住历史
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-nav-link" >
+                    <a class="sidebar-nav-sub-title">
+                        <i class="am-icon-user sidebar-nav-link-logo"></i> 工作人员管理
+                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                    </a>
+                    <ul class="sidebar-nav sidebar-nav-sub">
+                        <li class="sidebar-nav-link" data-id="lstxsq">
+                            <a>
+                                <i class="am-icon-angle-right sidebar-nav-link-logo"></i> 临时工作通行申请
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-link" data-id="gzrygl">
+                            <a>
+                                <i class="am-icon-angle-right sidebar-nav-link-logo"></i> 工作人员管理
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-nav-link" >
+                    <a class="sidebar-nav-sub-title">
+                        <i class="am-icon-tablet sidebar-nav-link-logo"></i> 物业管理
+                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                    </a>
+                    <ul class="sidebar-nav sidebar-nav-sub">
+                        <li class="sidebar-nav-link" data-id="wyryxx">
+                            <a>
+                                <i class="am-icon-angle-right sidebar-nav-link-logo"></i> 物业管理人员信息
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-link" data-id="wykqjl">
+                            <a>
+                                <i class="am-icon-angle-right sidebar-nav-link-logo"></i> 物业考勤记录查看
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-nav-link" >
+                    <a class="sidebar-nav-sub-title">
+                        <i class="am-icon-server sidebar-nav-link-logo"></i> 业主服务
+                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                    </a>
+                    <ul class="sidebar-nav sidebar-nav-sub">
+                        <li class="sidebar-nav-link" data-id="mngfault">
+                            <a>
+                                <i class="am-icon-angle-right sidebar-nav-link-logo"></i> 业主信息反馈
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-link" data-id="yzkdgl">
+                            <a>
+                                <i class="am-icon-angle-right sidebar-nav-link-logo"></i> 业主快递管理
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-link" data-id="jzfw">
+                            <a>
+                                <i class="am-icon-angle-right sidebar-nav-link-logo"></i> 业主家政服务
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!--<li class="sidebar-nav-link" >-->
+                    <!--<a class="sidebar-nav-sub-title">-->
+                        <!--<i class="am-icon-newspaper-o sidebar-nav-link-logo"></i> 社区管理-->
+                        <!--<span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>-->
+                    <!--</a>-->
+                    <!--<ul class="sidebar-nav sidebar-nav-sub">-->
+                        <!--<li class="sidebar-nav-link" data-id="xqxw">-->
+                            <!--<a>-->
+                                <!--<i class="am-icon-angle-right sidebar-nav-link-logo"></i> 小区新闻-->
+                            <!--</a>-->
+                        <!--</li>-->
+                        <!--<li class="sidebar-nav-link" data-id="tzgg">-->
+                            <!--<a>-->
+                                <!--<i class="am-icon-angle-right sidebar-nav-link-logo"></i> 通知公告-->
+                            <!--</a>-->
+                        <!--</li>-->
+                        <!--<li class="sidebar-nav-link" data-id="xqtp">-->
+                            <!--<a>-->
+                                <!--<i class="am-icon-angle-right sidebar-nav-link-logo"></i> 小区投票-->
+                            <!--</a>-->
+                        <!--</li>-->
+                        <!--<li class="sidebar-nav-link" data-id="sqgy">-->
+                            <!--<a>-->
+                                <!--<i class="am-icon-angle-right sidebar-nav-link-logo"></i> 社区公益-->
+                            <!--</a>-->
+                        <!--</li>-->
+                        <!--<li class="sidebar-nav-link" data-id="xxfs">-->
+                            <!--<a>-->
+                                <!--<i class="am-icon-angle-right sidebar-nav-link-logo"></i> 消息发送-->
+                            <!--</a>-->
+                        <!--</li>-->
+                        <!--<li class="sidebar-nav-link" data-id="sfgl">-->
+                            <!--<a>-->
+                                <!--<i class="am-icon-angle-right sidebar-nav-link-logo"></i> 收费管理-->
+                            <!--</a>-->
+                        <!--</li>-->
+                        <!--<li class="sidebar-nav-link" data-id="czrz">-->
+                            <!--<a>-->
+                                <!--<i class="am-icon-angle-right sidebar-nav-link-logo"></i> 操作日志-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+                <li class="sidebar-nav-link" >
+                    <a class="sidebar-nav-sub-title">
+                        <i class="am-icon-cogs sidebar-nav-link-logo"></i> 门禁管理
+                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                    </a>
+                    <ul class="sidebar-nav sidebar-nav-sub">
+                        <li class="sidebar-nav-link" data-id="mjxxgl">
+                            <a>
+                                <i class="am-icon-angle-right sidebar-nav-link-logo"></i> 门禁信息管理
+                            </a>
+                        </li>
+                        <!--<li class="sidebar-nav-link" data-id="sssbxj">-->
+                            <!--<a>-->
+                                <!--<i class="am-icon-angle-right sidebar-nav-link-logo"></i> 设施设备巡检-->
+                            <!--</a>-->
+                        <!--</li>-->
+                        <!--<li class="sidebar-nav-link" data-id="aqjbsz">-->
+                            <!--<a>-->
+                                <!--<i class="am-icon-angle-right sidebar-nav-link-logo"></i> 安全级别设置-->
+                            <!--</a>-->
+                        <!--</li>-->
+                        <li class="sidebar-nav-link" data-id="mjkgkz">
+                            <a>
+                                <i class="am-icon-angle-right sidebar-nav-link-logo"></i> 门禁开关控制
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-nav-link" >
+                    <a class="sidebar-nav-sub-title">
+                        <i class="am-icon-commenting sidebar-nav-link-logo"></i> 记录查询
+                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                    </a>
+                    <ul class="sidebar-nav sidebar-nav-sub">
+                        <li class="sidebar-nav-link" data-id="jcjl">
+                            <a>
+                                <i class="am-icon-angle-right sidebar-nav-link-logo"></i> 进出记录
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-link" data-id="fkjl">
+                            <a>
+                                <i class="am-icon-angle-right sidebar-nav-link-logo"></i> 访客记录
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-link" data-id="gzryjl">
+                            <a>
+                                <i class="am-icon-angle-right sidebar-nav-link-logo"></i> 工作人员进出记录
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-link" data-id="bjjl">
+                            <a>
+                                <i class="am-icon-angle-right sidebar-nav-link-logo"></i> 报警记录
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-link" data-id="wysqjl">
+                            <a>
+                                <i class="am-icon-angle-right sidebar-nav-link-logo"></i> 物业授权记录
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-link" data-id="fksqjl">
+                            <a>
+                                <i class="am-icon-angle-right sidebar-nav-link-logo"></i> 访客授权记录
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!--<li class="sidebar-nav-link" data-id="pptcheck">-->
+                    <!--<a>-->
+                        <!--<i class="am-icon-columns sidebar-nav-link-logo"></i>入驻物业审核-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li class="sidebar-nav-link" data-id="ppthosmsg">-->
+                    <!--<a>-->
+                        <!--<i class="am-icon-hospital-o sidebar-nav-link-logo"></i>小区信息管理-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li class="sidebar-nav-link" data-id="pptusermsg">-->
+                    <!--<a>-->
+                        <!--<i class="am-icon-user sidebar-nav-link-logo"></i> 用户信息管理-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li class="sidebar-nav-link" data-id="pptfault">-->
+                    <!--<a>-->
+                        <!--<i class="am-icon-headphones sidebar-nav-link-logo"></i> 反馈信息管理-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!-- <li class="sidebar-nav-link" data-id="wyglysh">
+                    <a>
+                        <i class="am-icon-check-circle-o sidebar-nav-link-logo"></i> 物业管理员审核
+                    </a>
+                </li>
+                <li class="sidebar-nav-link" >
+                    <a class="sidebar-nav-sub-title">
+                        <i class="am-icon-table sidebar-nav-link-logo"></i> 办公管理
+                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                    </a>
+                    <ul class="sidebar-nav sidebar-nav-sub">
+                        <li class="sidebar-nav-link" data-id="htdagl">
+                            <a>
+                                <i class="am-icon-clone sidebar-nav-link-logo"></i> 合同档案管理
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-link" data-id="wdzl">
+                            <a>
+                                <i class="am-icon-server sidebar-nav-link-logo"></i> 文档资料
+                            </a>
+                        </li>
+                    </ul>
                 </li> -->
-                <li class="sidebar-nav-link" data-id="mngfault">
-                    <a>
-                        <i class="am-icon-tv sidebar-nav-link-logo"></i> 处理反馈
-                    </a>
-                </li>
-                <!-- <li class="sidebar-nav-link" data-id="mngcontrol">
-                    <a>
-                        <i class="am-icon-bell sidebar-nav-link-logo"></i> 控制门禁
-                    </a>
-                </li> -->
-                <li class="sidebar-nav-link" data-id="pptcheck">
-                    <a>
-                        <i class="am-icon-columns sidebar-nav-link-logo"></i>入驻物业审核
-                    </a>
-                </li>
-                <li class="sidebar-nav-link" data-id="ppthosmsg">
-                    <a>
-                        <i class="am-icon-hospital-o sidebar-nav-link-logo"></i>小区信息管理
-                    </a>
-                </li>
-                <li class="sidebar-nav-link" data-id="pptusermsg">
-                    <a>
-                        <i class="am-icon-user sidebar-nav-link-logo"></i> 用户信息管理
-                    </a>
-                </li>
-                <li class="sidebar-nav-link" data-id="pptfault">
-                    <a>
-                        <i class="am-icon-headphones sidebar-nav-link-logo"></i> 反馈信息管理
-                    </a>
-                </li>
-                <li class="sidebar-nav-link" data-id="pptsystem">
-                    <a>
-                        <i class="am-icon-gears sidebar-nav-link-logo"></i> 系统管理
-                    </a>
-                </li>
             </ul>
         </div>
 
@@ -315,30 +546,29 @@
         <div id="content"></div>
         
     </div>
-    <script src="http://cdn.bootcss.com/amazeui/2.7.2/js/amazeui.min.js" th:src="@{http://cdn.bootcss.com/amazeui/2.7.2/js/amazeui.min.js}"></script>
-    <script src="../static/js/amazeui.datatables.min.js" th:src="@{/js/amazeui.datatables.min.js}"></script>
-    <script src="../static/js/dataTables.responsive.min.js" th:src="@{/js/dataTables.responsive.min.js}"></script>
-    <script src="../static/js/app.js" th:src="@{/js/app.js}"></script>
-    <script src="../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
-    <script type="text/javascript" src="../static/js/jquery.js" th:src="@{/js/jquery.js}"></script>
-    <script src="../static/js/jquery.datetimepicker.full.js" th:src="@{/js/jquery.datetimepicker.full.js}"></script>
-    <script type="text/javascript" src="../static/js/upphoto.js" th:src="@{/js/upphoto.js}"></script>
+    <script src="http://cdn.bootcss.com/amazeui/2.7.2/js/amazeui.min.js"></script>
+    <script src="/js/amazeui.datatables.min.js"></script>
+    <script src="/js/dataTables.responsive.min.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script src="/js/jquery.datetimepicker.full.js"></script>
+    <script type="text/javascript" src="/js/upphoto.js"></script>
     <!-- 分页表格插件 -->
-    <link rel="stylesheet" type="text/css" href="../static/css/demos.css" th:href="@{/css/demos.css}"/>
+    <link rel="stylesheet" type="text/css" href="/css/demos.css" />
 <!--     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>
- -->    <link rel="stylesheet" type="text/css" href="../static/css/jsgrid.css" th:href="@{/css/jsgrid.css}"/>
-    <link rel="stylesheet" type="text/css" href="../static/css/theme.css" th:href="@{/css/theme.css}"/>
-    <!-- <script src="../static/js/db.js"></script> -->
-    <script src="../static/js/jsgrid.core.js" th:src="@{/js/jsgrid.core.js}"></script>
-    <script src="../static/js/jsgrid.load-indicator.js" th:src="@{/js/jsgrid.load-indicator.js}"></script>
-    <script src="../static/js/jsgrid.load-strategies.js" th:src="@{/js/jsgrid.load-strategies.js}"></script>
-    <script src="../static/js/jsgrid.sort-strategies.js" th:src="@{/js/jsgrid.sort-strategies.js}"></script>
-    <script src="../static/js/jsgrid.field.js" th:src="@{/js/jsgrid.field.js}"></script>
-    <script src="../static/js/jsgrid.field.text.js" th:src="@{/js/jsgrid.field.text.js}"></script>
-    <script src="../static/js/jsgrid.field.number.js" th:src="@{/js/jsgrid.field.number.js}"></script>
-    <script src="../static/js/jsgrid.field.control.js" th:src="@{/js/jsgrid.field.control.js}"></script>
-    <script type="text/javascript" src="../static/js/table_oprt.js" th:src="@{/js/table_oprt.js}"></script>
-    <script type="text/javascript" src="../static/js/jsgrid.min.js" th:src="@{/js/jsgrid.min.js}"></script>
+ -->    <link rel="stylesheet" type="text/css" href="/css/jsgrid.css" />
+    <link rel="stylesheet" type="text/css" href="/css/theme.css" />
+    <!-- <script src="/js/db.js"></script> -->
+    <script src="/js/jsgrid.core.js"></script>
+    <script src="/js/jsgrid.load-indicator.js"></script>
+    <script src="/js/jsgrid.load-strategies.js"></script>
+    <script src="/js/jsgrid.sort-strategies.js"></script>
+    <script src="/js/jsgrid.field.js"></script>
+    <script src="/js/jsgrid.field.text.js"></script>
+    <script src="/js/jsgrid.field.number.js"></script>
+    <script src="/js/jsgrid.field.control.js"></script>
+    <script type="text/javascript" src="/js/jsgrid.min.js"></script>
 </body>
 
 </html>

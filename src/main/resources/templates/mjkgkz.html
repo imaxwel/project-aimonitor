@@ -1,0 +1,49 @@
+<div>
+    <div style="background-color: white;height: 800px;margin-top: 20px;padding: 20px;">
+        <h1>门禁开关控制</h1>
+        <div class="container">
+        	<div class="row">
+		        <div class="col-sm-4">
+		          <h2>门禁开关</h2>
+		          <div id="treeview1" class=""></div>
+		        </div>
+		        <div class="col-sm-4">
+		          <h2>安全状态</h2>
+		          <div  style="margin-top: 60px;">
+			          <h3 id="status" style="color: red;">关闭状态</h3>
+			          <br>
+			          <p><strong>今日人流量：</strong>128人</p>
+			          <p><strong>当前人流状况：</strong>拥挤</p>
+			          <p><strong>进出情况：</strong>正常</p>
+			          <br>
+			          <p><strong>上次检修时间：</strong>2017-12-12</p>
+			          <p><strong>当前网络状态：</strong>良好</p>
+			          <hr>
+			          <h1>今日门禁安全等级设置</h1>
+			          <p>00:00-11:00:&#12288;&#12288;<strong>中等</strong></p>
+			          <p>11:00-13:00:&#12288;&#12288;<strong class="xiugai">较弱</strong></p>
+			          <p>13:00-19:00:&#12288;&#12288;<strong>中等</strong></p>
+			          <p>19:00-24:00:&#12288;&#12288;<strong>强</strong></p>
+		          </div>
+		        </div>
+		        <div class="col-sm-4">
+		          <h2>操作</h2>
+		          <div style="margin-top: 20px;">
+		          	<p><input type="text" name="" placeholder="设置开始时间" class="timeset1"></p>
+		          	<p><input type="text" name="" placeholder="设置结束时间" class="timeset2"></p>
+		          	<div style="width: 200px;height: 40px;border-radius: 5px;border: 1px solid #333;margin: 20px 0 30px 0;">
+			          	<select class="selectpicker" style="width:100%;height:40px;border:none;background-color: #fff;border-color: #ccc;color: #333;">
+			          		<option>弱</option>
+			          		<option>较弱</option>
+			          		<option>中等</option>
+			          		<option>强</option>
+			          		<option>最强</option>
+			          	</select>
+		            </div>
+			          <button class="btn btn-primary opendoor">确定</button>
+		          </div>
+		        </div>
+		      </div>
+        </div>
+    </div>
+</div>

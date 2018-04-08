@@ -24,13 +24,20 @@ public class AppTests {
 	}
 
 	public static void main(String[] args) {
-		SubClass subClass = new SubClass();
-		subClass.test();
+		String  str1 = "abcd";
+		String  str2 = "abcd";
+		String  str3 = "ab" + "cd";
+		String  str4 = "ab";
+		String str5 = str4 + "cd";
+		str4  += "cd";
 
-		AppTests appTests = new AppTests();
-		appTests.test();
-		AppTests appTests1 = new SubClass();
-		appTests1.test();
+		System.out.println(str1  == str2);
+		System.out.println(str1  == str3);
+		System.out.println(str1  == str4);
+		System.out.println(str1 == str5);
+
+		str2  += "e";
+		System.out.println(str1  == str2);
 	}
 
 	@Test

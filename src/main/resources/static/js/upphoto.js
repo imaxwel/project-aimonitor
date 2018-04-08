@@ -13,8 +13,8 @@ function previewImage(file)
               var img = document.getElementsByClassName('imghead')[x-1];
               img.onload = function(){
                 var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
-                img.width  =  300;
-                img.height =  400;
+                img.width  =  60;
+                img.height =  80;
                 img.style.marginLeft = 0+'px';
                 // img.style.marginTop = rect.top+'px';
               }

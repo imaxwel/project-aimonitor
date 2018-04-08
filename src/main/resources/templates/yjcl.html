@@ -1,0 +1,364 @@
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel"><font color="red">紧急事件！</font></h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label  class="col-sm-2 control-label">事件类别</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control"  placeholder="text" disabled value="独居老人出入异常">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-sm-2 control-label">事件发生时间</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control"  placeholder="text" disabled value="2018:04:08">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-sm-2 control-label">事件发生地点</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control"  placeholder="text" disabled value="16栋">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-sm-2 control-label">事件发生人员</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control"  placeholder="text" disabled value="15603652365">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-sm-2 control-label">事件详情</label>
+                        <div class="col-sm-10">
+                            <textarea rows="5" type="text" class="form-control"  placeholder="text" disabled>独居老人两天没有捕获通行记录，请发送确认消息，或立即安排人员上门查看</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-sm-2">选择在值人员处理</label>
+                        <select class="col-sm-10">
+                            <option>陈大</option>
+                            <option>小杰</option>
+                            <option>老王</option>
+                            <option>小刘</option>
+                            <option>小虎</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-sm-2">备注</label>
+                        <div class="col-sm-10">
+                            <textarea rows="3" type="password" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox col-sm-10">
+                            <label>
+                                <input type="checkbox" value="">
+                                立即处理
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">提交</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<div>
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">预警处理</strong> / <small>manage</small></div>
+        </div>
+        <div class="am-tabs am-margin" data-am-tabs="">
+            <ul class="am-tabs-nav am-nav am-nav-tabs">
+                <li class="am-active"><a href="#tab1">等待处理事件</a></li>
+                <li><a href="#tab2">历史事件处理</a></li>
+            </ul>
+
+            <div class="am-tabs-bd">
+                <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 widget-container-col" id="widget-container-col-1">
+                            <div class="widget-box" id="widget-box-1">
+                                <div class="widget-header">
+                                    <h5 class="widget-title">预警事件</h5>
+                                </div>
+
+                                <div class="widget-body">
+                                    <div class="widget-main">
+                                        <p class="alert alert-danger">
+                                            <strong>紧急！需要立即处理:</strong>
+                                            <br>
+                                            <strong>时间:</strong> 2018:04:08 15:17
+                                            <br>
+                                            <strong>地点:</strong> 16栋 门牌号:1560
+                                            <br>
+                                            <strong>事件:</strong> 独居老人两天未捕获通行记录
+                                            <a href="#" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">查看详情</a>
+                                        </p>
+                                        <p class="alert alert-warning">
+                                            <strong>需要处理:</strong>
+                                            <br>
+                                            <strong>时间:</strong> 2018:04:08 15:17
+                                            <br>
+                                            <strong>地点:</strong> 东大门
+                                            <br>
+                                            <strong>事件:</strong> 非注册人员长时间逗留
+                                            <a href="#" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">查看详情</a>
+                                        </p>
+                                        <p class="alert alert-success">
+                                            <strong>需要处理:</strong>
+                                            <br>
+                                            <strong>时间:</strong> 2018:04:08 15:17
+                                            <br>
+                                            <strong>地点:</strong> 东大门
+                                            <br>
+                                            <strong>事件:</strong> 临时授权人员超时未出
+                                            <a href="#" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">查看详情</a>
+                                        </p>
+                                        <p class="alert alert-success">
+                                            <strong>需要处理:</strong>
+                                            <br>
+                                            <strong>时间:</strong> 2018:04:08 15:17
+                                            <br>
+                                            <strong>地点:</strong> 东大门
+                                            <br>
+                                            <strong>事件:</strong> 临时授权人员超时未出
+                                            <a href="#" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">查看详情</a>
+                                        </p>
+                                        <p class="alert alert-success">
+                                            <strong>需要处理:</strong>
+                                            <br>
+                                            <strong>时间:</strong> 2018:04:08 15:17
+                                            <br>
+                                            <strong>地点:</strong> 东大门
+                                            <br>
+                                            <strong>事件:</strong> 临时授权人员超时未出
+                                            <a href="#" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">查看详情</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6 widget-container-col" id="widget-container-col-2">
+                            <div class="widget-box widget-color-blue" id="widget-box-2">
+                                <div class="widget-header">
+                                    <h5 class="widget-title bigger lighter">
+                                        <i class="ace-icon fa fa-table"></i>
+                                        当前在值工作人员
+                                    </h5>
+
+                                </div>
+
+                                <div class="widget-body">
+                                    <div class="widget-main no-padding">
+                                        <table class="table table-striped table-bordered table-hover">
+                                            <thead class="thin-border-bottom">
+                                            <tr>
+                                                <th>
+                                                    <i class="ace-icon fa fa-user"></i>
+                                                    人员
+                                                </th>
+
+                                                <th>
+                                                    类别
+                                                </th>
+                                                <th>
+                                                    ID
+                                                </th>
+                                                <th class="hidden-480">在岗状态</th>
+                                            </tr>
+                                            </thead>
+
+                                            <tbody>
+                                            <tr>
+                                                <td class="">陈大</td>
+                                                <td>
+                                                    系统管理员
+                                                </td>
+                                                <td>
+                                                    <a href="#">1560566586</a>
+                                                </td>
+
+                                                <td class="hidden-480">
+                                                    <span class="label label-warning">挂起</span>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="">小杰</td>
+
+                                                <td>
+                                                    子系统管理员
+                                                </td>
+
+                                                <td>
+                                                    <a href="#">1560776586</a>
+                                                </td>
+
+                                                <td class="hidden-480">
+                                                    <span class="label label-success arrowed-in arrowed-in-right">在岗</span>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="">老王</td>
+
+                                                <td>
+                                                    物业
+                                                </td>
+
+                                                <td>
+                                                    <a href="#">1560554586</a>
+                                                </td>
+
+                                                <td class="hidden-480">
+                                                    <span class="label label-success arrowed-in arrowed-in-right">在岗</span>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="">小刘</td>
+
+                                                <td>
+                                                    保安
+                                                </td>
+
+                                                <td>
+                                                    <a href="#">1563466586</a>
+                                                </td>
+
+                                                <td class="hidden-480">
+                                                    <span class="label label-success arrowed-in arrowed-in-right">在岗</span>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="">小虎</td>
+
+
+                                                <td>
+                                                    保安
+                                                </td>
+
+                                                <td>
+                                                    <a href="#">1560566586</a>
+                                                </td>
+
+                                                <td class="hidden-480">
+                                                    <span class="label label-success arrowed-in arrowed-in-right">在岗</span>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.span -->
+                    </div><!-- /.row -->
+
+                </div>
+
+                <div class="am-tab-panel am-fade" id="tab2">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 widget-container-col" id="widget-container-col-3">
+                            <div class="widget-box" id="widget-box-3">
+                                <div class="widget-header">
+                                    <h5 class="widget-title">预警事件</h5>
+
+                                </div>
+
+                                <div class="widget-body">
+                                    <div class="widget-main">
+                                        <p class="alert alert-danger">
+                                            <strong>紧急！需要立即处理:</strong>
+                                            <br>
+                                            <strong>时间:</strong> 2018:04:08 15:17
+                                            <br>
+                                            <strong>地点:</strong> 16栋 门牌号:1560
+                                            <br>
+                                            <strong>事件:</strong> 独居老人两天未捕获通行记录
+                                            <a href="#" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">查看详情</a>
+                                        </p>
+                                        <p class="alert alert-warning">
+                                            <strong>需要处理:</strong>
+                                            <br>
+                                            <strong>时间:</strong> 2018:04:08 15:17
+                                            <br>
+                                            <strong>地点:</strong> 东大门
+                                            <br>
+                                            <strong>事件:</strong> 非注册人员长时间逗留
+                                            <a href="#" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">查看详情</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div><!-- /.row -->
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    $(".modal-footer").children("button:eq(1)").click(function () {
+        $.gritter.add({
+            title: '处理成功',
+            text: '请等待安排人员处理',
+            class_name: 'gritter-info gritter-center' + (!$('#gritter-light').get(0).checked ? ' gritter-light' : '')
+        });
+        $(".widget-main:first").children("p").eq(1).remove();
+    });
+    setTimeout("startRequest()",3000);
+    function startRequest()
+    {
+        $.gritter.add({
+            title: '紧急预警!',
+            text: '独居老人两天未捕获通行记录!请立即安排处理!',
+            class_name: 'gritter-error' + (!$('#gritter-light').get(0).checked ? ' gritter-light' : '')
+        });
+
+        $(".widget-main:first").prepend("                                        <p class=\"alert alert-danger\">\n" +
+            "                                            <strong>紧急！需要立即处理:</strong>\n" +
+            "                                            <br>\n" +
+            "                                            <strong>时间:</strong> 2018:04:08 15:17\n" +
+            "                                            <br>\n" +
+            "                                            <strong>地点:</strong> 16栋 门牌号:1560\n" +
+            "                                            <br>\n" +
+            "                                            <strong>事件:</strong> 独居老人两天未捕获通行记录\n" +
+            "                                            <a href=\"#\" class=\"btn btn-info btn-sm pull-right\" data-toggle=\"modal\" data-target=\"#myModal\">查看详情</a>\n" +
+            "                                        </p>");
+        setTimeout(function () {
+            $.gritter.add({
+                title: '预警!',
+                text: '业主一星期未捕获通行记录，请确认或安排查看水电',
+                class_name: 'gritter-warning' + (!$('#gritter-light').get(0).checked ? ' gritter-light' : '')
+            });
+
+            $(".widget-main:first").prepend("                                        <p class=\"alert alert-warning\">\n" +
+                "                                            <strong>需要处理:</strong>\n" +
+                "                                            <br>\n" +
+                "                                            <strong>时间:</strong> 2018:04:08 15:17\n" +
+                "                                            <br>\n" +
+                "                                            <strong>地点:</strong> 16栋 门牌号:1570\n" +
+                "                                            <br>\n" +
+                "                                            <strong>事件:</strong> 业主一星期未捕获通行记录，请确认或安排查看水电\n" +
+                "                                            <a href=\"#\" class=\"btn btn-info btn-sm pull-right\" data-toggle=\"modal\" data-target=\"#myModal\">查看详情</a>\n" +
+                "                                        </p>");
+        },2000)
+
+    }
+
+</script>

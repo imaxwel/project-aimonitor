@@ -80,7 +80,7 @@ public class OwnerController extends BaseController{
      *  获得小区下的所有业主信息
      * @return
      */
-    @RequestMapping("/permit/getOwnInfo")
+    @RequestMapping("/getOwnInfo")
     @ResponseBody
     public List<OwnerInfoView> getOwnerInfos(){
         Object username = SecurityUtils.getSubject().getPrincipal();
@@ -93,11 +93,9 @@ public class OwnerController extends BaseController{
      */
     @RequestMapping("/info")
     @ResponseBody
-    @DeBug
     public OwnerInfoView getOwnerInfo(){
         Object username = SecurityUtils.getSubject().getPrincipal();
-        return ownerService.getOwnerInfoViewByUsername((String)"1234");
-        //**return ownerService.getOwnerInfoViewByUsername((String)username);
+        return ownerService.getOwnerInfoViewByUsername((String)username);
     }
 
 }

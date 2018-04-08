@@ -28,6 +28,11 @@ public class BasePageController extends BaseController{
         return "login";
     }
 
+    @RequestMapping(value = "/login2")
+    public String login2(){
+        return "login2";
+    }
+
     @RequestMapping(value="/regist")
     public String regist(){
         return "regist";

@@ -2,7 +2,7 @@
 // mngcenter登录后从后台获取用户信息
     $.ajax({
         type: "get",
-        url: "/owner/info",//后台页面链接
+        url: "http://192.168.0.106:4001/owner/info",//后台页面链接
         cache: false,
         dataType: 'json',
         success: function (data) {

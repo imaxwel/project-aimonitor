@@ -1,12 +1,18 @@
 package per.wph.common.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import per.wph.common.shiro.util.LoginUtil;
 import per.wph.common.shiro.util.PasswordUtil;
 import per.wph.engine.servicce.FeatureService;
 import per.wph.info.service.*;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class BaseController {
     //设置默认的验证码超时时间为两分钟
@@ -35,4 +41,5 @@ public class BaseController {
     protected VisitorService visitorService;
     @Autowired
     protected RecordService recordService;
+
 }
